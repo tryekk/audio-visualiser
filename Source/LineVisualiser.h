@@ -123,12 +123,19 @@ public:
             float fractionalWidth = width / scopeSize;
             float scaleFactor = 0.99f;
             
-            float BaseColourR = 235.0f;
-            float BaseColourG = 0.0f;
-            float BaseColourB = 200.0f;
-            float ModColourR = 235.0f;
-            float ModColourG = 235.0f;
-            float ModColourB = 200.0f;
+            float LowGainColourR = 0.0f;
+            float LowGainColourG = 0.0f;
+            float LowGainColourB = 0.0f;
+            float HighGainColourR = 0.0f;
+            float HighGainColourG = 235.0f;
+            float HighGainColourB = 0.0f;
+            
+            float LowPitchColourR = 0.0f;
+            float LowPitchColourG = 0.0f;
+            float LowPitchColourB = 0.0f;
+            float HighPitchColourR = 235.0f;
+            float HighPitchColourG = 0.0f;
+            float HighPitchColourB = 200.0f;
             
             if (showAccurateSamplePoints) {
                 g.setColour(juce::Colours::gold);
@@ -140,8 +147,11 @@ public:
             
             // Update points
             if ((oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) != 0) {
-                
-                g.setColour (juce::Colour((BaseColourR / scopeSize) * i, BaseColourG + ((ModColourG - BaseColourG) * scopeData[i]), BaseColourB));
+    
+                g.setColour (juce::Colour((
+                                            (HighPitchColourR / scopeSize) * i) + ((HighGainColourR - LowGainColourR) * scopeData[i]),
+                                            HighPitchColourG + ((HighGainColourG - LowGainColourG) * scopeData[i]),
+                                            HighPitchColourB + ((HighGainColourB - LowGainColourB) * scopeData[i])));
                 
                 g.drawEllipse(i * fractionalWidth - (fractionalWidth / 2) * scaleFactor, (height - ((oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * height)) - (fractionalWidth / 2) * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor);
                 
