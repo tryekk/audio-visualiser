@@ -4,7 +4,7 @@
 <plist>
   <dict>
     <key>NSMicrophoneUsageDescription</key>
-    <string>Hello</string>
+    <string>Microphone access required</string>
     <key>CFBundleExecutable</key>
     <string>${EXECUTABLE_NAME}</string>
     <key>CFBundleIconFile</key>
