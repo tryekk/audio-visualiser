@@ -40,10 +40,22 @@ public:
         g.fillAll (juce::Colours::black);
 
         g.setOpacity (1.0f);
-//        g.setColour (juce::Colours::white);
         drawFrame (g);
+        
         counter = counter + 1;
         colourIncrement = colourIncrement + 1;
+        
+        g.setColour(juce::Colours::white);
+        String currentTimeHours = (String) juce::Time::getCurrentTime().getHours();
+        String currentTimeMins = (String) juce::Time::getCurrentTime().getMinutes();
+        if (currentTimeMins.length() == 1) {
+            currentTimeMins = "0" + currentTimeMins;
+        }
+        String currentTime = currentTimeHours + ":" + currentTimeMins;
+//        auto currentTimeString = currentTime.toString (false, true);
+        g.setFont (juce::Font ("Calibri", 20.0f, juce::Font::bold));
+        g.drawText (currentTime, getLocalBounds(), juce::Justification::centred, true);
+
     }
 
     void timerCallback() override {
@@ -112,7 +124,7 @@ public:
         
 //        std::cout << (oldPosition + (((scopeData[5] - oldPosition) / smoothingFrames) * counter)) * 100 << "\n";
 //        std::cout << counter << "\n";
-        
+            
         for (int i = 1; i < scopeSize; ++i)
         {
             auto width  = getLocalBounds().getWidth();
@@ -124,15 +136,15 @@ public:
             float LowGainColourG = 0.0f;
             float LowGainColourB = 0.0f;
             float HighGainColourR = 0.0f;
-            float HighGainColourG = 1.0f;
+            float HighGainColourG = 255.0f;
             float HighGainColourB = 0.0f;
             
             float LowPitchColourR = 0.0f;
             float LowPitchColourG = 0.0f;
             float LowPitchColourB = 0.0f;
-            float HighPitchColourR = 1.0f;
+            float HighPitchColourR = 240.0f;
             float HighPitchColourG = 0.0f;
-            float HighPitchColourB = 1.0f;
+            float HighPitchColourB = 200.0f;
             
             if (showAccurateSamplePoints) {
                 g.setColour(juce::Colours::gold);
@@ -145,24 +157,38 @@ public:
             // Update points
             if ((oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) != 0) {
                 if (colourIncrement >= smoothingFramesColour) {  // Update colour
-                    currentAccurateColourList[i] = juce::Colour::fromFloatRGBA(
+                    currentAccurateColourList[i] = juce::Colour(
                                             ((HighPitchColourR / scopeSize) * i) + ((HighGainColourR - LowGainColourR) * scopeData[i]),
                                             HighPitchColourG + ((HighGainColourG - LowGainColourG) * scopeData[i]),
-                                            HighPitchColourB + ((HighGainColourB - LowGainColourB) * scopeData[i]),
-                                            1.0f);
+                                            HighPitchColourB + ((HighGainColourB - LowGainColourB) * scopeData[i]));
                 }
                 
-                float newRedValue = oldColourList[i].getFloatRed() + (((currentAccurateColourList[i].getFloatRed() - oldColourList[i].getFloatRed()) / smoothingFramesColour) * colourIncrement);
+//                float newRedValue = oldColourList[i].getFloatRed() + (((currentAccurateColourList[i].getFloatRed() - oldColourList[i].getFloatRed()) / smoothingFramesColour) * colourIncrement);
+//                float newGreenValue = oldColourList[i].getFloatGreen() + (((currentAccurateColourList[i].getFloatGreen() -  oldColourList[i].getFloatGreen()) / smoothingFramesColour) * colourIncrement);
+//                float newBlueValue = oldColourList[i].getFloatBlue() + (((currentAccurateColourList[i].getFloatBlue() - oldColourList[i].getFloatBlue()) / smoothingFramesColour) * colourIncrement);
+                
+//                float newGreenValue = oldColourList[i].getFloatGreen() + (((currentAccurateColourList[i].getFloatGreen() -  oldColourList[i].getFloatGreen()) / smoothingFramesColour) * colourIncrement);
+                
                 float newGreenValue = oldColourList[i].getFloatGreen() + (((currentAccurateColourList[i].getFloatGreen() -  oldColourList[i].getFloatGreen()) / smoothingFramesColour) * colourIncrement);
-                float newBlueValue = oldColourList[i].getFloatBlue() + (((currentAccurateColourList[i].getFloatBlue() - oldColourList[i].getFloatBlue()) / smoothingFramesColour) * colourIncrement);
-                juce::Colour smoothedColour = juce::Colour::fromFloatRGBA(newRedValue, newGreenValue, newBlueValue, 1.0f);
-                g.setColour(smoothedColour);
+                
                 if (i == 6) {
 //                    std::cout << (float) oldColourList[i].getGreen() << "\n";
                     std::cout << newGreenValue << "\n";
-                    std::cout << oldColourList[i].getFloatGreen() + (((currentAccurateColourList[i].getFloatGreen() -  oldColourList[i].getFloatGreen()) / smoothingFramesColour) * colourIncrement) << "\n\n";
 //                    std::cout << colourIncrement << "\n";
                 }
+                
+                juce::Colour smoothedColour = juce::Colour::fromFloatRGBA(
+                                  oldColourList[i].getFloatRed() + (((currentAccurateColourList[i].getFloatRed() - oldColourList[i].getFloatRed()) / smoothingFramesColour) * colourIncrement),
+
+//                                                                          oldColourList[i].getFloatGreen() + (((currentAccurateColourList[i].getFloatGreen() -  oldColourList[i].getFloatGreen()) / smoothingFramesColour) * colourIncrement),
+                                  
+                                  newGreenValue,
+                                  
+                                  oldColourList[i].getFloatBlue() + (((currentAccurateColourList[i].getFloatBlue() - oldColourList[i].getFloatBlue()) / smoothingFramesColour) * colourIncrement),
+                                  
+                                  1.0f);
+            
+                g.setColour(smoothedColour);
                 
                 g.drawEllipse(i * fractionalWidth - (fractionalWidth / 2) * scaleFactor, (height - ((oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * height)) - (fractionalWidth / 2) * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor);
                 
@@ -192,7 +218,7 @@ private:
     {
         fftOrder  = 10,             // No of sample sections on screen
         fftSize   = 1 << fftOrder,  // use the left bit shift operator which produces 2048 as binary number 100000000000
-        scopeSize = 100             // number of points in the visual representation of the spectrum as a scope
+        scopeSize = 128             // number of points in the visual representation of the spectrum as a scope
     };
     
     
@@ -207,7 +233,7 @@ private:
     float oldPositionData [scopeSize];
     
     int counter = 0;
-    int smoothingFrames = 8;
+    int smoothingFrames = 7;
     int smoothingFramesColour = 30;
     int colourIncrement = 0;
     juce::Colour currentAccurateColourList [scopeSize];
