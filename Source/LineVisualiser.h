@@ -129,15 +129,15 @@ public:
             float LowGainColourG = 0.0f;
             float LowGainColourB = 0.0f;
             float HighGainColourR = 0.0f;
-            float HighGainColourG = 255.0f;
+            float HighGainColourG = 1.0f;
             float HighGainColourB = 0.0f;
             
             float LowPitchColourR = 0.0f;
             float LowPitchColourG = 0.0f;
             float LowPitchColourB = 0.0f;
-            float HighPitchColourR = 240.0f;
+            float HighPitchColourR = 0.9f;
             float HighPitchColourG = 0.0f;
-            float HighPitchColourB = 200.0f;
+            float HighPitchColourB = 0.7f;
             
             if (showAccurateSamplePoints) {
                 g.setColour(juce::Colours::gold);
@@ -149,27 +149,30 @@ public:
             
             // Update points
             if ((oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) != 0) {
-                if (colourIncrement >= smoothingFramesColour) {  // Update colour
-                    oldColourList[i] = currentAccurateColourList[i];
-                    
-                    currentAccurateColourList[i] = juce::Colour(
-                                            ((HighPitchColourR / scopeSize) * i) + ((HighGainColourR - LowGainColourR) * scopeData[i]),
-                                            HighPitchColourG + ((HighGainColourG - LowGainColourG) * scopeData[i]),
-                                            HighPitchColourB + ((HighGainColourB - LowGainColourB) * scopeData[i]));
-                }
-                
                 float red = oldColourList[i].getFloatRed() + (((currentAccurateColourList[i].getFloatRed() - oldColourList[i].getFloatRed()) / smoothingFramesColour) * colourIncrement);
                 float green = oldColourList[i].getFloatGreen() + (((currentAccurateColourList[i].getFloatGreen() -  oldColourList[i].getFloatGreen()) / smoothingFramesColour) * colourIncrement);
                 float blue = oldColourList[i].getFloatBlue() + (((currentAccurateColourList[i].getFloatBlue() - oldColourList[i].getFloatBlue()) / smoothingFramesColour) * colourIncrement);
                 float RGBColour[3] = {red, green, blue};
                                 
                 if (i == 6) {
-                    std::cout << oldColourList[i].getFloatGreen() + (((currentAccurateColourList[i].getFloatGreen() -  oldColourList[i].getFloatGreen()) / smoothingFramesColour) * colourIncrement) << "\n";
+                    std::cout << green << "\n";
+                    std::cout << currentAccurateColourList[i].getFloatGreen() << "\n";
                 }
                 
                 drawLayer(g, i, RGBColour, 1.0f, 0.7f, scaleFactor * 1);
                 drawLayer(g, i, RGBColour, 0.75f, 0.8f, scaleFactor * 0.85);
                 drawLayer(g, i, RGBColour, 0.5f, 0.9f, scaleFactor * 0.7);
+                
+                // Update colour
+                if (colourIncrement >= smoothingFramesColour) {
+                    oldColourList[i] = currentAccurateColourList[i];
+                    
+                    currentAccurateColourList[i] = juce::Colour::fromFloatRGBA(
+                        ((HighPitchColourR / scopeSize) * i) + ((HighGainColourR - LowGainColourR) * scopeData[i]),
+                        HighPitchColourG + ((HighGainColourG - LowGainColourG) * scopeData[i]),
+                        HighPitchColourB + ((HighGainColourB - LowGainColourB) * scopeData[i]),
+                        1.0f);
+                }
             }
         
 //            g.setColour (juce::Colour(255.0f, (255.0f / scopeSize) * i, (255.0f / scopeSize) * i));
@@ -180,7 +183,7 @@ public:
 //                                  juce::jmap (scopeData[i],     0.0f, 1.0f, (float) height, 0.0f) });
         }
         
-        std::cout << colourIncrement << "\n";
+        std::cout << colourIncrement << "\n\n";
         if (colourIncrement >= smoothingFramesColour) {
             // Reset
             colourIncrement = 0;
@@ -217,7 +220,7 @@ private:
     {
         fftOrder  = 10,             // No of sample sections on screen
         fftSize   = 1 << fftOrder,  // use the left bit shift operator which produces 2048 as binary number 100000000000
-        scopeSize = 200             // number of points in the visual representation of the spectrum as a scope
+        scopeSize = 256             // number of points in the visual representation of the spectrum as a scope
     };
     
     
