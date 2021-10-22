@@ -153,15 +153,12 @@ public:
                 float green = oldColourList[i].getFloatGreen() + (((currentAccurateColourList[i].getFloatGreen() -  oldColourList[i].getFloatGreen()) / smoothingFramesColour) * colourIncrement);
                 float blue = oldColourList[i].getFloatBlue() + (((currentAccurateColourList[i].getFloatBlue() - oldColourList[i].getFloatBlue()) / smoothingFramesColour) * colourIncrement);
                 float RGBColour[3] = {red, green, blue};
-                                
-                if (i == 6) {
-                    std::cout << green << "\n";
-                    std::cout << currentAccurateColourList[i].getFloatGreen() << "\n";
-                }
                 
-                drawLayer(g, i, RGBColour, 1.0f, 0.7f, scaleFactor * 1);
-                drawLayer(g, i, RGBColour, 0.75f, 0.8f, scaleFactor * 0.85);
-                drawLayer(g, i, RGBColour, 0.5f, 0.9f, scaleFactor * 0.7);
+//                drawLayer(g, i, RGBColour, 0.2f, 0.9f, scaleFactor * 0.4);
+                drawLayer(g, i, RGBColour, 0.4f, 0.9f, scaleFactor * 0.55);
+                drawLayer(g, i, RGBColour, 0.6f, 0.8f, scaleFactor * 0.7);
+                drawLayer(g, i, RGBColour, 0.8f, 0.7f, scaleFactor * 0.85);
+                drawLayer(g, i, RGBColour, 1.0f, 0.6f, scaleFactor * 1);
                 
                 // Update colour
                 if (colourIncrement >= smoothingFramesColour) {
@@ -183,7 +180,6 @@ public:
 //                                  juce::jmap (scopeData[i],     0.0f, 1.0f, (float) height, 0.0f) });
         }
         
-        std::cout << colourIncrement << "\n\n";
         if (colourIncrement >= smoothingFramesColour) {
             // Reset
             colourIncrement = 0;
@@ -205,14 +201,22 @@ public:
         g.setColour(smoothedColour);
         
         // Bottom Half
-        g.drawEllipse(i * fractionalWidth - (fractionalWidth / 2) * scaleFactor, (height - ((oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * (height * heightModifier))) - (fractionalWidth / 2) * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor);
+//        juce::Container();
+            g.drawEllipse(i * fractionalWidth - (fractionalWidth / 2) * scaleFactor, (height - ((oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * (height * heightModifier))) - (fractionalWidth / 2) * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor);
 
-        g.drawLine(i * (fractionalWidth), height, i * (fractionalWidth), height - ((oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * (height * heightModifier)), fractionalWidth * scaleFactor);
+            g.drawLine(i * (fractionalWidth), height, i * (fractionalWidth), height - ((oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * (height * heightModifier)), fractionalWidth * scaleFactor);
         
         // Top half
-        g.drawEllipse(i * fractionalWidth - (fractionalWidth / 2) * scaleFactor, (((oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * (height * heightModifier))) - (fractionalWidth / 2) * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor);
-
-        g.drawLine(i * (fractionalWidth), 0, i * (fractionalWidth), (oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * (height * heightModifier), fractionalWidth * scaleFactor);
+//        juce::Container();
+            if (topPitchInverted) {
+                g.drawEllipse((width - (i * fractionalWidth)) - (fractionalWidth / 2) * scaleFactor, (((oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * (height * heightModifier))) - (fractionalWidth / 2) * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor);
+                
+                g.drawLine(width - (i * fractionalWidth), 0, width - (i * fractionalWidth), (oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * (height * heightModifier), fractionalWidth * scaleFactor);
+            } else {
+                g.drawEllipse((i * fractionalWidth) - (fractionalWidth / 2) * scaleFactor, (((oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * (height * heightModifier))) - (fractionalWidth / 2) * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor);
+                
+                g.drawLine(i * fractionalWidth, 0, width - (i * fractionalWidth), (oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * (height * heightModifier), fractionalWidth * scaleFactor);
+            }
     }
 
 private:
@@ -220,7 +224,7 @@ private:
     {
         fftOrder  = 10,             // No of sample sections on screen
         fftSize   = 1 << fftOrder,  // use the left bit shift operator which produces 2048 as binary number 100000000000
-        scopeSize = 256             // number of points in the visual representation of the spectrum as a scope
+        scopeSize = 167             // number of points in the visual representation of the spectrum as a scope
     };
     
     
@@ -235,14 +239,15 @@ private:
     float oldPositionData [scopeSize];
     
     int counter = 0;
-    int smoothingFrames = 6;
-    int smoothingFramesColour = 30;
+    int smoothingFrames = 8;
+    int smoothingFramesColour = 16;
     int colourIncrement = 0;
     juce::Colour currentAccurateColourList [scopeSize];
     juce::Colour oldColourList [scopeSize];
     
     bool showAccurateSamplePoints = false;
-    bool displayClock = true;
+    bool displayClock = false;
+    bool topPitchInverted = true;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AnalyserComponent)
 };
