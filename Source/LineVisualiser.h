@@ -158,33 +158,18 @@ public:
                                             HighPitchColourB + ((HighGainColourB - LowGainColourB) * scopeData[i]));
                 }
                 
-                juce::Colour smoothedColour = juce::Colour::fromFloatRGBA(
-                     oldColourList[i].getFloatRed() + (((currentAccurateColourList[i].getFloatRed() - oldColourList[i].getFloatRed()) / smoothingFramesColour) * colourIncrement),
-
-                      oldColourList[i].getFloatGreen() + (((currentAccurateColourList[i].getFloatGreen() -  oldColourList[i].getFloatGreen()) / smoothingFramesColour) * colourIncrement),
-                      
-                      oldColourList[i].getFloatBlue() + (((currentAccurateColourList[i].getFloatBlue() - oldColourList[i].getFloatBlue()) / smoothingFramesColour) * colourIncrement),
-                      
-                      1.0f);
-                
+                float red = oldColourList[i].getFloatRed() + (((currentAccurateColourList[i].getFloatRed() - oldColourList[i].getFloatRed()) / smoothingFramesColour) * colourIncrement);
+                float green = oldColourList[i].getFloatGreen() + (((currentAccurateColourList[i].getFloatGreen() -  oldColourList[i].getFloatGreen()) / smoothingFramesColour) * colourIncrement);
+                float blue = oldColourList[i].getFloatBlue() + (((currentAccurateColourList[i].getFloatBlue() - oldColourList[i].getFloatBlue()) / smoothingFramesColour) * colourIncrement);
+                float RGBColour[3] = {red, green, blue};
+                                
                 if (i == 6) {
                     std::cout << oldColourList[i].getFloatGreen() + (((currentAccurateColourList[i].getFloatGreen() -  oldColourList[i].getFloatGreen()) / smoothingFramesColour) * colourIncrement) << "\n";
                 }
-            
-                g.setColour(smoothedColour);
                 
-                // Bottom half
-                g.drawEllipse(i * fractionalWidth - (fractionalWidth / 2) * scaleFactor, (height - ((oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * (height * 0.7))) - (fractionalWidth / 2) * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor);
-
-                g.drawLine(i * (fractionalWidth), height, i * (fractionalWidth), height - ((oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * (height * 0.7)), fractionalWidth * scaleFactor);
-                
-                // Top half
-                g.drawEllipse(i * fractionalWidth - (fractionalWidth / 2) * scaleFactor, (((oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * (height * 0.7))) - (fractionalWidth / 2) * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor);
-
-                g.drawLine(i * (fractionalWidth), 0, i * (fractionalWidth), (oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * (height * 0.7), fractionalWidth * scaleFactor);
-                
-                drawLayer(g, i, 0.75f, 0.8f, scaleFactor);
-                drawLayer(g, i, 0.5f, 0.9f, scaleFactor);
+                drawLayer(g, i, RGBColour, 1.0f, 0.7f, scaleFactor * 1);
+                drawLayer(g, i, RGBColour, 0.75f, 0.8f, scaleFactor * 0.85);
+                drawLayer(g, i, RGBColour, 0.5f, 0.9f, scaleFactor * 0.7);
             }
         
 //            g.setColour (juce::Colour(255.0f, (255.0f / scopeSize) * i, (255.0f / scopeSize) * i));
@@ -203,19 +188,16 @@ public:
         
     }
     
-    void drawLayer (juce::Graphics& g, int i, float transparency, float heightModifier, float scaleFactor) {
+    void drawLayer (juce::Graphics& g, int i, float RGBColour[3], float transparency, float heightModifier, float scaleFactor) {
         auto width  = getLocalBounds().getWidth();
         auto height = getLocalBounds().getHeight();
         float fractionalWidth = width / scopeSize;
         
         juce::Colour smoothedColour = juce::Colour::fromFloatRGBA(
-             oldColourList[i].getFloatRed() + (((currentAccurateColourList[i].getFloatRed() - oldColourList[i].getFloatRed()) / smoothingFramesColour) * colourIncrement),
-
-              oldColourList[i].getFloatGreen() + (((currentAccurateColourList[i].getFloatGreen() -  oldColourList[i].getFloatGreen()) / smoothingFramesColour) * colourIncrement),
-              
-              oldColourList[i].getFloatBlue() + (((currentAccurateColourList[i].getFloatBlue() - oldColourList[i].getFloatBlue()) / smoothingFramesColour) * colourIncrement),
-              
-              transparency);
+                                                                  RGBColour[0],
+                                                                  RGBColour[1],
+                                                                  RGBColour[2],
+                                                                  transparency);
         
         g.setColour(smoothedColour);
         
