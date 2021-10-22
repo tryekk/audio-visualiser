@@ -174,36 +174,17 @@ public:
                 g.setColour(smoothedColour);
                 
                 // Bottom half
-                g.drawEllipse(i * fractionalWidth - (fractionalWidth / 2) * scaleFactor, (height - ((oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * (height * 0.9))) - (fractionalWidth / 2) * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor);
+                g.drawEllipse(i * fractionalWidth - (fractionalWidth / 2) * scaleFactor, (height - ((oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * (height * 0.7))) - (fractionalWidth / 2) * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor);
 
-                g.drawLine(i * (fractionalWidth), height, i * (fractionalWidth), height - ((oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * (height * 0.9)), fractionalWidth * scaleFactor);
+                g.drawLine(i * (fractionalWidth), height, i * (fractionalWidth), height - ((oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * (height * 0.7)), fractionalWidth * scaleFactor);
                 
                 // Top half
-                g.drawEllipse(i * fractionalWidth - (fractionalWidth / 2) * scaleFactor, (((oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * (height * 0.9))) - (fractionalWidth / 2) * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor);
+                g.drawEllipse(i * fractionalWidth - (fractionalWidth / 2) * scaleFactor, (((oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * (height * 0.7))) - (fractionalWidth / 2) * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor);
 
-                g.drawLine(i * (fractionalWidth), 0, i * (fractionalWidth), (oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * (height * 0.9), fractionalWidth * scaleFactor);
+                g.drawLine(i * (fractionalWidth), 0, i * (fractionalWidth), (oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * (height * 0.7), fractionalWidth * scaleFactor);
                 
-                
-                juce::Colour smoothedColour2 = juce::Colour::fromFloatRGBA(
-                     oldColourList[i].getFloatRed() + (((currentAccurateColourList[i].getFloatRed() - oldColourList[i].getFloatRed()) / smoothingFramesColour) * colourIncrement),
-
-                      oldColourList[i].getFloatGreen() + (((currentAccurateColourList[i].getFloatGreen() -  oldColourList[i].getFloatGreen()) / smoothingFramesColour) * colourIncrement),
-                      
-                      oldColourList[i].getFloatBlue() + (((currentAccurateColourList[i].getFloatBlue() - oldColourList[i].getFloatBlue()) / smoothingFramesColour) * colourIncrement),
-                      
-                      0.75f);
-                
-                g.setColour(smoothedColour2);
-                
-                // Bottom Half
-                g.drawEllipse(i * fractionalWidth - (fractionalWidth / 2) * scaleFactor, (height - ((oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * height)) - (fractionalWidth / 2) * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor);
-
-                g.drawLine(i * (fractionalWidth), height, i * (fractionalWidth) * 1.1, height - ((oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * height), fractionalWidth * scaleFactor);
-                
-                // Top half
-                g.drawEllipse(i * fractionalWidth - (fractionalWidth / 2) * scaleFactor * 1.1, (((oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * height)) - (fractionalWidth / 2) * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor);
-
-                g.drawLine(i * (fractionalWidth), 0, i * (fractionalWidth), (oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * height, fractionalWidth * scaleFactor);
+                drawLayer(g, i, 0.75f, 0.8f, scaleFactor);
+                drawLayer(g, i, 0.5f, 0.9f, scaleFactor);
             }
         
 //            g.setColour (juce::Colour(255.0f, (255.0f / scopeSize) * i, (255.0f / scopeSize) * i));
@@ -219,6 +200,34 @@ public:
             // Reset
             colourIncrement = 0;
         }
+        
+    }
+    
+    void drawLayer (juce::Graphics& g, int i, float transparency, float heightModifier, float scaleFactor) {
+        auto width  = getLocalBounds().getWidth();
+        auto height = getLocalBounds().getHeight();
+        float fractionalWidth = width / scopeSize;
+        
+        juce::Colour smoothedColour = juce::Colour::fromFloatRGBA(
+             oldColourList[i].getFloatRed() + (((currentAccurateColourList[i].getFloatRed() - oldColourList[i].getFloatRed()) / smoothingFramesColour) * colourIncrement),
+
+              oldColourList[i].getFloatGreen() + (((currentAccurateColourList[i].getFloatGreen() -  oldColourList[i].getFloatGreen()) / smoothingFramesColour) * colourIncrement),
+              
+              oldColourList[i].getFloatBlue() + (((currentAccurateColourList[i].getFloatBlue() - oldColourList[i].getFloatBlue()) / smoothingFramesColour) * colourIncrement),
+              
+              transparency);
+        
+        g.setColour(smoothedColour);
+        
+        // Bottom Half
+        g.drawEllipse(i * fractionalWidth - (fractionalWidth / 2) * scaleFactor, (height - ((oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * (height * heightModifier))) - (fractionalWidth / 2) * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor);
+
+        g.drawLine(i * (fractionalWidth), height, i * (fractionalWidth), height - ((oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * (height * heightModifier)), fractionalWidth * scaleFactor);
+        
+        // Top half
+        g.drawEllipse(i * fractionalWidth - (fractionalWidth / 2) * scaleFactor, (((oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * (height * heightModifier))) - (fractionalWidth / 2) * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor);
+
+        g.drawLine(i * (fractionalWidth), 0, i * (fractionalWidth), (oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * (height * heightModifier), fractionalWidth * scaleFactor);
     }
 
 private:
@@ -226,7 +235,7 @@ private:
     {
         fftOrder  = 10,             // No of sample sections on screen
         fftSize   = 1 << fftOrder,  // use the left bit shift operator which produces 2048 as binary number 100000000000
-        scopeSize = 256             // number of points in the visual representation of the spectrum as a scope
+        scopeSize = 200             // number of points in the visual representation of the spectrum as a scope
     };
     
     
