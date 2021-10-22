@@ -45,17 +45,20 @@ public:
         counter = counter + 1;
         colourIncrement = colourIncrement + 1;
         
-        g.setColour(juce::Colours::white);
-        String currentTimeHours = (String) juce::Time::getCurrentTime().getHours();
-        String currentTimeMins = (String) juce::Time::getCurrentTime().getMinutes();
-        if (currentTimeMins.length() == 1) {
-            currentTimeMins = "0" + currentTimeMins;
+        if (displayClock) {
+            g.setColour(juce::Colours::white);
+            String currentTimeHours = (String) juce::Time::getCurrentTime().getHours();
+            String currentTimeMins = (String) juce::Time::getCurrentTime().getMinutes();
+            if (currentTimeMins.length() == 1) {
+                currentTimeMins = "0" + currentTimeMins;
+            }
+            String currentTime = currentTimeHours + ":" + currentTimeMins;
+    //        auto currentTimeString = currentTime.toString (false, true);
+            int size = (int) getHeight() * 0.05;
+            float fontSize = juce::jlimit (36, 72, size);
+            g.setFont (juce::Font ("Calibri", fontSize, juce::Font::bold));
+            g.drawText (currentTime, 120, 100, 500, 200, juce::Justification::topLeft, true);
         }
-        String currentTime = currentTimeHours + ":" + currentTimeMins;
-//        auto currentTimeString = currentTime.toString (false, true);
-        g.setFont (juce::Font ("Calibri", 20.0f, juce::Font::bold));
-        g.drawText (currentTime, getLocalBounds(), juce::Justification::centred, true);
-
     }
 
     void timerCallback() override {
@@ -94,13 +97,11 @@ public:
         auto maxdB =    0.0f;
  
         if (counter >= smoothingFrames) {
-//            oldPositionData = scopeData;
-            for (int i = 0; i < scopeSize; i++) {
-                oldPositionData[i] = scopeData[i];
-            }
             // Now in the for loop for every point in the scope width, calculate the level proportionally to the desired minimum and maximum decibels. To do this, we first need to skew the x-axis to use a logarithmic scale to better represent our frequencies. We can then feed this scaling factor to retrieve the correct array index and use the amplitude value to map it to a range between 0.0 .. 1.0.
             for (int i = 0; i < scopeSize; ++i)                         // Calculate level for each point in scope
             {
+                oldPositionData[i] = scopeData[i];
+                
                 auto skewedProportionX = 1.0f - std::exp (std::log (1.0f - (float) i / (float) scopeSize) * 0.2f);
                 
                 auto fftDataIndex = juce::jlimit (0, fftSize / 2, (int) (skewedProportionX * (float) fftSize * 0.5f));
@@ -117,14 +118,6 @@ public:
         }
     }
     void drawFrame (juce::Graphics& g) {
-//        oldPosition = oldPosition + ((scopeData[5] - oldPosition) / smoothingFrames);
-//        if (increment == smoothingFrames) {
-//            increment = 0;
-//        }
-        
-//        std::cout << (oldPosition + (((scopeData[5] - oldPosition) / smoothingFrames) * counter)) * 100 << "\n";
-//        std::cout << counter << "\n";
-            
         for (int i = 1; i < scopeSize; ++i)
         {
             auto width  = getLocalBounds().getWidth();
@@ -157,46 +150,28 @@ public:
             // Update points
             if ((oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) != 0) {
                 if (colourIncrement >= smoothingFramesColour) {  // Update colour
+                    oldColourList[i] = currentAccurateColourList[i];
+                    
                     currentAccurateColourList[i] = juce::Colour(
                                             ((HighPitchColourR / scopeSize) * i) + ((HighGainColourR - LowGainColourR) * scopeData[i]),
                                             HighPitchColourG + ((HighGainColourG - LowGainColourG) * scopeData[i]),
                                             HighPitchColourB + ((HighGainColourB - LowGainColourB) * scopeData[i]));
                 }
                 
-//                float newRedValue = oldColourList[i].getFloatRed() + (((currentAccurateColourList[i].getFloatRed() - oldColourList[i].getFloatRed()) / smoothingFramesColour) * colourIncrement);
-//                float newGreenValue = oldColourList[i].getFloatGreen() + (((currentAccurateColourList[i].getFloatGreen() -  oldColourList[i].getFloatGreen()) / smoothingFramesColour) * colourIncrement);
-//                float newBlueValue = oldColourList[i].getFloatBlue() + (((currentAccurateColourList[i].getFloatBlue() - oldColourList[i].getFloatBlue()) / smoothingFramesColour) * colourIncrement);
-                
-//                float newGreenValue = oldColourList[i].getFloatGreen() + (((currentAccurateColourList[i].getFloatGreen() -  oldColourList[i].getFloatGreen()) / smoothingFramesColour) * colourIncrement);
-                
-                float newGreenValue = oldColourList[i].getFloatGreen() + (((currentAccurateColourList[i].getFloatGreen() -  oldColourList[i].getFloatGreen()) / smoothingFramesColour) * colourIncrement);
-                
-                if (i == 6) {
-//                    std::cout << (float) oldColourList[i].getGreen() << "\n";
-                    std::cout << newGreenValue << "\n";
-//                    std::cout << colourIncrement << "\n";
-                }
-                
                 juce::Colour smoothedColour = juce::Colour::fromFloatRGBA(
-                                  oldColourList[i].getFloatRed() + (((currentAccurateColourList[i].getFloatRed() - oldColourList[i].getFloatRed()) / smoothingFramesColour) * colourIncrement),
+                     oldColourList[i].getFloatRed() + (((currentAccurateColourList[i].getFloatRed() - oldColourList[i].getFloatRed()) / smoothingFramesColour) * colourIncrement),
 
-//                                                                          oldColourList[i].getFloatGreen() + (((currentAccurateColourList[i].getFloatGreen() -  oldColourList[i].getFloatGreen()) / smoothingFramesColour) * colourIncrement),
-                                  
-                                  newGreenValue,
-                                  
-                                  oldColourList[i].getFloatBlue() + (((currentAccurateColourList[i].getFloatBlue() - oldColourList[i].getFloatBlue()) / smoothingFramesColour) * colourIncrement),
-                                  
-                                  1.0f);
+                      oldColourList[i].getFloatGreen() + (((currentAccurateColourList[i].getFloatGreen() -  oldColourList[i].getFloatGreen()) / smoothingFramesColour) * colourIncrement),
+                      
+                      oldColourList[i].getFloatBlue() + (((currentAccurateColourList[i].getFloatBlue() - oldColourList[i].getFloatBlue()) / smoothingFramesColour) * colourIncrement),
+                      
+                      1.0f);
             
                 g.setColour(smoothedColour);
                 
                 g.drawEllipse(i * fractionalWidth - (fractionalWidth / 2) * scaleFactor, (height - ((oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * height)) - (fractionalWidth / 2) * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor);
                 
                 g.drawLine(i * (fractionalWidth), height, i * (fractionalWidth), height - ((oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * height), fractionalWidth * scaleFactor);
-                
-                if (colourIncrement >= smoothingFramesColour) {
-                    oldColourList[i] = smoothedColour;
-                }
             }
         
 //            g.setColour (juce::Colour(255.0f, (255.0f / scopeSize) * i, (255.0f / scopeSize) * i));
@@ -240,6 +215,7 @@ private:
     juce::Colour oldColourList [scopeSize];
     
     bool showAccurateSamplePoints = false;
+    bool displayClock = true;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AnalyserComponent)
 };
