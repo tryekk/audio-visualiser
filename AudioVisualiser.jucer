@@ -6,9 +6,11 @@
               jucerFormatVersion="1" displaySplashScreen="1" companyEmail="tom@carter.solutions">
   <MAINGROUP id="AGOAak" name="AudioVisualiser">
     <GROUP id="{D4BAA470-DEB6-133C-B715-4F3155DAC4CD}" name="Source">
-      <FILE id="WG5YdY" name="LineVisualiser.h" compile="0" resource="0"
-            file="Source/LineVisualiser.h"/>
       <FILE id="ZcAtkd" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
+      <FILE id="WG5YdY" name="AnalyserComponent.h" compile="0" resource="0"
+            file="Source/AnalyserComponent.h"/>
+      <FILE id="OLHnS5" name="AnalyserComponent.cpp" compile="1" resource="0"
+            file="Source/AnalyserComponent.cpp"/>
     </GROUP>
   </MAINGROUP>
   <MODULES>

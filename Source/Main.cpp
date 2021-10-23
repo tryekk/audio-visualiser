@@ -1,5 +1,5 @@
 #include <JuceHeader.h>
-#include "LineVisualiser.h"
+#include "AnalyserComponent.h"
 //#include "MainComponent.h"
 
 class Application    : public juce::JUCEApplication
@@ -36,7 +36,7 @@ private:
            #else
             setResizable (true, false);
             setResizeLimits (300, 250, 10000, 10000);
-            centreWithSize (getWidth(), getHeight());
+            centreWithSize (1280,720);
            #endif
 
             setVisible (true);
