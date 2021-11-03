@@ -46,6 +46,10 @@ public:
         
         counter = counter + 1;
         colourIncrement = colourIncrement + 1;
+        n = n * 2;
+        if (n >= smoothingFrames) {
+            n = 1;
+        }
         
         if (displayClock) {
             g.setColour(juce::Colours::white);
@@ -157,7 +161,7 @@ public:
                 float RGBColour[3] = {red, green, blue};
                 
 //                drawLayer(g, i, RGBColour, 0.2f, 0.9f, scaleFactor * 0.4);
-                drawLayer(g, i, RGBColour, 0.4f, 0.9f, scaleFactor * 0.55);
+//                drawLayer(g, i, RGBColour, 0.4f, 0.9f, scaleFactor * 0.55);
                 drawLayer(g, i, RGBColour, 0.6f, 0.8f, scaleFactor * 0.7);
                 drawLayer(g, i, RGBColour, 0.8f, 0.7f, scaleFactor * 0.85);
                 drawLayer(g, i, RGBColour, 1.0f, 0.6f, scaleFactor * 1);
@@ -182,6 +186,7 @@ public:
 //                                  juce::jmap (scopeData[i],     0.0f, 1.0f, (float) height, 0.0f) });
         }
         
+        
         if (colourIncrement >= smoothingFramesColour) {
             // Reset
             colourIncrement = 0;
@@ -202,44 +207,77 @@ public:
         
         g.setColour(smoothedColour);
         
-        if (interpolationType == 0) {
-            // Bottom Half
+        if (centreOrigin) {
+            
             g.drawEllipse(i * fractionalWidth - (fractionalWidth / 2) * scaleFactor, (height - ((oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * (height * heightModifier))) - (fractionalWidth / 2) * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor);
 
-            g.drawLine(i * (fractionalWidth), height, i * (fractionalWidth), height - ((oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * (height * heightModifier)), fractionalWidth * scaleFactor);
+            g.drawLine(width / 2, height / 2, i * (fractionalWidth), height - ((oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * (height * heightModifier)), fractionalWidth * scaleFactor);
             
-            // Top half
-            if (topPitchInverted) {
-                g.drawEllipse((width - (i * fractionalWidth)) - (fractionalWidth / 2) * scaleFactor, (((oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * (height * heightModifier))) - (fractionalWidth / 2) * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor);
-                
-                g.drawLine(width - (i * fractionalWidth), 0, width - (i * fractionalWidth), (oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * (height * heightModifier), fractionalWidth * scaleFactor);
-            } else {
-                g.drawEllipse((i * fractionalWidth) - (fractionalWidth / 2) * scaleFactor, (((oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * (height * heightModifier))) - (fractionalWidth / 2) * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor);
-                
-                g.drawLine(i * fractionalWidth, 0, width - (i * fractionalWidth), (oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * (height * heightModifier), fractionalWidth * scaleFactor);
-            }
-        } else if (interpolationType == 1) {
-            currentPositionData[i] = oldPositionData[i] + ((scopeData[i] - currentPositionData[i]) / 2);
-//            currentPositionData[i] = oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter);
-//            oldPositionData[i] = currentPositionData[i];
-            
-            // Bottom Half
-            g.drawEllipse(i * fractionalWidth - (fractionalWidth / 2) * scaleFactor, (height - (currentPositionData[i] * (height * heightModifier))) - (fractionalWidth / 2) * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor);
+        } else {
+            if (interpolationType == 0) {
+                // Bottom Half
+                g.drawEllipse(i * fractionalWidth - (fractionalWidth / 2) * scaleFactor, (height - ((oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * (height * heightModifier))) - (fractionalWidth / 2) * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor);
 
-            g.drawLine(i * (fractionalWidth), height, i * (fractionalWidth), height - (currentPositionData[i] * (height * heightModifier)), fractionalWidth * scaleFactor);
-            
-            // Top half
-            if (topPitchInverted) {
-                g.drawEllipse((width - (i * fractionalWidth)) - (fractionalWidth / 2) * scaleFactor, ((currentPositionData[i] * (height * heightModifier))) - (fractionalWidth / 2) * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor);
+                g.drawLine(i * (fractionalWidth), height, i * (fractionalWidth), height - ((oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * (height * heightModifier)), fractionalWidth * scaleFactor);
                 
-                g.drawLine(width - (i * fractionalWidth), 0, width - (i * fractionalWidth), currentPositionData[i] * (height * heightModifier), fractionalWidth * scaleFactor);
-            } else {
-                g.drawEllipse((i * fractionalWidth) - (fractionalWidth / 2) * scaleFactor, ((currentPositionData[i] * (height * heightModifier))) - (fractionalWidth / 2) * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor);
+                // Top half
+                if (topPitchInverted) {
+                    g.drawEllipse((width - (i * fractionalWidth)) - (fractionalWidth / 2) * scaleFactor, (((oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * (height * heightModifier))) - (fractionalWidth / 2) * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor);
+                    
+                    g.drawLine(width - (i * fractionalWidth), 0, width - (i * fractionalWidth), (oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * (height * heightModifier), fractionalWidth * scaleFactor);
+                } else {
+                    g.drawEllipse((i * fractionalWidth) - (fractionalWidth / 2) * scaleFactor, (((oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * (height * heightModifier))) - (fractionalWidth / 2) * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor);
+                    
+                    g.drawLine(i * fractionalWidth, 0, width - (i * fractionalWidth), (oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * (height * heightModifier), fractionalWidth * scaleFactor);
+                }
+            } else if (interpolationType == 1) {
+                currentPositionData[i] = oldPositionData[i] + (((scopeData[i] - currentPositionData[i]) / smoothingFrames) * modifier);
+    //            currentPositionData[i] = oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter);
+    //            oldPositionData[i] = currentPositionData[i];
                 
-                g.drawLine(i * fractionalWidth, 0, width - (i * fractionalWidth), currentPositionData[i] * (height * heightModifier), fractionalWidth * scaleFactor);
+                // Bottom Half
+                g.drawEllipse(i * fractionalWidth - (fractionalWidth / 2) * scaleFactor, (height - (currentPositionData[i] * (height * heightModifier))) - (fractionalWidth / 2) * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor);
+
+                g.drawLine(i * (fractionalWidth), height, i * (fractionalWidth), height - (currentPositionData[i] * (height * heightModifier)), fractionalWidth * scaleFactor);
+                
+                // Top half
+                if (topPitchInverted) {
+                    g.drawEllipse((width - (i * fractionalWidth)) - (fractionalWidth / 2) * scaleFactor, ((currentPositionData[i] * (height * heightModifier))) - (fractionalWidth / 2) * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor);
+                    
+                    g.drawLine(width - (i * fractionalWidth), 0, width - (i * fractionalWidth), currentPositionData[i] * (height * heightModifier), fractionalWidth * scaleFactor);
+                } else {
+                    g.drawEllipse((i * fractionalWidth) - (fractionalWidth / 2) * scaleFactor, ((currentPositionData[i] * (height * heightModifier))) - (fractionalWidth / 2) * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor);
+                    
+                    g.drawLine(i * fractionalWidth, 0, width - (i * fractionalWidth), currentPositionData[i] * (height * heightModifier), fractionalWidth * scaleFactor);
+                }
+            } else if (interpolationType == 2) {
+                
+                modifier = modifier + ((smoothingFrames / n));
+                if (modifier > smoothingFrames) {
+                    modifier = 0;
+                }
+                if (i == 7) {
+    //                std::cout << currentPositionData[i] << "\n";
+                    std::cout << modifier << "\n";
+                }
+                
+                // Bottom Half
+                g.drawEllipse(i * fractionalWidth - (fractionalWidth / 2) * scaleFactor, (height - ((oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * (height * heightModifier))) - (fractionalWidth / 2) * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor);
+
+                g.drawLine(i * (fractionalWidth), height, i * (fractionalWidth), height - ((oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * modifier)) * (height * heightModifier)), fractionalWidth * scaleFactor);
+                
+                // Top half
+                if (topPitchInverted) {
+                    g.drawEllipse((width - (i * fractionalWidth)) - (fractionalWidth / 2) * scaleFactor, (((oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * (height * heightModifier))) - (fractionalWidth / 2) * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor);
+                    
+                    g.drawLine(width - (i * fractionalWidth), 0, width - (i * fractionalWidth), (oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * (height * heightModifier), fractionalWidth * scaleFactor);
+                } else {
+                    g.drawEllipse((i * fractionalWidth) - (fractionalWidth / 2) * scaleFactor, (((oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * (height * heightModifier))) - (fractionalWidth / 2) * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor);
+                    
+                    g.drawLine(i * fractionalWidth, 0, width - (i * fractionalWidth), (oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * (height * heightModifier), fractionalWidth * scaleFactor);
+                }
             }
         }
-        
     }
 
 private:
@@ -247,7 +285,7 @@ private:
     {
         fftOrder  = 10,             // No of sample sections on screen
         fftSize   = 1 << fftOrder,  // use the left bit shift operator which produces 2048 as binary number 100000000000
-        scopeSize = 100             // number of points in the visual representation of the spectrum as a scope
+        scopeSize = 180             // number of points in the visual representation of the spectrum as a scope
     };
     
     
@@ -263,8 +301,8 @@ private:
     float currentPositionData [scopeSize];
     
     int counter = 0;
-    int smoothingFrames = 4;
-    int smoothingFramesColour = 16;
+    int smoothingFrames = 6;
+    int smoothingFramesColour = 6;
     int colourIncrement = 0;
     juce::Colour currentAccurateColourList [scopeSize];
     juce::Colour oldColourList [scopeSize];
@@ -272,7 +310,10 @@ private:
     bool showAccurateSamplePoints = false;
     bool displayClock = false;
     bool topPitchInverted = true;
-    int interpolationType = 1;  // 0 = linear, 1 = inverse exponential
+    int interpolationType = 0;  // 0 = linear, 1 = exponential
+    bool centreOrigin = false;
+    int n = 1;
+    int modifier = 0;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AnalyserComponent)
 };

@@ -466,6 +466,9 @@
     <ClCompile Include="..\..\Source\Main.cpp">
       <Filter>AudioVisualiser\Source</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\HomePageContainer.cpp">
+      <Filter>AudioVisualiser\Source</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\AnalyserComponent.cpp">
       <Filter>AudioVisualiser\Source</Filter>
     </ClCompile>
@@ -2670,6 +2673,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\HomePageContainer.h">
+      <Filter>AudioVisualiser\Source</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\AnalyserComponent.h">
       <Filter>AudioVisualiser\Source</Filter>
     </ClInclude>

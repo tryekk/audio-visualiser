@@ -1,6 +1,5 @@
 #include <JuceHeader.h>
-#include "AnalyserComponent.h"
-//#include "MainComponent.h"
+#include "HomePageContainer.h"
 
 class Application    : public juce::JUCEApplication
 {
@@ -13,7 +12,7 @@ public:
 
     void initialise (const juce::String&) override
     {
-        mainWindow.reset (new MainWindow ("Audio Visualiser", new AnalyserComponent, *this));
+        mainWindow.reset (new MainWindow ("Audio Visualiser", new HomePageContainer, *this));
     }
 
     void shutdown() override                         { mainWindow = nullptr; }
@@ -36,7 +35,7 @@ private:
            #else
             setResizable (true, false);
             setResizeLimits (300, 250, 10000, 10000);
-            centreWithSize (1280,720);
+            centreWithSize (1280, 720);
            #endif
 
             setVisible (true);
