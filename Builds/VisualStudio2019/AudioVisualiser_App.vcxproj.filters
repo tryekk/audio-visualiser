@@ -463,16 +463,19 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Source\HomePageComponent.cpp">
-      <Filter>AudioVisualiser\Source</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\Main.cpp">
       <Filter>AudioVisualiser\Source</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\MainContainer.cpp">
       <Filter>AudioVisualiser\Source</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\HomePageComponent.cpp">
+      <Filter>AudioVisualiser\Source</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\AnalyserComponent.cpp">
+      <Filter>AudioVisualiser\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\SettingsComponent.cpp">
       <Filter>AudioVisualiser\Source</Filter>
     </ClCompile>
     <ClCompile Include="C:\JUCE\modules\juce_audio_basics\buffers\juce_AudioChannelSet.cpp">
@@ -2676,13 +2679,16 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Source\HomePageComponent.h">
-      <Filter>AudioVisualiser\Source</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Source\MainContainer.h">
       <Filter>AudioVisualiser\Source</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\HomePageComponent.h">
+      <Filter>AudioVisualiser\Source</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\AnalyserComponent.h">
+      <Filter>AudioVisualiser\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\SettingsComponent.h">
       <Filter>AudioVisualiser\Source</Filter>
     </ClInclude>
     <ClInclude Include="C:\JUCE\modules\juce_audio_basics\audio_play_head\juce_AudioPlayHead.h">
