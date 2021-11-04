@@ -68,8 +68,9 @@ ifeq ($(CONFIG),Release)
 endif
 
 OBJECTS_APP := \
+  $(JUCE_OBJDIR)/HomePageComponent_c005f270.o \
   $(JUCE_OBJDIR)/Main_90ebc5c2.o \
-  $(JUCE_OBJDIR)/HomePageContainer_cf8cbff4.o \
+  $(JUCE_OBJDIR)/MainContainer_b6868229.o \
   $(JUCE_OBJDIR)/AnalyserComponent_c8388fbf.o \
   $(JUCE_OBJDIR)/include_juce_audio_basics_8a4e984a.o \
   $(JUCE_OBJDIR)/include_juce_audio_devices_63111d02.o \
@@ -97,14 +98,19 @@ $(JUCE_OUTDIR)/$(JUCE_TARGET_APP) : $(OBJECTS_APP) $(RESOURCES)
 	-$(V_AT)mkdir -p $(JUCE_OUTDIR)
 	$(V_AT)$(CXX) -o $(JUCE_OUTDIR)/$(JUCE_TARGET_APP) $(OBJECTS_APP) $(JUCE_LDFLAGS) $(JUCE_LDFLAGS_APP) $(RESOURCES) $(TARGET_ARCH)
 
+$(JUCE_OBJDIR)/HomePageComponent_c005f270.o: ../../Source/HomePageComponent.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling HomePageComponent.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
 $(JUCE_OBJDIR)/Main_90ebc5c2.o: ../../Source/Main.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling Main.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
-$(JUCE_OBJDIR)/HomePageContainer_cf8cbff4.o: ../../Source/HomePageContainer.cpp
+$(JUCE_OBJDIR)/MainContainer_b6868229.o: ../../Source/MainContainer.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling HomePageContainer.cpp"
+	@echo "Compiling MainContainer.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/AnalyserComponent_c8388fbf.o: ../../Source/AnalyserComponent.cpp

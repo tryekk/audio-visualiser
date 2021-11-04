@@ -463,10 +463,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\HomePageComponent.cpp">
+      <Filter>AudioVisualiser\Source</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Main.cpp">
       <Filter>AudioVisualiser\Source</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\HomePageContainer.cpp">
+    <ClCompile Include="..\..\Source\MainContainer.cpp">
       <Filter>AudioVisualiser\Source</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\AnalyserComponent.cpp">
@@ -2673,7 +2676,10 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Source\HomePageContainer.h">
+    <ClInclude Include="..\..\Source\HomePageComponent.h">
+      <Filter>AudioVisualiser\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\MainContainer.h">
       <Filter>AudioVisualiser\Source</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\AnalyserComponent.h">

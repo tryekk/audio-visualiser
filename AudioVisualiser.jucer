@@ -6,11 +6,14 @@
               jucerFormatVersion="1" displaySplashScreen="1" companyEmail="tom@carter.solutions">
   <MAINGROUP id="AGOAak" name="AudioVisualiser">
     <GROUP id="{D4BAA470-DEB6-133C-B715-4F3155DAC4CD}" name="Source">
+      <FILE id="uszGHX" name="HomePageComponent.cpp" compile="1" resource="0"
+            file="Source/HomePageComponent.cpp"/>
+      <FILE id="gicAmm" name="HomePageComponent.h" compile="0" resource="0"
+            file="Source/HomePageComponent.h"/>
       <FILE id="ZcAtkd" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
-      <FILE id="WgSksv" name="HomePageContainer.cpp" compile="1" resource="0"
-            file="Source/HomePageContainer.cpp"/>
-      <FILE id="otOYLb" name="HomePageContainer.h" compile="0" resource="0"
-            file="Source/HomePageContainer.h"/>
+      <FILE id="WgSksv" name="MainContainer.cpp" compile="1" resource="0"
+            file="Source/MainContainer.cpp"/>
+      <FILE id="otOYLb" name="MainContainer.h" compile="0" resource="0" file="Source/MainContainer.h"/>
       <FILE id="WG5YdY" name="AnalyserComponent.h" compile="0" resource="0"
             file="Source/AnalyserComponent.h"/>
       <FILE id="OLHnS5" name="AnalyserComponent.cpp" compile="1" resource="0"

@@ -1,5 +1,5 @@
 #include <JuceHeader.h>
-#include "HomePageContainer.h"
+#include "MainContainer.h"
 
 class Application    : public juce::JUCEApplication
 {
@@ -12,7 +12,7 @@ public:
 
     void initialise (const juce::String&) override
     {
-        mainWindow.reset (new MainWindow ("Audio Visualiser", new HomePageContainer, *this));
+        mainWindow.reset (new MainWindow ("Audio Visualiser", new MainContainer, *this));
     }
 
     void shutdown() override                         { mainWindow = nullptr; }
