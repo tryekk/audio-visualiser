@@ -2,6 +2,8 @@
 
 #include <JuceHeader.h>
 
+#include "SettingsComponent.h"
+
 //==============================================================================
 class AnalyserComponent   : public juce::AudioAppComponent,
                             private juce::Timer
@@ -144,7 +146,7 @@ public:
             float HighPitchColourR = 0.9f;
             float HighPitchColourG = 0.0f;
             float HighPitchColourB = 0.7f;
-            
+                        
             if (showAccurateSamplePoints) {
                 g.setColour(juce::Colours::gold);
                 g.drawEllipse(i * (fractionalWidth) - (fractionalWidth / 2) * scaleFactor, height - (oldPositionData[i] * height) - (fractionalWidth / 2) * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor, 5);
@@ -281,6 +283,8 @@ public:
     }
 
 private:
+//    SettingsComponent settingsComponent;
+    
     enum
     {
         fftOrder  = 10,             // No of sample sections on screen
