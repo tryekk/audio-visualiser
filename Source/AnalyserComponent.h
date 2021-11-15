@@ -10,11 +10,9 @@ class AnalyserComponent   : public juce::AudioAppComponent,
                             private juce::Timer
 {
 public:
-    
     float globalHeightModifier = 1;
     
     AnalyserComponent();  // Windowing function
-
 
     ~AnalyserComponent() override;
 
@@ -30,11 +28,6 @@ public:
     void timerCallback() override;
 
     void pushNextSampleIntoFifo (float sample) noexcept;  // One sample per call
-    
-//    void setGlobalHeightModifier(float value) {
-//        globalHeightModifier = value;
-//        std::cout << globalHeightModifier << "\n";
-//    }
 
     void drawNextFrameOfSpectrum();
     

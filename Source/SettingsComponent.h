@@ -12,13 +12,13 @@
 
 #include <JuceHeader.h>
 
-//#include "AnalyserComponent.h"
+#include "AnalyserComponent.h"
 
 //==============================================================================
 /*
 */
 
-//extern float globalHeightModifier;
+extern float heightModifier;
 
 class SettingsComponent  :  public juce::Component,
                             public Slider::Listener
@@ -33,7 +33,7 @@ public:
     void sliderValueChanged(Slider* slider) override;
 
 private:
-//    AnalyserComponent analyserComponent;
+    AnalyserComponent analyserComponent;
     
     Slider lineHeightSlider;
     Label lineHeightLabel;

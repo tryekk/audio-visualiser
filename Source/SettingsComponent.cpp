@@ -12,9 +12,12 @@
 #include <JuceHeader.h>
 
 #include "SettingsComponent.h"
-//#include "AnalyserComponent.h"
+
+#include "AnalyserComponent.h"
 
 //==============================================================================
+
+float heightModifier;
 
 SettingsComponent::SettingsComponent()
 {
@@ -57,7 +60,6 @@ void SettingsComponent::resized()
 void SettingsComponent::sliderValueChanged(Slider* slider)
 {
     if (slider == &lineHeightSlider) {
-//        globalHeightModifier = lineHeightSlider.getValue();
-//            AnalyserComponent::setGlobalHeightModifier(lineHeightSlider.getValue());
+        heightModifier = lineHeightSlider.getValue();
     }
 }
