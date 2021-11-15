@@ -57,7 +57,7 @@ void SettingsComponent::resized()
 void SettingsComponent::sliderValueChanged(Slider* slider)
 {
     if (slider == &lineHeightSlider) {
-        globalHeightModifier = lineHeightSlider.getValue();
+//        globalHeightModifier = lineHeightSlider.getValue();
 //            AnalyserComponent::setGlobalHeightModifier(lineHeightSlider.getValue());
     }
 }

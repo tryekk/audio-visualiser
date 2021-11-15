@@ -18,7 +18,7 @@
 /*
 */
 
-extern float globalHeightModifier;
+//extern float globalHeightModifier;
 
 class SettingsComponent  :  public juce::Component,
                             public Slider::Listener

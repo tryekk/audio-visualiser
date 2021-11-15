@@ -186,14 +186,14 @@
 			isa = PBXGroup;
 			children = (
 				246853B4E7B9ACFE2710FF8F /* Main.cpp */,
-				F7027F940A3544491C65B8DC /* MainContainer.cpp */,
 				67017112144FE1EEFAD3F3BF /* MainContainer.h */,
-				382140C3D870506F2ACDD5A2 /* HomePageComponent.cpp */,
+				F7027F940A3544491C65B8DC /* MainContainer.cpp */,
 				1FF018AE0A5601C3628D0EF3 /* HomePageComponent.h */,
-				03640FCFD4B9B304111B6B4D /* AnalyserComponent.cpp */,
+				382140C3D870506F2ACDD5A2 /* HomePageComponent.cpp */,
 				8CEB6D2CEE7DBCD4AEA5BDA7 /* AnalyserComponent.h */,
-				5B09E1D51A57C28E79D57847 /* SettingsComponent.cpp */,
+				03640FCFD4B9B304111B6B4D /* AnalyserComponent.cpp */,
 				E9AE820A53B177492F97019E /* SettingsComponent.h */,
+				5B09E1D51A57C28E79D57847 /* SettingsComponent.cpp */,
 			);
 			name = Source;
 			sourceTree = "<group>";
