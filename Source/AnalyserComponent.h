@@ -2,7 +2,7 @@
 
 #include <JuceHeader.h>
 
-#include "SettingsComponent.h"
+//#include "SettingsComponent.h"
 
 //==============================================================================
 class AnalyserComponent   : public juce::AudioAppComponent,
@@ -96,6 +96,10 @@ public:
  
         fifo[fifoIndex++] = sample;             // [12]
     }
+    
+    void setGlobalHeightModifier(float value) {
+        globalHeightModifier = value;
+    }
 
     void drawNextFrameOfSpectrum() {
         window.multiplyWithWindowingTable (fftData, fftSize);       // Apply the windowing function to the data
@@ -125,6 +129,7 @@ public:
             counter = 0;
         }
     }
+    
     void drawFrame (juce::Graphics& g) {
         for (int i = 1; i < scopeSize; ++i)
         {
@@ -310,6 +315,7 @@ private:
     int colourIncrement = 0;
     juce::Colour currentAccurateColourList [scopeSize];
     juce::Colour oldColourList [scopeSize];
+    float globalHeightModifier = 1;
     
     bool showAccurateSamplePoints = false;
     bool displayClock = false;
