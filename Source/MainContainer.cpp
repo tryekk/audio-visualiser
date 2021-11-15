@@ -8,10 +8,10 @@
   ==============================================================================
 */
 
+#include <iostream>
 #include <JuceHeader.h>
+
 #include "MainContainer.h"
-//#include "HomePageComponent.h"
-//#include "SettingsComponent.h"
 
 //==============================================================================
 MainContainer::MainContainer()

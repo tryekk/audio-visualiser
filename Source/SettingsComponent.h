@@ -12,11 +12,14 @@
 
 #include <JuceHeader.h>
 
-#include "AnalyserComponent.h"
+//#include "AnalyserComponent.h"
 
 //==============================================================================
 /*
 */
+
+extern float globalHeightModifier;
+
 class SettingsComponent  :  public juce::Component,
                             public Slider::Listener
 {
@@ -27,15 +30,10 @@ public:
     void paint (juce::Graphics&) override;
     void resized() override;
     
-    void sliderValueChanged(Slider* slider) override
-    {
-        if (slider == &lineHeightSlider) {
-            analyserComponent.setGlobalHeightModifier(lineHeightSlider.getValue());
-        }
-    }
+    void sliderValueChanged(Slider* slider) override;
 
 private:
-    AnalyserComponent analyserComponent;
+//    AnalyserComponent analyserComponent;
     
     Slider lineHeightSlider;
     Label lineHeightLabel;

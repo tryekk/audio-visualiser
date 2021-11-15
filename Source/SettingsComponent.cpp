@@ -8,12 +8,14 @@
   ==============================================================================
 */
 
+#include <iostream>
 #include <JuceHeader.h>
 
 #include "SettingsComponent.h"
 //#include "AnalyserComponent.h"
 
 //==============================================================================
+
 SettingsComponent::SettingsComponent()
 {
     setSize(280, 720);
@@ -50,4 +52,12 @@ void SettingsComponent::resized()
     int padding = 30;
     lineHeightSlider.setBounds(padding, 50, getWidth() - (padding * 2), 20);
     noOfPointsSlider.setBounds(padding, 100, getWidth() - (padding * 2), 20);
+}
+
+void SettingsComponent::sliderValueChanged(Slider* slider)
+{
+    if (slider == &lineHeightSlider) {
+        globalHeightModifier = lineHeightSlider.getValue();
+//            AnalyserComponent::setGlobalHeightModifier(lineHeightSlider.getValue());
+    }
 }

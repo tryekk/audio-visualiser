@@ -5,10 +5,14 @@
 //#include "SettingsComponent.h"
 
 //==============================================================================
+
 class AnalyserComponent   : public juce::AudioAppComponent,
                             private juce::Timer
 {
 public:
+    
+    float globalHeightModifier = 1;
+    
     AnalyserComponent(): forwardFFT (fftOrder),
     window (fftSize, juce::dsp::WindowingFunction<float>::hann)  // Windowing function
     {
@@ -97,9 +101,10 @@ public:
         fifo[fifoIndex++] = sample;             // [12]
     }
     
-    void setGlobalHeightModifier(float value) {
-        globalHeightModifier = value;
-    }
+//    void setGlobalHeightModifier(float value) {
+//        globalHeightModifier = value;
+//        std::cout << globalHeightModifier << "\n";
+//    }
 
     void drawNextFrameOfSpectrum() {
         window.multiplyWithWindowingTable (fftData, fftSize);       // Apply the windowing function to the data
@@ -137,6 +142,10 @@ public:
             auto height = getLocalBounds().getHeight();
             float fractionalWidth = width / scopeSize;
             float scaleFactor = 1.0f;
+            
+            if (i == 1) {
+                std::cout << globalHeightModifier << "  frame \n";
+            }
             
             float LowGainColourR = 0.0f;
             float LowGainColourG = 0.0f;
@@ -286,7 +295,7 @@ public:
             }
         }
     }
-
+    
 private:
 //    SettingsComponent settingsComponent;
     
@@ -315,7 +324,6 @@ private:
     int colourIncrement = 0;
     juce::Colour currentAccurateColourList [scopeSize];
     juce::Colour oldColourList [scopeSize];
-    float globalHeightModifier = 1;
     
     bool showAccurateSamplePoints = false;
     bool displayClock = false;
