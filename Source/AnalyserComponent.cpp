@@ -45,7 +45,7 @@ void AnalyserComponent::getNextAudioBlock(const juce::AudioSourceChannelInfo& bu
 }
 
 void AnalyserComponent::paint(juce::Graphics& g)
-{
+{    
     g.fillAll (juce::Colours::black);
 
     g.setOpacity (1.0f);
@@ -103,12 +103,6 @@ void AnalyserComponent::pushNextSampleIntoFifo (float sample) noexcept
     fifo[fifoIndex++] = sample;             // [12]
 }
 
-//void AnalyserComponent::setGlobalHeightModifier(float value)
-//{
-//    globalHeightModifier = value;
-//    std::cout << globalHeightModifier << "\n";
-//}
-
 void AnalyserComponent::drawNextFrameOfSpectrum()
 {
     window.multiplyWithWindowingTable (fftData, fftSize);       // Apply the windowing function to the data
@@ -146,11 +140,7 @@ void AnalyserComponent::drawFrame (juce::Graphics& g)
         auto width  = getLocalBounds().getWidth();
         auto height = getLocalBounds().getHeight();
         float fractionalWidth = width / scopeSize;
-        float scaleFactor = 1.0f;  // Line thickness
-        
-//        if (i == 1) {
-//            std::cout << heightModifier << "  frame \n";
-//        }
+        float scaleFactor = widthModifier;  // Line thickness
         
         float LowGainColourR = 0.0f;
         float LowGainColourG = 0.0f;

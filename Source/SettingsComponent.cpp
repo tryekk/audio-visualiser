@@ -18,6 +18,8 @@
 //==============================================================================
 
 float heightModifier;
+float widthModifier;
+int noOfPoints;
 
 SettingsComponent::SettingsComponent()
 {
@@ -32,6 +34,15 @@ SettingsComponent::SettingsComponent()
     lineHeightLabel.setText("Line height", dontSendNotification); // Might need to change in future
     lineHeightLabel.attachToComponent(&lineHeightSlider, false);
     
+    addAndMakeVisible(lineWidthSlider);
+    lineWidthSlider.setRange(0.0f, 2.0f, 0.001f);
+    lineWidthSlider.setValue(1.0f);
+    lineWidthSlider.addListener(this);
+    
+    addAndMakeVisible(lineWidthLabel);
+    lineWidthLabel.setText("Line width", dontSendNotification); // Might need to change in future
+    lineWidthLabel.attachToComponent(&lineWidthSlider, false);
+    
     addAndMakeVisible(noOfPointsSlider);
     noOfPointsSlider.setRange(16, 512, 1);
     noOfPointsSlider.setValue(128);
@@ -39,6 +50,8 @@ SettingsComponent::SettingsComponent()
     addAndMakeVisible(noOfPointsLabel);
     noOfPointsLabel.setText("Number of points", dontSendNotification);
     noOfPointsLabel.attachToComponent(&noOfPointsSlider, false);
+    
+    addAndMakeVisible(displayClockButton);
 }
 
 SettingsComponent::~SettingsComponent()
@@ -54,12 +67,18 @@ void SettingsComponent::resized()
 {
     int padding = 30;
     lineHeightSlider.setBounds(padding, 50, getWidth() - (padding * 2), 20);
-    noOfPointsSlider.setBounds(padding, 100, getWidth() - (padding * 2), 20);
+    lineWidthSlider.setBounds(padding, 100, getWidth() - (padding * 2), 20);
+    noOfPointsSlider.setBounds(padding, 150, getWidth() - (padding * 2), 20);
+    displayClockButton.setBounds(padding, 200, getWidth() - (padding * 2), 20);
 }
 
 void SettingsComponent::sliderValueChanged(Slider* slider)
 {
     if (slider == &lineHeightSlider) {
         heightModifier = lineHeightSlider.getValue();
+    } else if (slider == &lineWidthSlider) {
+        widthModifier = lineWidthSlider.getValue();
+    } else if (slider == &noOfPointsSlider) {
+        noOfPoints = noOfPointsSlider.getValue();
     }
 }

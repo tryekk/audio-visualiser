@@ -2,16 +2,14 @@
 
 #include <JuceHeader.h>
 
-//#include "SettingsComponent.h"
+#include "SettingsComponent.h"
 
 //==============================================================================
 
 class AnalyserComponent   : public juce::AudioAppComponent,
                             private juce::Timer
 {
-public:
-    float globalHeightModifier = 1;
-    
+public:    
     AnalyserComponent();  // Windowing function
 
     ~AnalyserComponent() override;
@@ -42,7 +40,7 @@ private:
     {
         fftOrder  = 10,             // No of sample sections on screen
         fftSize   = 1 << fftOrder,  // use the left bit shift operator which produces 2048 as binary number 100000000000
-        scopeSize = 180             // number of points in the visual representation of the spectrum as a scope
+        scopeSize = 120             // number of points in the visual representation of the spectrum as a scope
     };
     
     
