@@ -25,6 +25,12 @@ SettingsComponent::SettingsComponent()
 {
     setSize(280, 720);
     
+    closeButton.setToggleState(true, NotificationType::dontSendNotification);
+//    closeButton.onClick = [this] () {std::cout<<"Hello\n";};
+    closeButton.addListener(this);
+    addAndMakeVisible(closeButton);
+    closeButton.setTitle("Close");
+    
     addAndMakeVisible(lineHeightSlider);
     lineHeightSlider.setRange(0.0f, 2.0f, 0.001f);
     lineHeightSlider.setValue(1.0f);
@@ -52,6 +58,11 @@ SettingsComponent::SettingsComponent()
     noOfPointsLabel.attachToComponent(&noOfPointsSlider, false);
     
     addAndMakeVisible(displayClockButton);
+    displayClockButton.addListener(this);
+    
+    addAndMakeVisible(displayClockLabel);
+    displayClockLabel.setText("Display Clock", dontSendNotification);
+    displayClockLabel.attachToComponent(&displayClockButton, false);
 }
 
 SettingsComponent::~SettingsComponent()
@@ -66,6 +77,7 @@ void SettingsComponent::paint (juce::Graphics& g)
 void SettingsComponent::resized()
 {
     int padding = 30;
+    closeButton.setBounds(5, 5, 10, 10);
     lineHeightSlider.setBounds(padding, 50, getWidth() - (padding * 2), 20);
     lineWidthSlider.setBounds(padding, 100, getWidth() - (padding * 2), 20);
     noOfPointsSlider.setBounds(padding, 150, getWidth() - (padding * 2), 20);
@@ -80,5 +92,14 @@ void SettingsComponent::sliderValueChanged(Slider* slider)
         widthModifier = lineWidthSlider.getValue();
     } else if (slider == &noOfPointsSlider) {
         noOfPoints = noOfPointsSlider.getValue();
+    }
+}
+
+void SettingsComponent::buttonClicked(Button* button)
+{
+    if (button == &displayClockButton) {
+        std::cout << "clock\n";
+    } else if (button == &closeButton) {
+        std::cout << "Close\n";
     }
 }

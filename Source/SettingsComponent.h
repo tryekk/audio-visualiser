@@ -23,7 +23,8 @@ extern float widthModifier;
 extern int noOfPoints;
 
 class SettingsComponent  :  public juce::Component,
-                            public Slider::Listener
+                            public Slider::Listener,
+                            public Button::Listener
 {
 public:
     SettingsComponent();
@@ -33,8 +34,12 @@ public:
     void resized() override;
     
     void sliderValueChanged(Slider* slider) override;
+    
+    void buttonClicked(Button* button) override;
 
 private:
+    TextButton closeButton;
+    
     Slider lineHeightSlider;
     Label lineHeightLabel;
     
@@ -45,6 +50,7 @@ private:
     Label noOfPointsLabel;
     
     ToggleButton displayClockButton;
+    Label displayClockLabel;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SettingsComponent)
 };
