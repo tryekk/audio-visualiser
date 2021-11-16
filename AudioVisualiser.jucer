@@ -23,6 +23,9 @@
       <FILE id="k24fnv" name="SettingsComponent.h" compile="0" resource="0"
             file="Source/SettingsComponent.h"/>
     </GROUP>
+    <GROUP id="{BCF184D1-77C8-C86F-4E65-DFBC3C956F69}" name="Assets">
+      <FILE id="AIoB5t" name="settings.png" compile="0" resource="1" file="Assets/settings.png"/>
+    </GROUP>
   </MAINGROUP>
   <MODULES>
     <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>

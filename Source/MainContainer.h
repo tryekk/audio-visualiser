@@ -36,7 +36,7 @@ private:
     AnalyserComponent audioVisualiserComponent;
     SettingsComponent settingsComponent;
     
-    TextButton openSettingsButton;
+    ImageButton openSettingsButton;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainContainer)
 };

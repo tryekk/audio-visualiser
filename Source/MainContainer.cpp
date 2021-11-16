@@ -21,6 +21,9 @@ MainContainer::MainContainer()
     
     addAndMakeVisible(openSettingsButton);
     openSettingsButton.addListener(this);
+    auto settingsIcon = ImageCache::getFromMemory(BinaryData::settings_png, BinaryData::settings_pngSize);
+    openSettingsButton.setImages(false, true, true, settingsIcon, 0.6f, juce::Colours::white, settingsIcon, 1.0f, juce::Colours::white, settingsIcon, 1.0f, juce::Colours::white);
+    
     
 //    addAndMakeVisible(homePageComponent);
     addChildComponent(settingsComponent);

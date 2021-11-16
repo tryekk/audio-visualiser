@@ -5,6 +5,9 @@
     <Filter Include="AudioVisualiser\Source">
       <UniqueIdentifier>{217F3AB1-CA8E-75B8-DDD6-0974AABCC424}</UniqueIdentifier>
     </Filter>
+    <Filter Include="AudioVisualiser\Assets">
+      <UniqueIdentifier>{0633FAFF-BA63-A5BC-CD1D-2A1DE9B0A2AF}</UniqueIdentifier>
+    </Filter>
     <Filter Include="AudioVisualiser">
       <UniqueIdentifier>{37C2FD83-7A17-D746-26C7-C829DA66A1E0}</UniqueIdentifier>
     </Filter>
@@ -2641,6 +2644,9 @@
     <ClCompile Include="C:\JUCE\modules\juce_gui_extra\juce_gui_extra.mm">
       <Filter>JUCE Modules\juce_gui_extra</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\BinaryData.cpp">
+      <Filter>JUCE Library Code</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_audio_basics.cpp">
       <Filter>JUCE Library Code</Filter>
     </ClCompile>
@@ -5193,11 +5199,17 @@
     <ClInclude Include="..\..\..\..\JUCE\modules\juce_gui_extra\juce_gui_extra.h">
       <Filter>JUCE Modules\juce_gui_extra</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\JuceLibraryCode\BinaryData.h">
+      <Filter>JUCE Library Code</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\JuceLibraryCode\JuceHeader.h">
       <Filter>JUCE Library Code</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\Assets\settings.png">
+      <Filter>AudioVisualiser\Assets</Filter>
+    </None>
     <None Include="C:\JUCE\modules\juce_audio_devices\native\oboe\CMakeLists.txt">
       <Filter>JUCE Modules\juce_audio_devices\native\oboe</Filter>
     </None>
