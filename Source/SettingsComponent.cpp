@@ -20,6 +20,7 @@
 float heightModifier;
 float widthModifier;
 int noOfPoints;
+bool displayClock;
 
 SettingsComponent::SettingsComponent()
 {
@@ -29,7 +30,7 @@ SettingsComponent::SettingsComponent()
 //    closeButton.onClick = [this] () {std::cout<<"Hello\n";};
     closeButton.addListener(this);
     addAndMakeVisible(closeButton);
-    closeButton.setTitle("Close");
+    closeButton.setButtonText("X");
     
     addAndMakeVisible(lineHeightSlider);
     lineHeightSlider.setRange(0.0f, 2.0f, 0.001f);
@@ -77,7 +78,7 @@ void SettingsComponent::paint (juce::Graphics& g)
 void SettingsComponent::resized()
 {
     int padding = 30;
-    closeButton.setBounds(5, 5, 10, 10);
+    closeButton.setBounds(5, 5, 15, 15);
     lineHeightSlider.setBounds(padding, 50, getWidth() - (padding * 2), 20);
     lineWidthSlider.setBounds(padding, 100, getWidth() - (padding * 2), 20);
     noOfPointsSlider.setBounds(padding, 150, getWidth() - (padding * 2), 20);
@@ -98,8 +99,9 @@ void SettingsComponent::sliderValueChanged(Slider* slider)
 void SettingsComponent::buttonClicked(Button* button)
 {
     if (button == &displayClockButton) {
-        std::cout << "clock\n";
+        displayClock = !displayClock;
+        std::cout << displayClock << "\n";
     } else if (button == &closeButton) {
-        std::cout << "Close\n";
+        SettingsComponent::setVisible(false);
     }
 }

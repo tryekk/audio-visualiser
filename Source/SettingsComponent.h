@@ -21,6 +21,7 @@
 extern float heightModifier;
 extern float widthModifier;
 extern int noOfPoints;
+extern bool displayClock;
 
 class SettingsComponent  :  public juce::Component,
                             public Slider::Listener,
