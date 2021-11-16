@@ -40,7 +40,7 @@ void MainContainer::paint (juce::Graphics& g)
 void MainContainer::resized()
 {
     homePageComponent.setBounds(0, 0, 280, getHeight());
-    openSettingsButton.setBounds(getWidth() - 30, 10, 20, 20);
+    openSettingsButton.setBounds(getWidth() - 45, 10, 35, 35);
     audioVisualiserComponent.setBounds(getLocalBounds());
     settingsComponent.setBounds(getWidth() - 280, 0, 280, getHeight());
 }
