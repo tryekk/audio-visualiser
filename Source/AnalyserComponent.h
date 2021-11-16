@@ -34,8 +34,6 @@ public:
     void drawLayer (juce::Graphics& g, int i, float RGBColour[3], float transparency, float heightModifier, float scaleFactor);
     
 private:
-//    SettingsComponent settingsComponent;
-    
     enum
     {
         fftOrder  = 10,             // No of sample sections on screen

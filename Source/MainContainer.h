@@ -18,7 +18,8 @@
 //==============================================================================
 /*
 */
-class MainContainer  : public juce::Component
+class MainContainer  :  public juce::Component,
+                        public Button::Listener
 {
 public:
     MainContainer();
@@ -27,10 +28,15 @@ public:
 
     void paint (juce::Graphics&) override;
     void resized() override;
-
+    
+    void buttonClicked(Button* button) override;
+    
 private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainContainer)
     HomePageComponent homePageComponent;
     AnalyserComponent audioVisualiserComponent;
     SettingsComponent settingsComponent;
+    
+    TextButton openSettingsButton;
+    
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainContainer)
 };

@@ -78,7 +78,7 @@ void SettingsComponent::paint (juce::Graphics& g)
 void SettingsComponent::resized()
 {
     int padding = 30;
-    closeButton.setBounds(5, 5, 15, 15);
+    closeButton.setBounds(5, 5, 20, 20);
     lineHeightSlider.setBounds(padding, 50, getWidth() - (padding * 2), 20);
     lineWidthSlider.setBounds(padding, 100, getWidth() - (padding * 2), 20);
     noOfPointsSlider.setBounds(padding, 150, getWidth() - (padding * 2), 20);
@@ -100,7 +100,6 @@ void SettingsComponent::buttonClicked(Button* button)
 {
     if (button == &displayClockButton) {
         displayClock = !displayClock;
-        std::cout << displayClock << "\n";
     } else if (button == &closeButton) {
         SettingsComponent::setVisible(false);
     }
