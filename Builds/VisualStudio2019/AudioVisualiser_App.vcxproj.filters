@@ -5207,6 +5207,9 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\Assets\home.png">
+      <Filter>AudioVisualiser\Assets</Filter>
+    </None>
     <None Include="..\..\Assets\settings.png">
       <Filter>AudioVisualiser\Assets</Filter>
     </None>

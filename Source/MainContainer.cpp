@@ -24,8 +24,12 @@ MainContainer::MainContainer()
     auto settingsIcon = ImageCache::getFromMemory(BinaryData::settings_png, BinaryData::settings_pngSize);
     openSettingsButton.setImages(false, true, true, settingsIcon, 0.6f, juce::Colours::white, settingsIcon, 1.0f, juce::Colours::white, settingsIcon, 1.0f, juce::Colours::white);
     
+    addAndMakeVisible(openHomeButton);
+    openHomeButton.addListener(this);
+    auto homeIcon = ImageCache::getFromMemory(BinaryData::home_png, BinaryData::home_pngSize);
+    openHomeButton.setImages(false, true, true, homeIcon, 0.6f, juce::Colours::white, homeIcon, 1.0f, juce::Colours::white, homeIcon, 1.0f, juce::Colours::white);
     
-//    addAndMakeVisible(homePageComponent);
+    addChildComponent(homePageComponent);
     addChildComponent(settingsComponent);
 }
 
@@ -40,7 +44,10 @@ void MainContainer::paint (juce::Graphics& g)
 void MainContainer::resized()
 {
     homePageComponent.setBounds(0, 0, 280, getHeight());
+    
     openSettingsButton.setBounds(getWidth() - 45, 10, 35, 35);
+    openHomeButton.setBounds(10, 10, 35, 35);
+    
     audioVisualiserComponent.setBounds(getLocalBounds());
     settingsComponent.setBounds(getWidth() - 280, 0, 280, getHeight());
 }
@@ -49,5 +56,7 @@ void MainContainer::buttonClicked(Button* button)
 {
     if (button == &openSettingsButton) {
         settingsComponent.setVisible(true);
+    } else if (button == &openHomeButton) {
+        homePageComponent.setVisible(true);
     }
 }

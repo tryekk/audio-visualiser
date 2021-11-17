@@ -3040,6 +3040,7 @@
     <ClInclude Include="..\..\JuceLibraryCode\JuceHeader.h"/>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\Assets\home.png"/>
     <None Include="..\..\Assets\settings.png"/>
     <None Include="C:\JUCE\modules\juce_audio_devices\native\oboe\CMakeLists.txt"/>
     <None Include="C:\JUCE\modules\juce_audio_devices\native\oboe\README.md"/>
