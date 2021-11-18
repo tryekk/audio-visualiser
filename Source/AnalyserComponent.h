@@ -60,8 +60,6 @@ private:
     juce::Colour currentAccurateColourList [scopeSize];
     juce::Colour oldColourList [scopeSize];
     
-    bool showAccurateSamplePoints = false;
-//    bool displayClock = false;
     bool topPitchInverted = true;
     int interpolationType = 0;  // 0 = linear, 1 = exponential
     bool centreOrigin = false;

@@ -22,6 +22,7 @@ extern float heightModifier;
 extern float widthModifier;
 extern int noOfPoints;
 extern bool displayClock;
+extern bool showAccurateSamplePoints;
 
 class SettingsComponent  :  public juce::Component,
                             public Slider::Listener,
@@ -54,6 +55,9 @@ private:
     
     ToggleButton displayClockButton;
     Label displayClockLabel;
+    
+    ToggleButton displayAccuratePointsButton;
+    Label displayAccuratePointsLabel;
     
     ComboBox sampleResolutionSelector;
     

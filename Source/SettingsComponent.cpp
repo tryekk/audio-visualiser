@@ -21,6 +21,7 @@ float heightModifier;
 float widthModifier;
 int noOfPoints;
 bool displayClock;
+bool showAccurateSamplePoints;
 
 SettingsComponent::SettingsComponent()
 {
@@ -65,6 +66,13 @@ SettingsComponent::SettingsComponent()
     displayClockLabel.setText("Display Clock", dontSendNotification);
     displayClockLabel.attachToComponent(&displayClockButton, false);
     
+    addAndMakeVisible(displayAccuratePointsButton);
+    displayAccuratePointsButton.addListener(this);
+    
+    addAndMakeVisible(displayAccuratePointsLabel);
+    displayAccuratePointsLabel.setText("Display Accurate Points", dontSendNotification);
+    displayAccuratePointsLabel.attachToComponent(&displayAccuratePointsButton, false);
+    
     addAndMakeVisible(sampleResolutionSelector);
     sampleResolutionSelector.addItem ("1", 1);
     sampleResolutionSelector.addItem ("2", 2);
@@ -90,7 +98,8 @@ void SettingsComponent::resized()
     lineWidthSlider.setBounds(padding, 100, getWidth() - (padding * 2), 20);
     noOfPointsSlider.setBounds(padding, 150, getWidth() - (padding * 2), 20);
     displayClockButton.setBounds(padding, 220, getWidth() - (padding * 2), 20);
-    sampleResolutionSelector.setBounds(padding, 270, getWidth() - (padding * 2), 20);
+    displayAccuratePointsButton.setBounds(padding, 270, getWidth() - (padding * 2), 20);
+    sampleResolutionSelector.setBounds(padding, 320, getWidth() - (padding * 2), 20);
 }
 
 void SettingsComponent::sliderValueChanged(Slider* slider)
@@ -110,6 +119,9 @@ void SettingsComponent::buttonClicked(Button* button)
         displayClock = !displayClock;
     } else if (button == &closeButton) {
         SettingsComponent::setVisible(false);
+    } else if (button == &displayAccuratePointsButton) {
+        showAccurateSamplePoints = !showAccurateSamplePoints;
+        std::cout << showAccurateSamplePoints << "\n";
     }
 }
 
