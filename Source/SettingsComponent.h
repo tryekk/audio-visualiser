@@ -37,6 +37,8 @@ public:
     void sliderValueChanged(Slider* slider) override;
     
     void buttonClicked(Button* button) override;
+    
+    void comboBoxChanged();
 
 private:
     TextButton closeButton;
@@ -52,6 +54,8 @@ private:
     
     ToggleButton displayClockButton;
     Label displayClockLabel;
+    
+    ComboBox sampleResolutionSelector;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SettingsComponent)
 };

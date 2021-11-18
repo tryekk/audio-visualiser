@@ -64,6 +64,13 @@ SettingsComponent::SettingsComponent()
     addAndMakeVisible(displayClockLabel);
     displayClockLabel.setText("Display Clock", dontSendNotification);
     displayClockLabel.attachToComponent(&displayClockButton, false);
+    
+    addAndMakeVisible(sampleResolutionSelector);
+    sampleResolutionSelector.addItem ("1", 1);
+    sampleResolutionSelector.addItem ("2", 2);
+    sampleResolutionSelector.addItem ("3", 3);
+    sampleResolutionSelector.onChange = [this] { comboBoxChanged(); };
+    sampleResolutionSelector.setSelectedId (1);
 }
 
 SettingsComponent::~SettingsComponent()
@@ -82,7 +89,8 @@ void SettingsComponent::resized()
     lineHeightSlider.setBounds(padding, 50, getWidth() - (padding * 2), 20);
     lineWidthSlider.setBounds(padding, 100, getWidth() - (padding * 2), 20);
     noOfPointsSlider.setBounds(padding, 150, getWidth() - (padding * 2), 20);
-    displayClockButton.setBounds(padding, 200, getWidth() - (padding * 2), 20);
+    displayClockButton.setBounds(padding, 220, getWidth() - (padding * 2), 20);
+    sampleResolutionSelector.setBounds(padding, 270, getWidth() - (padding * 2), 20);
 }
 
 void SettingsComponent::sliderValueChanged(Slider* slider)
@@ -103,4 +111,8 @@ void SettingsComponent::buttonClicked(Button* button)
     } else if (button == &closeButton) {
         SettingsComponent::setVisible(false);
     }
+}
+
+void SettingsComponent::comboBoxChanged() {
+    
 }
