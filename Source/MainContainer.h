@@ -28,6 +28,7 @@ public:
     ~MainContainer() override;
 
     void paint (juce::Graphics&) override;
+    
     void resized() override;
     
     void buttonClicked(Button* button) override;
@@ -41,8 +42,9 @@ private:
     AnalyserComponent audioVisualiserComponent;
     SettingsComponent settingsComponent;
     
-    ImageButton openSettingsButton;
+    bool isUIVisible = true;
     
+    ImageButton openSettingsButton;
     ImageButton openHomeButton;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainContainer)

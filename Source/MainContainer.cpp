@@ -23,18 +23,22 @@ MainContainer::MainContainer()
     
     addAndMakeVisible(audioVisualiserComponent);
     
-    addAndMakeVisible(openSettingsButton);
+    addChildComponent(openSettingsButton);
     openSettingsButton.addListener(this);
     auto settingsIcon = ImageCache::getFromMemory(BinaryData::settings_png, BinaryData::settings_pngSize);
-    openSettingsButton.setImages(false, true, true, settingsIcon, 1.0f, juce::Colours::dimgrey, settingsIcon, 1.0f, juce::Colours::white, settingsIcon, 1.0f, juce::Colours::white);
+    openSettingsButton.setImages(false, true, true, settingsIcon, 1.0f, juce::Colours::grey, settingsIcon, 1.0f, juce::Colours::white, settingsIcon, 1.0f, juce::Colours::white);
     
-    addAndMakeVisible(openHomeButton);
+    addChildComponent(openHomeButton);
     openHomeButton.addListener(this);
     auto homeIcon = ImageCache::getFromMemory(BinaryData::home_png, BinaryData::home_pngSize);
-    openHomeButton.setImages(false, true, true, homeIcon, 0.6f, juce::Colours::dimgrey, homeIcon, 1.0f, juce::Colours::white, homeIcon, 1.0f, juce::Colours::white);
+    openHomeButton.setImages(false, true, true, homeIcon, 0.6f, juce::Colours::grey, homeIcon, 1.0f, juce::Colours::white, homeIcon, 1.0f, juce::Colours::white);
     
     addChildComponent(homePageComponent);
     addChildComponent(settingsComponent);
+    
+    // Set visible on startup
+    openHomeButton.setVisible(true);
+    openSettingsButton.setVisible(true);
 }
 
 MainContainer::~MainContainer()
@@ -72,7 +76,14 @@ void MainContainer::mouseEnter (const MouseEvent &event)
 
 bool MainContainer::keyPressed(const KeyPress &k, Component *c) {
     if(k.getTextCharacter() == 'x') {
-        std::cout << "Key pressed\n";
+        isUIVisible = !isUIVisible;
+        if (isUIVisible) {
+            openHomeButton.setVisible(true);
+            openSettingsButton.setVisible(true);
+        } else {
+            openHomeButton.setVisible(false);
+            openSettingsButton.setVisible(false);
+        }
         return true;
     } else {
         return false;
