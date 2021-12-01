@@ -18,6 +18,8 @@
 //==============================================================================
 
 Colour gainColour = juce::Colours::lightgreen;
+Colour lowPitchColour = juce::Colours::blue;
+Colour highPitchColour = juce::Colours::red;
 float heightModifier;
 float widthModifier;
 int noOfPoints;
@@ -43,10 +45,12 @@ SettingsComponent::SettingsComponent()
     colourSelectorGain.addChangeListener(this);
     
     addAndMakeVisible(colourSelectorPitchLow);
-    colourSelectorPitchLow.setCurrentColour(juce::Colours::blue);
+    colourSelectorPitchLow.setCurrentColour(lowPitchColour);
+    colourSelectorPitchLow.addChangeListener(this);
     
     addAndMakeVisible(colourSelectorPitchHigh);
-    colourSelectorPitchHigh.setCurrentColour(juce::Colours::red);
+    colourSelectorPitchHigh.setCurrentColour(highPitchColour);
+    colourSelectorPitchHigh.addChangeListener(this);
     
     
     addAndMakeVisible(lineHeightSlider);
@@ -163,6 +167,10 @@ void SettingsComponent::changeListenerCallback(ChangeBroadcaster* source)
 {
     if (source == &colourSelectorGain) {
         gainColour = colourSelectorGain.getCurrentColour();
+    } else if (source == &colourSelectorPitchLow) {
+        lowPitchColour = colourSelectorPitchLow.getCurrentColour();
+    } else if (source == &colourSelectorPitchHigh) {
+        highPitchColour = colourSelectorPitchHigh.getCurrentColour();
     }
 }
 

@@ -153,9 +153,9 @@ void AnalyserComponent::drawFrame (juce::Graphics& g)
 //        float LowPitchColourR = 0.0f;
 //        float LowPitchColourG = 0.0f;
 //        float LowPitchColourB = 0.0f;
-        float HighPitchColourR = 0.9f;
-        float HighPitchColourG = 0.0f;
-        float HighPitchColourB = 0.7f;
+        float HighPitchColourR = highPitchColour.getFloatRed();
+        float HighPitchColourG = highPitchColour.getFloatGreen();
+        float HighPitchColourB = highPitchColour.getFloatBlue();
                     
         if (showAccurateSamplePoints) {
             g.setColour(juce::Colours::gold);

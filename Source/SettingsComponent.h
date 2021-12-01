@@ -19,6 +19,8 @@
 */
 
 extern Colour gainColour;
+extern Colour lowPitchColour;
+extern Colour highPitchColour;
 extern float heightModifier;
 extern float widthModifier;
 extern int noOfPoints;
