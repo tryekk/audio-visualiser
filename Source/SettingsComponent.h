@@ -23,6 +23,7 @@ extern float widthModifier;
 extern int noOfPoints;
 extern bool displayClock;
 extern bool showAccurateSamplePoints;
+extern bool displayTopHalf;
 
 class SettingsComponent  :  public juce::Component,
                             public Slider::Listener,
@@ -43,7 +44,7 @@ public:
 
 private:
     TextButton closeButton;
-    
+        
     Slider lineHeightSlider;
     Label lineHeightLabel;
     
@@ -58,6 +59,9 @@ private:
     
     ToggleButton displayAccuratePointsButton;
     Label displayAccuratePointsLabel;
+    
+    ToggleButton displayTopHalfButton;
+    Label displayTopHalfLabel;
     
     ComboBox sampleResolutionSelector;
     

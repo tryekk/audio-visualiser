@@ -35,8 +35,7 @@ MainContainer::MainContainer()
     
     addChildComponent(homePageComponent);
     addChildComponent(settingsComponent);
-    
-    // Set visible on startup
+
     openHomeButton.setVisible(true);
     openSettingsButton.setVisible(true);
 }

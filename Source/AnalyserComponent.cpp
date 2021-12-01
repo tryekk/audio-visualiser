@@ -233,14 +233,16 @@ void AnalyserComponent::drawLayer (juce::Graphics& g, int i, float RGBColour[3],
             g.drawLine(i * (fractionalWidth), height, i * (fractionalWidth), height - ((oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * (height * localHeightModifier)), fractionalWidth * scaleFactor);
             
             // Top half
-            if (topPitchInverted) {
-                g.drawEllipse((width - (i * fractionalWidth)) - (fractionalWidth / 2) * scaleFactor, (((oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * (height * localHeightModifier))) - (fractionalWidth / 2) * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor);
-                
-                g.drawLine(width - (i * fractionalWidth), 0, width - (i * fractionalWidth), (oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * (height * localHeightModifier), fractionalWidth * scaleFactor);
-            } else {
-                g.drawEllipse((i * fractionalWidth) - (fractionalWidth / 2) * scaleFactor, (((oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * (height * localHeightModifier))) - (fractionalWidth / 2) * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor);
-                
-                g.drawLine(i * fractionalWidth, 0, width - (i * fractionalWidth), (oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * (height * localHeightModifier), fractionalWidth * scaleFactor);
+            if (displayTopHalf) {
+                if (topPitchInverted) {
+                    g.drawEllipse((width - (i * fractionalWidth)) - (fractionalWidth / 2) * scaleFactor, (((oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * (height * localHeightModifier))) - (fractionalWidth / 2) * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor);
+                    
+                    g.drawLine(width - (i * fractionalWidth), 0, width - (i * fractionalWidth), (oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * (height * localHeightModifier), fractionalWidth * scaleFactor);
+                } else {
+                    g.drawEllipse((i * fractionalWidth) - (fractionalWidth / 2) * scaleFactor, (((oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * (height * localHeightModifier))) - (fractionalWidth / 2) * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor);
+                    
+                    g.drawLine(i * fractionalWidth, 0, width - (i * fractionalWidth), (oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * (height * localHeightModifier), fractionalWidth * scaleFactor);
+                }
             }
         } else if (interpolationType == 1) {
             currentPositionData[i] = oldPositionData[i] + (((scopeData[i] - currentPositionData[i]) / smoothingFrames) * modifier);
@@ -253,14 +255,16 @@ void AnalyserComponent::drawLayer (juce::Graphics& g, int i, float RGBColour[3],
             g.drawLine(i * (fractionalWidth), height, i * (fractionalWidth), height - (currentPositionData[i] * (height * localHeightModifier)), fractionalWidth * scaleFactor);
             
             // Top half
-            if (topPitchInverted) {
-                g.drawEllipse((width - (i * fractionalWidth)) - (fractionalWidth / 2) * scaleFactor, ((currentPositionData[i] * (height * localHeightModifier))) - (fractionalWidth / 2) * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor);
-                
-                g.drawLine(width - (i * fractionalWidth), 0, width - (i * fractionalWidth), currentPositionData[i] * (height * localHeightModifier), fractionalWidth * scaleFactor);
-            } else {
-                g.drawEllipse((i * fractionalWidth) - (fractionalWidth / 2) * scaleFactor, ((currentPositionData[i] * (height * localHeightModifier))) - (fractionalWidth / 2) * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor);
-                
-                g.drawLine(i * fractionalWidth, 0, width - (i * fractionalWidth), currentPositionData[i] * (height * localHeightModifier), fractionalWidth * scaleFactor);
+            if (displayTopHalf) {
+                if (topPitchInverted) {
+                    g.drawEllipse((width - (i * fractionalWidth)) - (fractionalWidth / 2) * scaleFactor, ((currentPositionData[i] * (height * localHeightModifier))) - (fractionalWidth / 2) * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor);
+                    
+                    g.drawLine(width - (i * fractionalWidth), 0, width - (i * fractionalWidth), currentPositionData[i] * (height * localHeightModifier), fractionalWidth * scaleFactor);
+                } else {
+                    g.drawEllipse((i * fractionalWidth) - (fractionalWidth / 2) * scaleFactor, ((currentPositionData[i] * (height * localHeightModifier))) - (fractionalWidth / 2) * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor);
+                    
+                    g.drawLine(i * fractionalWidth, 0, width - (i * fractionalWidth), currentPositionData[i] * (height * localHeightModifier), fractionalWidth * scaleFactor);
+                }
             }
         } else if (interpolationType == 2) {
             

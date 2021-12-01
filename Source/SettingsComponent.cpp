@@ -22,6 +22,7 @@ float widthModifier;
 int noOfPoints;
 bool displayClock;
 bool showAccurateSamplePoints;
+bool displayTopHalf;
 
 SettingsComponent::SettingsComponent()
 {
@@ -32,6 +33,7 @@ SettingsComponent::SettingsComponent()
     closeButton.addListener(this);
     addAndMakeVisible(closeButton);
     closeButton.setButtonText("X");
+      
     
     addAndMakeVisible(lineHeightSlider);
     lineHeightSlider.setRange(0.0f, 2.0f, 0.001f);
@@ -42,6 +44,7 @@ SettingsComponent::SettingsComponent()
     lineHeightLabel.setText("Line height", dontSendNotification); // Might need to change in future
     lineHeightLabel.attachToComponent(&lineHeightSlider, false);
     
+    
     addAndMakeVisible(lineWidthSlider);
     lineWidthSlider.setRange(0.0f, 2.0f, 0.001f);
     lineWidthSlider.setValue(1.0f);
@@ -51,6 +54,7 @@ SettingsComponent::SettingsComponent()
     lineWidthLabel.setText("Line width", dontSendNotification); // Might need to change in future
     lineWidthLabel.attachToComponent(&lineWidthSlider, false);
     
+    
     addAndMakeVisible(noOfPointsSlider);
     noOfPointsSlider.setRange(16, 512, 1);
     noOfPointsSlider.setValue(128);
@@ -59,6 +63,7 @@ SettingsComponent::SettingsComponent()
     noOfPointsLabel.setText("Number of points", dontSendNotification);
     noOfPointsLabel.attachToComponent(&noOfPointsSlider, false);
     
+    
     addAndMakeVisible(displayClockButton);
     displayClockButton.addListener(this);
     
@@ -66,12 +71,22 @@ SettingsComponent::SettingsComponent()
     displayClockLabel.setText("Display Clock", dontSendNotification);
     displayClockLabel.attachToComponent(&displayClockButton, false);
     
+    
     addAndMakeVisible(displayAccuratePointsButton);
     displayAccuratePointsButton.addListener(this);
     
     addAndMakeVisible(displayAccuratePointsLabel);
     displayAccuratePointsLabel.setText("Display Accurate Points", dontSendNotification);
     displayAccuratePointsLabel.attachToComponent(&displayAccuratePointsButton, false);
+    
+    
+    addAndMakeVisible(displayTopHalfButton);
+    displayTopHalfButton.addListener(this);
+    
+    addAndMakeVisible(displayTopHalfLabel);
+    displayTopHalfLabel.setText("Display Top Half", dontSendNotification);
+    displayTopHalfLabel.attachToComponent(&displayTopHalfButton, false);
+    
     
     addAndMakeVisible(sampleResolutionSelector);
     sampleResolutionSelector.addItem ("1", 1);
@@ -99,7 +114,8 @@ void SettingsComponent::resized()
     noOfPointsSlider.setBounds(padding, 150, getWidth() - (padding * 2), 20);
     displayClockButton.setBounds(padding, 220, getWidth() - (padding * 2), 20);
     displayAccuratePointsButton.setBounds(padding, 270, getWidth() - (padding * 2), 20);
-    sampleResolutionSelector.setBounds(padding, 320, getWidth() - (padding * 2), 20);
+    displayTopHalfButton.setBounds(padding, 320, getWidth() - (padding * 2), 20);
+    sampleResolutionSelector.setBounds(padding, 370, getWidth() - (padding * 2), 20);
 }
 
 void SettingsComponent::sliderValueChanged(Slider* slider)
@@ -121,7 +137,8 @@ void SettingsComponent::buttonClicked(Button* button)
         SettingsComponent::setVisible(false);
     } else if (button == &displayAccuratePointsButton) {
         showAccurateSamplePoints = !showAccurateSamplePoints;
-        std::cout << showAccurateSamplePoints << "\n";
+    } else if (button == &displayTopHalfButton) {
+        displayTopHalf = !displayTopHalf;
     }
 }
 
