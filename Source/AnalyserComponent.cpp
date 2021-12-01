@@ -234,7 +234,7 @@ void AnalyserComponent::drawLayer (juce::Graphics& g, int i, float RGBColour[3],
             
             // Top half
             if (displayTopHalf) {
-                if (topPitchInverted) {
+                if (invertTopHalf) {
                     g.drawEllipse((width - (i * fractionalWidth)) - (fractionalWidth / 2) * scaleFactor, (((oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * (height * localHeightModifier))) - (fractionalWidth / 2) * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor);
                     
                     g.drawLine(width - (i * fractionalWidth), 0, width - (i * fractionalWidth), (oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * (height * localHeightModifier), fractionalWidth * scaleFactor);
@@ -256,7 +256,7 @@ void AnalyserComponent::drawLayer (juce::Graphics& g, int i, float RGBColour[3],
             
             // Top half
             if (displayTopHalf) {
-                if (topPitchInverted) {
+                if (invertTopHalf) {
                     g.drawEllipse((width - (i * fractionalWidth)) - (fractionalWidth / 2) * scaleFactor, ((currentPositionData[i] * (height * localHeightModifier))) - (fractionalWidth / 2) * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor);
                     
                     g.drawLine(width - (i * fractionalWidth), 0, width - (i * fractionalWidth), currentPositionData[i] * (height * localHeightModifier), fractionalWidth * scaleFactor);
@@ -283,7 +283,7 @@ void AnalyserComponent::drawLayer (juce::Graphics& g, int i, float RGBColour[3],
             g.drawLine(i * (fractionalWidth), height, i * (fractionalWidth), height - ((oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * modifier)) * (height * localHeightModifier)), fractionalWidth * scaleFactor);
             
             // Top half
-            if (topPitchInverted) {
+            if (invertTopHalf) {
                 g.drawEllipse((width - (i * fractionalWidth)) - (fractionalWidth / 2) * scaleFactor, (((oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * (height * localHeightModifier))) - (fractionalWidth / 2) * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor);
                 
                 g.drawLine(width - (i * fractionalWidth), 0, width - (i * fractionalWidth), (oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * (height * localHeightModifier), fractionalWidth * scaleFactor);

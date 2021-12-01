@@ -23,6 +23,7 @@ int noOfPoints;
 bool displayClock;
 bool showAccurateSamplePoints;
 bool displayTopHalf;
+bool invertTopHalf;
 
 SettingsComponent::SettingsComponent()
 {
@@ -88,6 +89,14 @@ SettingsComponent::SettingsComponent()
     displayTopHalfLabel.attachToComponent(&displayTopHalfButton, false);
     
     
+    addAndMakeVisible(invertTopHalfButton);
+    invertTopHalfButton.addListener(this);
+    
+    addAndMakeVisible(invertTopHalfLabel);
+    invertTopHalfLabel.setText("Invert Top Half", dontSendNotification);
+    invertTopHalfLabel.attachToComponent(&invertTopHalfButton, false);
+    
+    
     addAndMakeVisible(sampleResolutionSelector);
     sampleResolutionSelector.addItem ("1", 1);
     sampleResolutionSelector.addItem ("2", 2);
@@ -115,7 +124,8 @@ void SettingsComponent::resized()
     displayClockButton.setBounds(padding, 220, getWidth() - (padding * 2), 20);
     displayAccuratePointsButton.setBounds(padding, 270, getWidth() - (padding * 2), 20);
     displayTopHalfButton.setBounds(padding, 320, getWidth() - (padding * 2), 20);
-    sampleResolutionSelector.setBounds(padding, 370, getWidth() - (padding * 2), 20);
+    invertTopHalfButton.setBounds(padding, 370, getWidth() - (padding * 2), 20);
+    sampleResolutionSelector.setBounds(padding, 420, getWidth() - (padding * 2), 20);
 }
 
 void SettingsComponent::sliderValueChanged(Slider* slider)
@@ -139,6 +149,8 @@ void SettingsComponent::buttonClicked(Button* button)
         showAccurateSamplePoints = !showAccurateSamplePoints;
     } else if (button == &displayTopHalfButton) {
         displayTopHalf = !displayTopHalf;
+    } else if (button == &invertTopHalfButton) {
+        invertTopHalf = !invertTopHalf;
     }
 }
 
