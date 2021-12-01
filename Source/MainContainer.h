@@ -32,9 +32,7 @@ public:
     void resized() override;
     
     void buttonClicked(Button* button) override;
-        
-    void mouseEnter(const MouseEvent &event) override;
-    
+            
     bool keyPressed(const KeyPress &k, Component *c) override;
     
 private:
