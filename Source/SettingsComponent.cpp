@@ -144,7 +144,8 @@ SettingsComponent::~SettingsComponent()
 
 void SettingsComponent::paint (juce::Graphics& g)
 {
-    g.fillAll (getLookAndFeel().findColour (juce::ResizableWindow::backgroundColourId));
+//    g.fillAll (getLookAndFeel().findColour (juce::ResizableWindow::backgroundColourId));
+    g.fillAll(juce::Colour::fromRGBA(60, 60, 60, 230));
 }
 
 void SettingsComponent::resized()
