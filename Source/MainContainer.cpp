@@ -17,17 +17,21 @@
 MainContainer::MainContainer()
 {
     setSize (1280, 720);
+    
+    setWantsKeyboardFocus(true);
+    addKeyListener(this);
+    
     addAndMakeVisible(audioVisualiserComponent);
     
     addAndMakeVisible(openSettingsButton);
     openSettingsButton.addListener(this);
     auto settingsIcon = ImageCache::getFromMemory(BinaryData::settings_png, BinaryData::settings_pngSize);
-    openSettingsButton.setImages(false, true, true, settingsIcon, 0.6f, juce::Colours::white, settingsIcon, 1.0f, juce::Colours::white, settingsIcon, 1.0f, juce::Colours::white);
+    openSettingsButton.setImages(false, true, true, settingsIcon, 1.0f, juce::Colours::dimgrey, settingsIcon, 1.0f, juce::Colours::white, settingsIcon, 1.0f, juce::Colours::white);
     
     addAndMakeVisible(openHomeButton);
     openHomeButton.addListener(this);
     auto homeIcon = ImageCache::getFromMemory(BinaryData::home_png, BinaryData::home_pngSize);
-    openHomeButton.setImages(false, true, true, homeIcon, 0.6f, juce::Colours::white, homeIcon, 1.0f, juce::Colours::white, homeIcon, 1.0f, juce::Colours::white);
+    openHomeButton.setImages(false, true, true, homeIcon, 0.6f, juce::Colours::dimgrey, homeIcon, 1.0f, juce::Colours::white, homeIcon, 1.0f, juce::Colours::white);
     
     addChildComponent(homePageComponent);
     addChildComponent(settingsComponent);
@@ -58,5 +62,19 @@ void MainContainer::buttonClicked(Button* button)
         settingsComponent.setVisible(true);
     } else if (button == &openHomeButton) {
         homePageComponent.setVisible(true);
+    }
+}
+
+void MainContainer::mouseEnter (const MouseEvent &event)
+{
+    std::cout << "Test\n";
+}
+
+bool MainContainer::keyPressed(const KeyPress &k, Component *c) {
+    if(k.getTextCharacter() == 'x') {
+        std::cout << "Key pressed\n";
+        return true;
+    } else {
+        return false;
     }
 }
