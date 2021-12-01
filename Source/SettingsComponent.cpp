@@ -17,10 +17,10 @@
 
 //==============================================================================
 
-Colour gainColour = juce::Colours::lightgreen;
+Colour gainColour = juce::Colour::fromRGBA(0, 255, 0, 255);
 Colour backgroundColour = juce::Colours::black;
 Colour lowPitchColour = juce::Colours::blue;
-Colour highPitchColour = juce::Colours::red;
+Colour highPitchColour = juce::Colour::fromRGBA(255, 0, 180, 255);
 float heightModifier;
 float widthModifier;
 int noOfPoints;
