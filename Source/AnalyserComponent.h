@@ -41,7 +41,6 @@ private:
         scopeSize = 120             // number of points in the visual representation of the spectrum as a scope
     };
     
-    
     juce::dsp::FFT forwardFFT;                      // FFT object
     juce::dsp::WindowingFunction<float> window;     // Windowing function to prevent spectral leakage
  

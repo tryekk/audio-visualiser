@@ -145,13 +145,14 @@ void AnalyserComponent::drawFrame (juce::Graphics& g)
         float LowGainColourR = 0.0f;
         float LowGainColourG = 0.0f;
         float LowGainColourB = 0.0f;
-        float HighGainColourR = 0.0f;
-        float HighGainColourG = 1.0f;
-        float HighGainColourB = 0.0f;
         
-        float LowPitchColourR = 0.0f;
-        float LowPitchColourG = 0.0f;
-        float LowPitchColourB = 0.0f;
+        float HighGainColourR = gainColour.getFloatRed();
+        float HighGainColourG = gainColour.getFloatGreen();
+        float HighGainColourB = gainColour.getFloatBlue();
+        
+//        float LowPitchColourR = 0.0f;
+//        float LowPitchColourG = 0.0f;
+//        float LowPitchColourB = 0.0f;
         float HighPitchColourR = 0.9f;
         float HighPitchColourG = 0.0f;
         float HighPitchColourB = 0.7f;

@@ -17,6 +17,7 @@
 
 //==============================================================================
 
+Colour gainColour = juce::Colours::lightgreen;
 float heightModifier;
 float widthModifier;
 int noOfPoints;
@@ -28,14 +29,25 @@ bool displayBottomHalf = true;
 
 SettingsComponent::SettingsComponent()
 {
-    setSize(280, 720);
+    setSize(360, 720);
     
     closeButton.setToggleState(true, NotificationType::dontSendNotification);
 //    closeButton.onClick = [this] () {std::cout<<"Hello\n";};
     closeButton.addListener(this);
     addAndMakeVisible(closeButton);
     closeButton.setButtonText("X");
-      
+    
+    
+    addAndMakeVisible(colourSelectorGain);
+    colourSelectorGain.setCurrentColour(gainColour);
+    colourSelectorGain.addChangeListener(this);
+    
+    addAndMakeVisible(colourSelectorPitchLow);
+    colourSelectorPitchLow.setCurrentColour(juce::Colours::blue);
+    
+    addAndMakeVisible(colourSelectorPitchHigh);
+    colourSelectorPitchHigh.setCurrentColour(juce::Colours::red);
+    
     
     addAndMakeVisible(lineHeightSlider);
     lineHeightSlider.setRange(0.0f, 2.0f, 0.001f);
@@ -123,22 +135,35 @@ SettingsComponent::~SettingsComponent()
 
 void SettingsComponent::paint (juce::Graphics& g)
 {
-    g.fillAll (getLookAndFeel().findColour (juce::ResizableWindow::backgroundColourId));   // clear the background
+    g.fillAll (getLookAndFeel().findColour (juce::ResizableWindow::backgroundColourId));
 }
 
 void SettingsComponent::resized()
 {
     int padding = 30;
     closeButton.setBounds(5, 5, 20, 20);
-    lineHeightSlider.setBounds(padding, 50, getWidth() - (padding * 2), 20);
-    lineWidthSlider.setBounds(padding, 100, getWidth() - (padding * 2), 20);
-    noOfPointsSlider.setBounds(padding, 150, getWidth() - (padding * 2), 20);
-    displayClockButton.setBounds(padding, 220, getWidth() - (padding * 2), 20);
-    displayAccuratePointsButton.setBounds(padding, 270, getWidth() - (padding * 2), 20);
-    displayTopHalfButton.setBounds(padding, 320, getWidth() - (padding * 2), 20);
-    invertTopHalfButton.setBounds(padding, 370, getWidth() - (padding * 2), 20);
-    displayBottomHalfButton.setBounds(padding, 420, getWidth() - (padding * 2), 20);
-    sampleResolutionSelector.setBounds(padding, 470, getWidth() - (padding * 2), 20);
+    
+    colourSelectorGain.setBounds(padding, 48, (getWidth() - (padding * 2)) / 2, 200);
+    colourSelectorPitchLow.setBounds(padding, 250, ((getWidth() - (padding * 2)) / 2) - 2, 200);
+    colourSelectorPitchHigh.setBounds(padding + ((getWidth() - (padding * 2)) / 2) + 2, 250, (getWidth() - (padding * 2)) / 2, 200);
+    
+    lineHeightSlider.setBounds(padding, 500, getWidth() - (padding * 2), 20);
+    lineWidthSlider.setBounds(padding, 550, getWidth() - (padding * 2), 20);
+    noOfPointsSlider.setBounds(padding, 600, getWidth() - (padding * 2), 20);
+    
+    displayClockButton.setBounds(padding, 700, getWidth() - (padding * 2), 20);
+    displayAccuratePointsButton.setBounds(padding, 750, getWidth() - (padding * 2), 20);
+    displayTopHalfButton.setBounds(padding, 800, getWidth() - (padding * 2), 20);
+    invertTopHalfButton.setBounds(padding, 850, getWidth() - (padding * 2), 20);
+    displayBottomHalfButton.setBounds(padding, 900, getWidth() - (padding * 2), 20);
+    sampleResolutionSelector.setBounds(padding, 950, getWidth() - (padding * 2), 20);
+}
+
+void SettingsComponent::changeListenerCallback(ChangeBroadcaster* source)
+{
+    if (source == &colourSelectorGain) {
+        gainColour = colourSelectorGain.getCurrentColour();
+    }
 }
 
 void SettingsComponent::sliderValueChanged(Slider* slider)

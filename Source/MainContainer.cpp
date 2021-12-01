@@ -56,7 +56,7 @@ void MainContainer::resized()
     openHomeButton.setBounds(10, 10, 35, 35);
     
     audioVisualiserComponent.setBounds(getLocalBounds());
-    settingsComponent.setBounds(getWidth() - 280, 0, 280, getHeight());
+    settingsComponent.setBounds(getWidth() - 360, 0, 360, getHeight());
 }
 
 void MainContainer::buttonClicked(Button* button)

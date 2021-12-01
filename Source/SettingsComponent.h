@@ -18,9 +18,11 @@
 /*
 */
 
+extern Colour gainColour;
 extern float heightModifier;
 extern float widthModifier;
 extern int noOfPoints;
+extern int fftOrder;
 extern bool displayClock;
 extern bool showAccurateSamplePoints;
 extern bool displayTopHalf;
@@ -29,7 +31,8 @@ extern bool displayBottomHalf;
 
 class SettingsComponent  :  public juce::Component,
                             public Slider::Listener,
-                            public Button::Listener
+                            public Button::Listener,
+                            public juce::ChangeListener
 {
 public:
     SettingsComponent();
@@ -37,6 +40,8 @@ public:
 
     void paint (juce::Graphics&) override;
     void resized() override;
+    
+    void changeListenerCallback(ChangeBroadcaster* source) override;
     
     void sliderValueChanged(Slider* slider) override;
     
@@ -46,6 +51,10 @@ public:
 
 private:
     TextButton closeButton;
+    
+    ColourSelector colourSelectorGain;
+    ColourSelector colourSelectorPitchLow;
+    ColourSelector colourSelectorPitchHigh;
         
     Slider lineHeightSlider;
     Label lineHeightLabel;
