@@ -18,6 +18,7 @@
 //==============================================================================
 
 Colour gainColour = juce::Colours::lightgreen;
+Colour backgroundColour = juce::Colours::black;
 Colour lowPitchColour = juce::Colours::blue;
 Colour highPitchColour = juce::Colours::red;
 float heightModifier;
@@ -43,6 +44,10 @@ SettingsComponent::SettingsComponent()
     addAndMakeVisible(colourSelectorGain);
     colourSelectorGain.setCurrentColour(gainColour);
     colourSelectorGain.addChangeListener(this);
+    
+    addAndMakeVisible(colourSelectorBackground);
+    colourSelectorBackground.setCurrentColour(backgroundColour);
+    colourSelectorBackground.addChangeListener(this);
     
     addAndMakeVisible(colourSelectorPitchLow);
     colourSelectorPitchLow.setCurrentColour(lowPitchColour);
@@ -148,6 +153,7 @@ void SettingsComponent::resized()
     closeButton.setBounds(5, 5, 20, 20);
     
     colourSelectorGain.setBounds(padding, 48, (getWidth() - (padding * 2)) / 2, 200);
+    colourSelectorBackground.setBounds(padding + ((getWidth() - (padding * 2)) / 2) + 2, 48, (getWidth() - (padding * 2)) / 2, 200);
     colourSelectorPitchLow.setBounds(padding, 250, ((getWidth() - (padding * 2)) / 2) - 2, 200);
     colourSelectorPitchHigh.setBounds(padding + ((getWidth() - (padding * 2)) / 2) + 2, 250, (getWidth() - (padding * 2)) / 2, 200);
     
@@ -167,6 +173,8 @@ void SettingsComponent::changeListenerCallback(ChangeBroadcaster* source)
 {
     if (source == &colourSelectorGain) {
         gainColour = colourSelectorGain.getCurrentColour();
+    } else if (source == &colourSelectorBackground) {
+        backgroundColour = colourSelectorBackground.getCurrentColour();
     } else if (source == &colourSelectorPitchLow) {
         lowPitchColour = colourSelectorPitchLow.getCurrentColour();
     } else if (source == &colourSelectorPitchHigh) {

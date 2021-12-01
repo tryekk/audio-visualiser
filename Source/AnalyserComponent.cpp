@@ -46,7 +46,7 @@ void AnalyserComponent::getNextAudioBlock(const juce::AudioSourceChannelInfo& bu
 
 void AnalyserComponent::paint(juce::Graphics& g)
 {    
-    g.fillAll (juce::Colours::black);
+    g.fillAll(backgroundColour);
 
     g.setOpacity (1.0f);
     drawFrame (g);

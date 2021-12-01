@@ -19,6 +19,7 @@
 */
 
 extern Colour gainColour;
+extern Colour backgroundColour;
 extern Colour lowPitchColour;
 extern Colour highPitchColour;
 extern float heightModifier;
@@ -55,6 +56,7 @@ private:
     TextButton closeButton;
     
     ColourSelector colourSelectorGain;
+    ColourSelector colourSelectorBackground;
     ColourSelector colourSelectorPitchLow;
     ColourSelector colourSelectorPitchHigh;
         
