@@ -25,6 +25,7 @@ extern bool displayClock;
 extern bool showAccurateSamplePoints;
 extern bool displayTopHalf;
 extern bool invertTopHalf;
+extern bool displayBottomHalf;
 
 class SettingsComponent  :  public juce::Component,
                             public Slider::Listener,
@@ -66,6 +67,9 @@ private:
     
     ToggleButton invertTopHalfButton;
     Label invertTopHalfLabel;
+    
+    ToggleButton displayBottomHalfButton;
+    Label displayBottomHalfLabel;
     
     ComboBox sampleResolutionSelector;
     

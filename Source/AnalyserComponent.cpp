@@ -228,9 +228,11 @@ void AnalyserComponent::drawLayer (juce::Graphics& g, int i, float RGBColour[3],
     } else {
         if (interpolationType == 0) {
             // Bottom Half
-            g.drawEllipse(i * fractionalWidth - (fractionalWidth / 2) * scaleFactor, (height - ((oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * (height * localHeightModifier))) - (fractionalWidth / 2) * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor);
+            if (displayBottomHalf) {
+                g.drawEllipse(i * fractionalWidth - (fractionalWidth / 2) * scaleFactor, (height - ((oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * (height * localHeightModifier))) - (fractionalWidth / 2) * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor);
 
-            g.drawLine(i * (fractionalWidth), height, i * (fractionalWidth), height - ((oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * (height * localHeightModifier)), fractionalWidth * scaleFactor);
+                g.drawLine(i * (fractionalWidth), height, i * (fractionalWidth), height - ((oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / smoothingFrames) * counter)) * (height * localHeightModifier)), fractionalWidth * scaleFactor);
+            }
             
             // Top half
             if (displayTopHalf) {
@@ -250,10 +252,13 @@ void AnalyserComponent::drawLayer (juce::Graphics& g, int i, float RGBColour[3],
 //            oldPositionData[i] = currentPositionData[i];
             
             // Bottom Half
-            g.drawEllipse(i * fractionalWidth - (fractionalWidth / 2) * scaleFactor, (height - (currentPositionData[i] * (height * localHeightModifier))) - (fractionalWidth / 2) * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor);
+            if (displayBottomHalf) {
+                g.drawEllipse(i * fractionalWidth - (fractionalWidth / 2) * scaleFactor, (height - (currentPositionData[i] * (height * localHeightModifier))) - (fractionalWidth / 2) * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor);
 
-            g.drawLine(i * (fractionalWidth), height, i * (fractionalWidth), height - (currentPositionData[i] * (height * localHeightModifier)), fractionalWidth * scaleFactor);
-            
+                g.drawLine(i * (fractionalWidth), height, i * (fractionalWidth), height - (currentPositionData[i] * (height * localHeightModifier)), fractionalWidth * scaleFactor);
+                
+            }
+           
             // Top half
             if (displayTopHalf) {
                 if (invertTopHalf) {

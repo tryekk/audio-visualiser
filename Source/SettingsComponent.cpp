@@ -22,8 +22,9 @@ float widthModifier;
 int noOfPoints;
 bool displayClock;
 bool showAccurateSamplePoints;
-bool displayTopHalf;
-bool invertTopHalf;
+bool displayTopHalf = true;
+bool invertTopHalf = true;
+bool displayBottomHalf = true;
 
 SettingsComponent::SettingsComponent()
 {
@@ -82,6 +83,7 @@ SettingsComponent::SettingsComponent()
     
     
     addAndMakeVisible(displayTopHalfButton);
+    displayTopHalfButton.setToggleState(true, dontSendNotification);
     displayTopHalfButton.addListener(this);
     
     addAndMakeVisible(displayTopHalfLabel);
@@ -90,11 +92,21 @@ SettingsComponent::SettingsComponent()
     
     
     addAndMakeVisible(invertTopHalfButton);
+    invertTopHalfButton.setToggleState(true, dontSendNotification);
     invertTopHalfButton.addListener(this);
     
     addAndMakeVisible(invertTopHalfLabel);
     invertTopHalfLabel.setText("Invert Top Half", dontSendNotification);
     invertTopHalfLabel.attachToComponent(&invertTopHalfButton, false);
+    
+    
+    addAndMakeVisible(displayBottomHalfButton);
+    displayBottomHalfButton.setToggleState(true, dontSendNotification);
+    displayBottomHalfButton.addListener(this);
+    
+    addAndMakeVisible(displayBottomHalfLabel);
+    displayBottomHalfLabel.setText("Display Bottom Half", dontSendNotification);
+    displayBottomHalfLabel.attachToComponent(&displayBottomHalfButton, false);
     
     
     addAndMakeVisible(sampleResolutionSelector);
@@ -125,7 +137,8 @@ void SettingsComponent::resized()
     displayAccuratePointsButton.setBounds(padding, 270, getWidth() - (padding * 2), 20);
     displayTopHalfButton.setBounds(padding, 320, getWidth() - (padding * 2), 20);
     invertTopHalfButton.setBounds(padding, 370, getWidth() - (padding * 2), 20);
-    sampleResolutionSelector.setBounds(padding, 420, getWidth() - (padding * 2), 20);
+    displayBottomHalfButton.setBounds(padding, 420, getWidth() - (padding * 2), 20);
+    sampleResolutionSelector.setBounds(padding, 470, getWidth() - (padding * 2), 20);
 }
 
 void SettingsComponent::sliderValueChanged(Slider* slider)
@@ -151,6 +164,8 @@ void SettingsComponent::buttonClicked(Button* button)
         displayTopHalf = !displayTopHalf;
     } else if (button == &invertTopHalfButton) {
         invertTopHalf = !invertTopHalf;
+    } else if (button == &displayBottomHalfButton) {
+        displayBottomHalf = !displayBottomHalf;
     }
 }
 
