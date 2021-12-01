@@ -69,11 +69,6 @@ void MainContainer::buttonClicked(Button* button)
     }
 }
 
-void MainContainer::mouseEnter (const MouseEvent &event)
-{
-    std::cout << "Test\n";
-}
-
 bool MainContainer::keyPressed(const KeyPress &k, Component *c) {
     if(k.getTextCharacter() == 'x') {
         isUIVisible = !isUIVisible;
