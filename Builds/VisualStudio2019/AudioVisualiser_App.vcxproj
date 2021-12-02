@@ -143,6 +143,7 @@
     <ClCompile Include="..\..\Source\MainContainer.cpp"/>
     <ClCompile Include="..\..\Source\HomePageComponent.cpp"/>
     <ClCompile Include="..\..\Source\AnalyserComponent.cpp"/>
+    <ClCompile Include="..\..\Source\SettingsContainer.cpp"/>
     <ClCompile Include="..\..\Source\SettingsComponent.cpp"/>
     <ClCompile Include="C:\JUCE\modules\juce_audio_basics\buffers\juce_AudioChannelSet.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
@@ -2201,6 +2202,7 @@
     <ClInclude Include="..\..\Source\MainContainer.h"/>
     <ClInclude Include="..\..\Source\HomePageComponent.h"/>
     <ClInclude Include="..\..\Source\AnalyserComponent.h"/>
+    <ClInclude Include="..\..\Source\SettingsContainer.h"/>
     <ClInclude Include="..\..\Source\SettingsComponent.h"/>
     <ClInclude Include="C:\JUCE\modules\juce_audio_basics\audio_play_head\juce_AudioPlayHead.h"/>
     <ClInclude Include="C:\JUCE\modules\juce_audio_basics\buffers\juce_AudioChannelSet.h"/>

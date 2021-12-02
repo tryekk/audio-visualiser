@@ -34,7 +34,7 @@ MainContainer::MainContainer()
     openHomeButton.setImages(false, true, true, homeIcon, 0.6f, juce::Colours::grey, homeIcon, 1.0f, juce::Colours::white, homeIcon, 1.0f, juce::Colours::white);
     
     addChildComponent(homePageComponent);
-    addChildComponent(settingsComponent);
+    addChildComponent(settingsContainer);
 
     openHomeButton.setVisible(true);
     openSettingsButton.setVisible(true);
@@ -56,13 +56,13 @@ void MainContainer::resized()
     openHomeButton.setBounds(10, 10, 35, 35);
     
     audioVisualiserComponent.setBounds(getLocalBounds());
-    settingsComponent.setBounds(getWidth() - 360, 0, 360, getHeight());
+    settingsContainer.setBounds(getWidth() - 360, 0, 360, getHeight());
 }
 
 void MainContainer::buttonClicked(Button* button)
 {
     if (button == &openSettingsButton) {
-        settingsComponent.setVisible(true);
+        settingsContainer.setVisible(true);
     } else if (button == &openHomeButton) {
         homePageComponent.setVisible(true);
     }

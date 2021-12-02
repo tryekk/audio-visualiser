@@ -24,6 +24,7 @@
 		8A20696DD67A336E083A2D8F /* include_juce_gui_extra.mm in Sources */ = {isa = PBXBuildFile; fileRef = E9CE2348B6E18B844FE31E31 /* include_juce_gui_extra.mm */; };
 		8F5DD3F231696949A24D304B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEB1ECC4F96CEB233ACFBD34 /* QuartzCore.framework */; };
 		9398183407AC7C65E42C42A4 /* DiscRecording.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF79C01CD523A17FD4F09830 /* DiscRecording.framework */; };
+		949AD0F3B5D7AD1463E36C57 /* SettingsContainer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A7DCA394D92EF366A09BEEEF /* SettingsContainer.cpp */; };
 		9BAE2A7AB23488A6E6B88A35 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFD677C42FF170F1BFDE9742 /* Foundation.framework */; };
 		AE3BEF87E24D724C84A710EC /* include_juce_audio_processors.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2E335A42494601AE776C8CC9 /* include_juce_audio_processors.mm */; };
 		AE4DE0FC2AC114177556945C /* include_juce_events.mm in Sources */ = {isa = PBXBuildFile; fileRef = 68758D7A89B55E149088BF69 /* include_juce_events.mm */; };
@@ -70,9 +71,11 @@
 		68758D7A89B55E149088BF69 /* include_juce_events.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_events.mm; path = ../../JuceLibraryCode/include_juce_events.mm; sourceTree = SOURCE_ROOT; };
 		6E1DCEAE58007F7606B1018B /* AudioVisualiser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudioVisualiser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D67CABD3DF1BD0E7EA3D5A5 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		8C877027C0AAA684496B3662 /* SettingsContainer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SettingsContainer.h; path = ../../Source/SettingsContainer.h; sourceTree = SOURCE_ROOT; };
 		8CEB6D2CEE7DBCD4AEA5BDA7 /* AnalyserComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AnalyserComponent.h; path = ../../Source/AnalyserComponent.h; sourceTree = SOURCE_ROOT; };
 		9E7A0A5C741A77FB74233F5D /* BinaryData.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = BinaryData.cpp; path = ../../JuceLibraryCode/BinaryData.cpp; sourceTree = SOURCE_ROOT; };
 		A50170E142C314B6C63342D0 /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = settings.png; path = ../../Assets/settings.png; sourceTree = SOURCE_ROOT; };
+		A7DCA394D92EF366A09BEEEF /* SettingsContainer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = SettingsContainer.cpp; path = ../../Source/SettingsContainer.cpp; sourceTree = SOURCE_ROOT; };
 		AAED15A794E4A8E0FAD36BF3 /* include_juce_audio_formats.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_audio_formats.mm; path = ../../JuceLibraryCode/include_juce_audio_formats.mm; sourceTree = SOURCE_ROOT; };
 		B8EE7182D7751464A1A4459D /* juce_core */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_core; path = /Users/user/Documents/JUCE/modules/juce_core; sourceTree = "<absolute>"; };
 		BB489FE17F526863BFC51171 /* BinaryData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BinaryData.h; path = ../../JuceLibraryCode/BinaryData.h; sourceTree = SOURCE_ROOT; };
@@ -197,6 +200,8 @@
 				1FF018AE0A5601C3628D0EF3 /* HomePageComponent.h */,
 				03640FCFD4B9B304111B6B4D /* AnalyserComponent.cpp */,
 				8CEB6D2CEE7DBCD4AEA5BDA7 /* AnalyserComponent.h */,
+				A7DCA394D92EF366A09BEEEF /* SettingsContainer.cpp */,
+				8C877027C0AAA684496B3662 /* SettingsContainer.h */,
 				5B09E1D51A57C28E79D57847 /* SettingsComponent.cpp */,
 				E9AE820A53B177492F97019E /* SettingsComponent.h */,
 			);
@@ -335,6 +340,7 @@
 				17DEBB160A49C1017F1B574C /* MainContainer.cpp in Sources */,
 				DD8801427EC56C598BD39380 /* HomePageComponent.cpp in Sources */,
 				71E2019C2E2E0F7298EA7A45 /* AnalyserComponent.cpp in Sources */,
+				949AD0F3B5D7AD1463E36C57 /* SettingsContainer.cpp in Sources */,
 				EEFA27F143BB103D8FDB2B55 /* SettingsComponent.cpp in Sources */,
 				C029C180E620C0CCEC28A752 /* BinaryData.cpp in Sources */,
 				3A98C89527C8DD479822B948 /* include_juce_audio_basics.mm in Sources */,

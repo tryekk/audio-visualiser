@@ -18,6 +18,10 @@
             file="Source/AnalyserComponent.cpp"/>
       <FILE id="WG5YdY" name="AnalyserComponent.h" compile="0" resource="0"
             file="Source/AnalyserComponent.h"/>
+      <FILE id="QNT5S5" name="SettingsContainer.cpp" compile="1" resource="0"
+            file="Source/SettingsContainer.cpp"/>
+      <FILE id="Wkc6Q4" name="SettingsContainer.h" compile="0" resource="0"
+            file="Source/SettingsContainer.h"/>
       <FILE id="Q8xf9O" name="SettingsComponent.cpp" compile="1" resource="0"
             file="Source/SettingsComponent.cpp"/>
       <FILE id="k24fnv" name="SettingsComponent.h" compile="0" resource="0"

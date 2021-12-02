@@ -13,7 +13,7 @@
 #include <JuceHeader.h>
 #include "HomePageComponent.h"
 #include "AnalyserComponent.h"
-#include "SettingsComponent.h"
+#include "SettingsContainer.h"
 
 //==============================================================================
 /*
@@ -38,7 +38,7 @@ public:
 private:
     HomePageComponent homePageComponent;
     AnalyserComponent audioVisualiserComponent;
-    SettingsComponent settingsComponent;
+    SettingsContainer settingsContainer;
     
     bool isUIVisible = true;
     
