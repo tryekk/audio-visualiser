@@ -18,7 +18,12 @@ SettingsContainer::SettingsContainer()
     addAndMakeVisible(settingsViewport);
     settingsViewport.setViewedComponent(&settingsComponent);
     
-    settingsComponent.setBounds(0, 0, settingsViewport.getMaximumVisibleWidth(), 1000);
+    // Set inital size
+    if (getHeight() > 1000) {
+        settingsComponent.setBounds(0, 0, settingsViewport.getMaximumVisibleWidth(), getHeight());
+    } else {
+        settingsComponent.setBounds(0, 0, settingsViewport.getMaximumVisibleWidth(), 1000);
+    }
 }
 
 SettingsContainer::~SettingsContainer()
@@ -32,5 +37,9 @@ void SettingsContainer::paint (juce::Graphics& g)
 void SettingsContainer::resized()
 {
     settingsViewport.setBounds(getLocalBounds());
-    settingsComponent.setBounds(0, 0, settingsViewport.getMaximumVisibleWidth(), 1000);
+    if (getHeight() > 1000) {
+        settingsComponent.setBounds(0, 0, settingsViewport.getMaximumVisibleWidth(), getHeight());
+    } else {
+        settingsComponent.setBounds(0, 0, settingsViewport.getMaximumVisibleWidth(), 1000);
+    }
 }
