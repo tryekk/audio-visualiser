@@ -72,7 +72,7 @@ SettingsComponent::SettingsComponent()
     
     
     addAndMakeVisible(interpolationFramesSlider);
-    interpolationFramesSlider.setRange(0, 128, 1);
+    interpolationFramesSlider.setRange(1, 64, 1);
     interpolationFramesSlider.setValue(6);
     interpolationFramesSlider.addListener(this);
     
