@@ -14,7 +14,6 @@
 //==============================================================================
 SettingsContainer::SettingsContainer()
 {
-//    addAndMakeVisible(settingsComponent);
     addAndMakeVisible(settingsViewport);
     settingsViewport.setViewedComponent(&settingsComponent, true);
     
