@@ -32,7 +32,7 @@ bool displayBottomHalf = true;
 
 SettingsComponent::SettingsComponent()
 {
-    setSize(360, 720);
+//    setSize(360, 720);
     
     closeButton.setToggleState(true, NotificationType::dontSendNotification);
 //    closeButton.onClick = [this] () {std::cout<<"Hello\n";};

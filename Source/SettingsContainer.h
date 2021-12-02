@@ -27,6 +27,8 @@ public:
     void resized() override;
 
 private:
+    Viewport settingsViewport;
+    
     SettingsComponent settingsComponent;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SettingsContainer)
