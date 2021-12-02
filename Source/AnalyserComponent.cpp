@@ -269,7 +269,7 @@ void AnalyserComponent::drawLayer (juce::Graphics& g, int i, float RGBColour[3],
                 } else {
                     g.drawEllipse((i * fractionalWidth) - (fractionalWidth / 2) * scaleFactor, ((currentPositionData[i] * (height * localHeightModifier))) - (fractionalWidth / 2) * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor);
                     
-                    g.drawLine(i * fractionalWidth, 0, width - (i * fractionalWidth), currentPositionData[i] * (height * localHeightModifier), fractionalWidth * scaleFactor);
+                    g.drawLine(i * fractionalWidth, 0, i * fractionalWidth, currentPositionData[i] * (height * localHeightModifier), fractionalWidth * scaleFactor);
                 }
             }
         } else if (interpolationType == 2) {

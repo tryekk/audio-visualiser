@@ -27,7 +27,7 @@ int noOfPoints;
 bool displayClock;
 bool showAccurateSamplePoints;
 bool displayTopHalf = true;
-bool invertTopHalf = true;
+bool invertTopHalf = false;
 bool displayBottomHalf = true;
 
 SettingsComponent::SettingsComponent()
@@ -106,7 +106,7 @@ SettingsComponent::SettingsComponent()
     
     
     addAndMakeVisible(invertTopHalfButton);
-    invertTopHalfButton.setToggleState(true, dontSendNotification);
+    invertTopHalfButton.setToggleState(false, dontSendNotification);
     invertTopHalfButton.addListener(this);
     
     addAndMakeVisible(invertTopHalfLabel);
