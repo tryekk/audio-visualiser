@@ -16,7 +16,7 @@ SettingsContainer::SettingsContainer()
 {
 //    addAndMakeVisible(settingsComponent);
     addAndMakeVisible(settingsViewport);
-    settingsViewport.setViewedComponent(&settingsComponent);
+    settingsViewport.setViewedComponent(&settingsComponent, true);
     
     // Set inital size
     if (getHeight() > settingsComponentMinHeight) {
