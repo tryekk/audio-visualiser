@@ -34,13 +34,6 @@ SettingsComponent::SettingsComponent()
 {
 //    setSize(360, 720);
     
-    closeButton.setToggleState(true, NotificationType::dontSendNotification);
-//    closeButton.onClick = [this] () {std::cout<<"Hello\n";};
-    closeButton.addListener(this);
-    addAndMakeVisible(closeButton);
-    closeButton.setButtonText("X");
-    
-    
     addAndMakeVisible(colourSelectorGain);
     colourSelectorGain.setCurrentColour(gainColour);
     colourSelectorGain.addChangeListener(this);
@@ -151,7 +144,6 @@ void SettingsComponent::paint (juce::Graphics& g)
 void SettingsComponent::resized()
 {
     int padding = 30;
-    closeButton.setBounds(5, 5, 20, 20);
     
     colourSelectorGain.setBounds(padding, 48, (getWidth() - (padding * 2)) / 2, 200);
     colourSelectorBackground.setBounds(padding + ((getWidth() - (padding * 2)) / 2) + 2, 48, (getWidth() - (padding * 2)) / 2, 200);
@@ -198,8 +190,6 @@ void SettingsComponent::buttonClicked(Button* button)
 {
     if (button == &displayClockButton) {
         displayClock = !displayClock;
-    } else if (button == &closeButton) {
-        SettingsComponent::setVisible(false);
     } else if (button == &displayAccuratePointsButton) {
         showAccurateSamplePoints = !showAccurateSamplePoints;
     } else if (button == &displayTopHalfButton) {

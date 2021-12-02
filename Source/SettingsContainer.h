@@ -17,7 +17,8 @@
 //==============================================================================
 /*
 */
-class SettingsContainer  : public juce::Component
+class SettingsContainer  :  public juce::Component,
+                            public Button::Listener
 {
 public:
     SettingsContainer();
@@ -25,6 +26,8 @@ public:
 
     void paint (juce::Graphics&) override;
     void resized() override;
+    
+    void buttonClicked(Button* button) override;
 
 private:
     int settingsComponentMinHeight = 1000;
@@ -32,6 +35,8 @@ private:
     Viewport settingsViewport;
     
     SettingsComponent settingsComponent;
+    
+    TextButton closeButton;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SettingsContainer)
 };

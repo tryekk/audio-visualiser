@@ -24,6 +24,12 @@ SettingsContainer::SettingsContainer()
     } else {
         settingsComponent.setBounds(0, 0, settingsViewport.getMaximumVisibleWidth(), settingsComponentMinHeight);
     }
+    
+    closeButton.setToggleState(true, NotificationType::dontSendNotification);
+//    closeButton.onClick = [this] () {std::cout<<"Hello\n";};
+    closeButton.addListener(this);
+    addAndMakeVisible(closeButton);
+    closeButton.setButtonText("X");
 }
 
 SettingsContainer::~SettingsContainer()
@@ -41,5 +47,14 @@ void SettingsContainer::resized()
         settingsComponent.setBounds(0, 0, settingsViewport.getMaximumVisibleWidth(), getHeight());
     } else {
         settingsComponent.setBounds(0, 0, settingsViewport.getMaximumVisibleWidth(), settingsComponentMinHeight);
+    }
+    
+    closeButton.setBounds(5, 5, 20, 20);
+}
+
+void SettingsContainer::buttonClicked(Button* button)
+{
+    if (button == &closeButton) {
+        SettingsContainer::setVisible(false);
     }
 }

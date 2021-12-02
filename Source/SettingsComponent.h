@@ -52,9 +52,7 @@ public:
     
     void comboBoxChanged();
 
-private:
-    TextButton closeButton;
-    
+private:    
     ColourSelector colourSelectorGain;
     ColourSelector colourSelectorBackground;
     ColourSelector colourSelectorPitchLow;
