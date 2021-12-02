@@ -27,6 +27,8 @@ public:
     void resized() override;
 
 private:
+    int settingsComponentMinHeight = 1000;
+    
     Viewport settingsViewport;
     
     SettingsComponent settingsComponent;
