@@ -24,7 +24,7 @@ extern Colour lowPitchColour;
 extern Colour highPitchColour;
 extern float heightModifier;
 extern float widthModifier;
-extern int noOfPoints;
+extern int interpolationFrames;
 extern int fftOrder;
 extern bool displayClock;
 extern bool showAccurateSamplePoints;
@@ -52,7 +52,7 @@ public:
     
     void comboBoxChanged();
 
-private:    
+private:
     ColourSelector colourSelectorGain;
     ColourSelector colourSelectorBackground;
     ColourSelector colourSelectorPitchLow;
@@ -64,8 +64,8 @@ private:
     Slider lineWidthSlider;
     Label lineWidthLabel;
 
-    Slider noOfPointsSlider;
-    Label noOfPointsLabel;
+    Slider interpolationFramesSlider;
+    Label interpolationFramesLabel;
     
     ToggleButton displayClockButton;
     Label displayClockLabel;
@@ -82,7 +82,7 @@ private:
     ToggleButton displayBottomHalfButton;
     Label displayBottomHalfLabel;
     
-    ComboBox sampleResolutionSelector;
+    ComboBox interpolationTypeSelector;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SettingsComponent)
 };
