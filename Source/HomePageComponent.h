@@ -15,15 +15,21 @@
 //==============================================================================
 /*
 */
-class HomePageComponent  : public juce::Component
+class HomePageComponent  :  public juce::Component,
+                            public Button::Listener
 {
 public:
     HomePageComponent();
     ~HomePageComponent() override;
 
     void paint (juce::Graphics&) override;
+    
     void resized() override;
 
+    void buttonClicked(Button* button) override;
+    
 private:
+    ImageButton scene1Button;
+
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (HomePageComponent)
 };

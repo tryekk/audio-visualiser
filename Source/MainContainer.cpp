@@ -55,7 +55,7 @@ void MainContainer::resized()
     
     audioVisualiserComponent.setBounds(getLocalBounds());
     
-    homePageContainer.setBounds(0, 0, 280, getHeight());
+    homePageContainer.setBounds(0, 0, 360, getHeight());
     settingsContainer.setBounds(getWidth() - 360, 0, 360, getHeight());
 }
 
