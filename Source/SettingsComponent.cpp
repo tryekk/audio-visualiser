@@ -23,8 +23,8 @@ Colour lowPitchColour = juce::Colours::blue;
 Colour highPitchColour = juce::Colour::fromRGBA(255, 0, 180, 255);
 float heightModifier;
 float widthModifier;
-int interpolationFrames = 6;
-int interpolationFramesColour = 6;
+int interpolationFrames = 4;
+int interpolationFramesColour = 8;
 bool displayClock;
 bool showAccurateSamplePoints;
 bool displayTopHalf = true;
@@ -73,8 +73,8 @@ SettingsComponent::SettingsComponent()
     
     
     addAndMakeVisible(interpolationFramesSlider);
-    interpolationFramesSlider.setRange(1, 64, 1);
-    interpolationFramesSlider.setValue(6);
+    interpolationFramesSlider.setRange(1, 60, 1);
+    interpolationFramesSlider.setValue(4);
     interpolationFramesSlider.addListener(this);
     
     addAndMakeVisible(interpolationFramesLabel);
@@ -83,8 +83,8 @@ SettingsComponent::SettingsComponent()
     
     
     addAndMakeVisible(interpolationFramesColourSlider);
-    interpolationFramesColourSlider.setRange(1, 64, 1);
-    interpolationFramesColourSlider.setValue(6);
+    interpolationFramesColourSlider.setRange(1, 60, 1);
+    interpolationFramesColourSlider.setValue(8);
     interpolationFramesColourSlider.addListener(this);
     
     addAndMakeVisible(interpolationFramesColourLabel);
