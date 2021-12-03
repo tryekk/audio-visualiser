@@ -30,7 +30,7 @@ public:
     void buttonClicked(Button* button) override;
 
 private:
-    int settingsComponentMinHeight = 1000;
+    int settingsComponentMinHeight = 1050;
     
     Viewport settingsViewport;
     

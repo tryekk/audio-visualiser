@@ -24,6 +24,7 @@ Colour highPitchColour = juce::Colour::fromRGBA(255, 0, 180, 255);
 float heightModifier;
 float widthModifier;
 int interpolationFrames = 6;
+int interpolationFramesColour = 6;
 bool displayClock;
 bool showAccurateSamplePoints;
 bool displayTopHalf = true;
@@ -77,8 +78,18 @@ SettingsComponent::SettingsComponent()
     interpolationFramesSlider.addListener(this);
     
     addAndMakeVisible(interpolationFramesLabel);
-    interpolationFramesLabel.setText("Smoothing Franes", dontSendNotification);
+    interpolationFramesLabel.setText("Smoothing Frames", dontSendNotification);
     interpolationFramesLabel.attachToComponent(&interpolationFramesSlider, false);
+    
+    
+    addAndMakeVisible(interpolationFramesColourSlider);
+    interpolationFramesColourSlider.setRange(1, 64, 1);
+    interpolationFramesColourSlider.setValue(6);
+    interpolationFramesColourSlider.addListener(this);
+    
+    addAndMakeVisible(interpolationFramesColourLabel);
+    interpolationFramesColourLabel.setText("Colour Smoothing Frames", dontSendNotification);
+    interpolationFramesColourLabel.attachToComponent(&interpolationFramesColourSlider, false);
     
     
     addAndMakeVisible(displayClockButton);
@@ -154,13 +165,14 @@ void SettingsComponent::resized()
     lineHeightSlider.setBounds(padding, 500, getWidth() - (padding * 2), 20);
     lineWidthSlider.setBounds(padding, 550, getWidth() - (padding * 2), 20);
     interpolationFramesSlider.setBounds(padding, 600, getWidth() - (padding * 2), 20);
+    interpolationFramesColourSlider.setBounds(padding, 650, getWidth() - (padding * 2), 20);
     
-    displayClockButton.setBounds(padding, 700, getWidth() - (padding * 2), 20);
-    displayAccuratePointsButton.setBounds(padding, 750, getWidth() - (padding * 2), 20);
-    displayTopHalfButton.setBounds(padding, 800, getWidth() - (padding * 2), 20);
-    invertTopHalfButton.setBounds(padding, 850, getWidth() - (padding * 2), 20);
-    displayBottomHalfButton.setBounds(padding, 900, getWidth() - (padding * 2), 20);
-    interpolationTypeSelector.setBounds(padding, 950, getWidth() - (padding * 2), 20);
+    displayClockButton.setBounds(padding, 750, getWidth() - (padding * 2), 20);
+    displayAccuratePointsButton.setBounds(padding, 800, getWidth() - (padding * 2), 20);
+    displayTopHalfButton.setBounds(padding, 850, getWidth() - (padding * 2), 20);
+    invertTopHalfButton.setBounds(padding, 900, getWidth() - (padding * 2), 20);
+    displayBottomHalfButton.setBounds(padding, 950, getWidth() - (padding * 2), 20);
+    interpolationTypeSelector.setBounds(padding, 1000, getWidth() - (padding * 2), 20);
 }
 
 void SettingsComponent::changeListenerCallback(ChangeBroadcaster* source)
@@ -184,6 +196,8 @@ void SettingsComponent::sliderValueChanged(Slider* slider)
         widthModifier = lineWidthSlider.getValue();
     } else if (slider == &interpolationFramesSlider) {
         interpolationFrames = interpolationFramesSlider.getValue();
+    } else if (slider == &interpolationFramesColourSlider) {
+        interpolationFramesColour = interpolationFramesColourSlider.getValue();
     }
 }
 

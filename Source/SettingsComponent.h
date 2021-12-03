@@ -25,6 +25,7 @@ extern Colour highPitchColour;
 extern float heightModifier;
 extern float widthModifier;
 extern int interpolationFrames;
+extern int interpolationFramesColour;
 extern int fftOrder;
 extern bool displayClock;
 extern bool showAccurateSamplePoints;
@@ -66,6 +67,9 @@ private:
 
     Slider interpolationFramesSlider;
     Label interpolationFramesLabel;
+    
+    Slider interpolationFramesColourSlider;
+    Label interpolationFramesColourLabel;
     
     ToggleButton displayClockButton;
     Label displayClockLabel;

@@ -167,9 +167,9 @@ void AnalyserComponent::drawFrame (juce::Graphics& g)
         
         // Update points
         if ((oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / interpolationFrames) * counter)) != 0) {  // Change
-            float red = oldColourList[i].getFloatRed() + (((currentAccurateColourList[i].getFloatRed() - oldColourList[i].getFloatRed()) / smoothingFramesColour) * colourIncrement);
-            float green = oldColourList[i].getFloatGreen() + (((currentAccurateColourList[i].getFloatGreen() -  oldColourList[i].getFloatGreen()) / smoothingFramesColour) * colourIncrement);
-            float blue = oldColourList[i].getFloatBlue() + (((currentAccurateColourList[i].getFloatBlue() - oldColourList[i].getFloatBlue()) / smoothingFramesColour) * colourIncrement);
+            float red = oldColourList[i].getFloatRed() + (((currentAccurateColourList[i].getFloatRed() - oldColourList[i].getFloatRed()) / interpolationFramesColour) * colourIncrement);
+            float green = oldColourList[i].getFloatGreen() + (((currentAccurateColourList[i].getFloatGreen() -  oldColourList[i].getFloatGreen()) / interpolationFramesColour) * colourIncrement);
+            float blue = oldColourList[i].getFloatBlue() + (((currentAccurateColourList[i].getFloatBlue() - oldColourList[i].getFloatBlue()) / interpolationFramesColour) * colourIncrement);
             float RGBColour[3] = {red, green, blue};
             
 //                drawLayer(g, i, RGBColour, 0.2f, 0.9f, scaleFactor * 0.4);
@@ -179,7 +179,7 @@ void AnalyserComponent::drawFrame (juce::Graphics& g)
             drawLayer(g, i, RGBColour, 1.0f, heightModifier * 0.6f, scaleFactor * 1);
                         
             // Update colour
-            if (colourIncrement >= smoothingFramesColour) {
+            if (colourIncrement >= interpolationFramesColour) {
                 oldColourList[i] = currentAccurateColourList[i];
                 
                 currentAccurateColourList[i] = juce::Colour::fromFloatRGBA(
@@ -199,7 +199,7 @@ void AnalyserComponent::drawFrame (juce::Graphics& g)
     }
     
     
-    if (colourIncrement >= smoothingFramesColour) {
+    if (colourIncrement >= interpolationFramesColour) {
         // Reset
         colourIncrement = 0;
     }

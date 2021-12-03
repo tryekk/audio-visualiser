@@ -53,7 +53,6 @@ private:
     float currentPositionData [scopeSize];
     
     int counter = 0;
-    int smoothingFramesColour = 6;
     int colourIncrement = 0;
     juce::Colour currentAccurateColourList [scopeSize];
     juce::Colour oldColourList [scopeSize];
