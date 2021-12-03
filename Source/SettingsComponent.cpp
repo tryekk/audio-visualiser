@@ -28,7 +28,7 @@ int interpolationFramesColour = 8;
 bool displayClock;
 bool showAccurateSamplePoints;
 bool displayTopHalf = true;
-bool invertTopHalf = false;
+bool invertTopHalf = true;
 bool displayBottomHalf = true;
 
 SettingsComponent::SettingsComponent()
@@ -63,7 +63,7 @@ SettingsComponent::SettingsComponent()
     
     
     addAndMakeVisible(lineWidthSlider);
-    lineWidthSlider.setRange(0.0f, 20.0f, 0.001f);
+    lineWidthSlider.setRange(0.0f, 10.0f, 0.001f);
     lineWidthSlider.setValue(1.0f);
     lineWidthSlider.addListener(this);
     
@@ -118,7 +118,7 @@ SettingsComponent::SettingsComponent()
     
     
     addAndMakeVisible(invertTopHalfButton);
-    invertTopHalfButton.setToggleState(false, dontSendNotification);
+    invertTopHalfButton.setToggleState(true, dontSendNotification);
     invertTopHalfButton.addListener(this);
     
     addAndMakeVisible(invertTopHalfLabel);

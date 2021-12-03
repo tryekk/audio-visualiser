@@ -150,9 +150,10 @@ void AnalyserComponent::drawFrame (juce::Graphics& g)
         float HighGainColourG = gainColour.getFloatGreen();
         float HighGainColourB = gainColour.getFloatBlue();
         
-//        float LowPitchColourR = 0.0f;
-//        float LowPitchColourG = 0.0f;
-//        float LowPitchColourB = 0.0f;
+        float LowPitchColourR = lowPitchColour.getFloatRed();
+        float LowPitchColourG = lowPitchColour.getFloatGreen();
+        float LowPitchColourB = lowPitchColour.getFloatBlue();
+                
         float HighPitchColourR = highPitchColour.getFloatRed();
         float HighPitchColourG = highPitchColour.getFloatGreen();
         float HighPitchColourB = highPitchColour.getFloatBlue();
@@ -183,9 +184,11 @@ void AnalyserComponent::drawFrame (juce::Graphics& g)
                 oldColourList[i] = currentAccurateColourList[i];
                 
                 currentAccurateColourList[i] = juce::Colour::fromFloatRGBA(
-                    ((HighPitchColourR / scopeSize) * i) + ((HighGainColourR - LowGainColourR) * scopeData[i]),
-                    HighPitchColourG + ((HighGainColourG - LowGainColourG) * scopeData[i]),
-                    HighPitchColourB + ((HighGainColourB - LowGainColourB) * scopeData[i]),
+                   ((HighPitchColourR / scopeSize) * i)  +  (LowPitchColourR / i)  +  ((HighGainColourR - LowGainColourR) * scopeData[i]),
+                   ((HighPitchColourG / scopeSize) * i)  +  (LowPitchColourG / i)  +  ((HighGainColourG - LowGainColourG) * scopeData[i]),
+                   ((HighPitchColourB / scopeSize) * i)  +  (LowPitchColourB / i)  +  ((HighGainColourB - LowGainColourB) * scopeData[i]),
+//                    HighPitchColourG + ((HighGainColourG - LowGainColourG) * scopeData[i]),
+//                    HighPitchColourB + ((HighGainColourB - LowGainColourB) * scopeData[i]),
                     1.0f);
             }
         }
