@@ -46,7 +46,6 @@ void HomePageComponent::resized()
 void HomePageComponent::buttonClicked(Button *button)
 {
     if (button == &scene1Button) {
-//        settingsContainer.setVisible(true);
         std::cout << "Scene 1\n";
     }
 }

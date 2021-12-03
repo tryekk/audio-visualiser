@@ -43,7 +43,7 @@ private:
     {
         fftOrder  = 10,             // No of sample sections on screen
         fftSize   = 1 << fftOrder,  // use the left bit shift operator which produces 2048 as binary number 100000000000
-        scopeSize = 140             // number of points in the visual representation of the spectrum as a scope
+        scopeSize = 200             // number of points in the visual representation of the spectrum as a scope
     };
     
     juce::dsp::FFT forwardFFT;                      // FFT object
