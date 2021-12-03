@@ -47,8 +47,8 @@ void AnalyserComponent::getNextAudioBlock(const juce::AudioSourceChannelInfo& bu
 void AnalyserComponent::paint(juce::Graphics& g)
 {    
     g.fillAll(backgroundColour);
-
     g.setOpacity (1.0f);
+    
     drawFrame (g);
     
     counter = counter + 1;
@@ -72,6 +72,12 @@ void AnalyserComponent::paint(juce::Graphics& g)
         g.setFont (juce::Font ("Calibri", fontSize, juce::Font::bold));
         g.drawText (currentTime, 120, 100, 500, 200, juce::Justification::topLeft, true);
     }
+}
+
+void AnalyserComponent::resized()
+{
+    width  = getLocalBounds().getWidth();
+    height = getLocalBounds().getHeight();
 }
 
 void AnalyserComponent::timerCallback()
@@ -135,29 +141,27 @@ void AnalyserComponent::drawNextFrameOfSpectrum()
 
 void AnalyserComponent::drawFrame (juce::Graphics& g)
 {
+    float LowGainColourR = 0.0f;
+    float LowGainColourG = 0.0f;
+    float LowGainColourB = 0.0f;
+    
+    float HighGainColourR = gainColour.getFloatRed();
+    float HighGainColourG = gainColour.getFloatGreen();
+    float HighGainColourB = gainColour.getFloatBlue();
+    
+    float LowPitchColourR = lowPitchColour.getFloatRed();
+    float LowPitchColourG = lowPitchColour.getFloatGreen();
+    float LowPitchColourB = lowPitchColour.getFloatBlue();
+            
+    float HighPitchColourR = highPitchColour.getFloatRed();
+    float HighPitchColourG = highPitchColour.getFloatGreen();
+    float HighPitchColourB = highPitchColour.getFloatBlue();
+    
+    float fractionalWidth = width / scopeSize;
+    float scaleFactor = widthModifier;  // Line thickness
+    
     for (int i = 1; i < scopeSize; ++i)
     {
-        auto width  = getLocalBounds().getWidth();
-        auto height = getLocalBounds().getHeight();
-        float fractionalWidth = width / scopeSize;
-        float scaleFactor = widthModifier;  // Line thickness
-        
-        float LowGainColourR = 0.0f;
-        float LowGainColourG = 0.0f;
-        float LowGainColourB = 0.0f;
-        
-        float HighGainColourR = gainColour.getFloatRed();
-        float HighGainColourG = gainColour.getFloatGreen();
-        float HighGainColourB = gainColour.getFloatBlue();
-        
-        float LowPitchColourR = lowPitchColour.getFloatRed();
-        float LowPitchColourG = lowPitchColour.getFloatGreen();
-        float LowPitchColourB = lowPitchColour.getFloatBlue();
-                
-        float HighPitchColourR = highPitchColour.getFloatRed();
-        float HighPitchColourG = highPitchColour.getFloatGreen();
-        float HighPitchColourB = highPitchColour.getFloatBlue();
-                    
         if (showAccurateSamplePoints) {
             g.setColour(juce::Colours::gold);
             g.drawEllipse(i * (fractionalWidth) - (fractionalWidth / 2) * scaleFactor, height - (oldPositionData[i] * height) - (fractionalWidth / 2) * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor, 5);
@@ -211,8 +215,6 @@ void AnalyserComponent::drawFrame (juce::Graphics& g)
 
 void AnalyserComponent::drawLayer (juce::Graphics& g, int i, float RGBColour[3], float transparency, float localHeightModifier, float scaleFactor)
 {
-    auto width  = getLocalBounds().getWidth();
-    auto height = getLocalBounds().getHeight();
     float fractionalWidth = width / scopeSize;
     
     juce::Colour smoothedColour = juce::Colour::fromFloatRGBA(

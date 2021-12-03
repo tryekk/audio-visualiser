@@ -22,6 +22,8 @@ public:
 
     //==============================================================================
     void paint (juce::Graphics& g) override;
+    
+    void resized() override;
 
     void timerCallback() override;
 
@@ -34,6 +36,9 @@ public:
     void drawLayer (juce::Graphics& g, int i, float RGBColour[3], float transparency, float heightModifier, float scaleFactor);
     
 private:
+    int width  = getLocalBounds().getWidth();
+    int height = getLocalBounds().getHeight();
+    
     enum
     {
         fftOrder  = 10,             // No of sample sections on screen
