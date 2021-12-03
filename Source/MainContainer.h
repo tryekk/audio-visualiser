@@ -11,7 +11,7 @@
 #pragma once
 
 #include <JuceHeader.h>
-#include "HomePageComponent.h"
+#include "HomePageContainer.h"
 #include "AnalyserComponent.h"
 #include "SettingsContainer.h"
 
@@ -36,9 +36,9 @@ public:
     bool keyPressed(const KeyPress &k, Component *c) override;
     
 private:
-    HomePageComponent homePageComponent;
-    AnalyserComponent audioVisualiserComponent;
+    HomePageContainer homePageContainer;
     SettingsContainer settingsContainer;
+    AnalyserComponent audioVisualiserComponent;
     
     bool isUIVisible = true;
     

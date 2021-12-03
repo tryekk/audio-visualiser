@@ -7,25 +7,29 @@
   <MAINGROUP id="AGOAak" name="AudioVisualiser">
     <GROUP id="{D4BAA470-DEB6-133C-B715-4F3155DAC4CD}" name="Source">
       <FILE id="ZcAtkd" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
+      <FILE id="otOYLb" name="MainContainer.h" compile="0" resource="0" file="Source/MainContainer.h"/>
       <FILE id="WgSksv" name="MainContainer.cpp" compile="1" resource="0"
             file="Source/MainContainer.cpp"/>
-      <FILE id="otOYLb" name="MainContainer.h" compile="0" resource="0" file="Source/MainContainer.h"/>
-      <FILE id="uszGHX" name="HomePageComponent.cpp" compile="1" resource="0"
-            file="Source/HomePageComponent.cpp"/>
+      <FILE id="zT2m5o" name="HomePageContainer.h" compile="0" resource="0"
+            file="Source/HomePageContainer.h"/>
+      <FILE id="f1Ixba" name="HomePageContainer.cpp" compile="1" resource="0"
+            file="Source/HomePageContainer.cpp"/>
       <FILE id="gicAmm" name="HomePageComponent.h" compile="0" resource="0"
             file="Source/HomePageComponent.h"/>
-      <FILE id="OLHnS5" name="AnalyserComponent.cpp" compile="1" resource="0"
-            file="Source/AnalyserComponent.cpp"/>
-      <FILE id="WG5YdY" name="AnalyserComponent.h" compile="0" resource="0"
-            file="Source/AnalyserComponent.h"/>
-      <FILE id="QNT5S5" name="SettingsContainer.cpp" compile="1" resource="0"
-            file="Source/SettingsContainer.cpp"/>
+      <FILE id="uszGHX" name="HomePageComponent.cpp" compile="1" resource="0"
+            file="Source/HomePageComponent.cpp"/>
       <FILE id="Wkc6Q4" name="SettingsContainer.h" compile="0" resource="0"
             file="Source/SettingsContainer.h"/>
-      <FILE id="Q8xf9O" name="SettingsComponent.cpp" compile="1" resource="0"
-            file="Source/SettingsComponent.cpp"/>
+      <FILE id="QNT5S5" name="SettingsContainer.cpp" compile="1" resource="0"
+            file="Source/SettingsContainer.cpp"/>
       <FILE id="k24fnv" name="SettingsComponent.h" compile="0" resource="0"
             file="Source/SettingsComponent.h"/>
+      <FILE id="Q8xf9O" name="SettingsComponent.cpp" compile="1" resource="0"
+            file="Source/SettingsComponent.cpp"/>
+      <FILE id="WG5YdY" name="AnalyserComponent.h" compile="0" resource="0"
+            file="Source/AnalyserComponent.h"/>
+      <FILE id="OLHnS5" name="AnalyserComponent.cpp" compile="1" resource="0"
+            file="Source/AnalyserComponent.cpp"/>
     </GROUP>
     <GROUP id="{BCF184D1-77C8-C86F-4E65-DFBC3C956F69}" name="Assets">
       <FILE id="GroKEl" name="home.png" compile="0" resource="1" file="Assets/home.png"/>

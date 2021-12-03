@@ -70,10 +70,11 @@ endif
 OBJECTS_APP := \
   $(JUCE_OBJDIR)/Main_90ebc5c2.o \
   $(JUCE_OBJDIR)/MainContainer_b6868229.o \
+  $(JUCE_OBJDIR)/HomePageContainer_cf8cbff4.o \
   $(JUCE_OBJDIR)/HomePageComponent_c005f270.o \
-  $(JUCE_OBJDIR)/AnalyserComponent_c8388fbf.o \
   $(JUCE_OBJDIR)/SettingsContainer_2121d1ff.o \
   $(JUCE_OBJDIR)/SettingsComponent_119b047b.o \
+  $(JUCE_OBJDIR)/AnalyserComponent_c8388fbf.o \
   $(JUCE_OBJDIR)/BinaryData_ce4232d4.o \
   $(JUCE_OBJDIR)/include_juce_audio_basics_8a4e984a.o \
   $(JUCE_OBJDIR)/include_juce_audio_devices_63111d02.o \
@@ -111,14 +112,14 @@ $(JUCE_OBJDIR)/MainContainer_b6868229.o: ../../Source/MainContainer.cpp
 	@echo "Compiling MainContainer.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
+$(JUCE_OBJDIR)/HomePageContainer_cf8cbff4.o: ../../Source/HomePageContainer.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling HomePageContainer.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
 $(JUCE_OBJDIR)/HomePageComponent_c005f270.o: ../../Source/HomePageComponent.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling HomePageComponent.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/AnalyserComponent_c8388fbf.o: ../../Source/AnalyserComponent.cpp
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling AnalyserComponent.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/SettingsContainer_2121d1ff.o: ../../Source/SettingsContainer.cpp
@@ -129,6 +130,11 @@ $(JUCE_OBJDIR)/SettingsContainer_2121d1ff.o: ../../Source/SettingsContainer.cpp
 $(JUCE_OBJDIR)/SettingsComponent_119b047b.o: ../../Source/SettingsComponent.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling SettingsComponent.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/AnalyserComponent_c8388fbf.o: ../../Source/AnalyserComponent.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling AnalyserComponent.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/BinaryData_ce4232d4.o: ../../JuceLibraryCode/BinaryData.cpp
