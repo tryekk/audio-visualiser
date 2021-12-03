@@ -184,9 +184,9 @@ void AnalyserComponent::drawFrame (juce::Graphics& g)
                 oldColourList[i] = currentAccurateColourList[i];
                 
                 currentAccurateColourList[i] = juce::Colour::fromFloatRGBA(
-                   ((HighPitchColourR / scopeSize) * i)  +  (LowPitchColourR / i)  +  ((HighGainColourR - LowGainColourR) * scopeData[i]),
-                   ((HighPitchColourG / scopeSize) * i)  +  (LowPitchColourG / i)  +  ((HighGainColourG - LowGainColourG) * scopeData[i]),
-                   ((HighPitchColourB / scopeSize) * i)  +  (LowPitchColourB / i)  +  ((HighGainColourB - LowGainColourB) * scopeData[i]),
+                   ((HighPitchColourR / scopeSize) * i) + ((LowPitchColourR / scopeSize) * (scopeSize - i)) + ((HighGainColourR - LowGainColourR) * scopeData[i]),
+                   ((HighPitchColourG / scopeSize) * i) + ((LowPitchColourG / scopeSize) * (scopeSize - i)) + ((HighGainColourG - LowGainColourG) * scopeData[i]),
+                   ((HighPitchColourB / scopeSize) * i) + ((LowPitchColourB / scopeSize) * (scopeSize - i)) + ((HighGainColourB - LowGainColourB) * scopeData[i]),
 //                    HighPitchColourG + ((HighGainColourG - LowGainColourG) * scopeData[i]),
 //                    HighPitchColourB + ((HighGainColourB - LowGainColourB) * scopeData[i]),
                     1.0f);
