@@ -27,6 +27,7 @@ int interpolationFrames = 3;
 int interpolationFramesColour = 6;
 bool displayClock;
 bool showAccurateSamplePoints;
+bool drawLines = true;
 bool displayTopHalf = true;
 bool invertTopHalf = true;
 bool displayBottomHalf = true;
@@ -108,6 +109,14 @@ SettingsComponent::SettingsComponent()
     displayAccuratePointsLabel.attachToComponent(&displayAccuratePointsButton, false);
     
     
+    addAndMakeVisible(drawLinesButton);
+    drawLinesButton.setToggleState(true, dontSendNotification);
+    drawLinesButton.addListener(this);
+    
+    addAndMakeVisible(drawLinesLabel);
+    drawLinesLabel.setText("Draw Lines", dontSendNotification);
+    drawLinesLabel.attachToComponent(&drawLinesButton, false);
+    
     addAndMakeVisible(displayTopHalfButton);
     displayTopHalfButton.setToggleState(true, dontSendNotification);
     displayTopHalfButton.addListener(this);
@@ -169,10 +178,11 @@ void SettingsComponent::resized()
     
     displayClockButton.setBounds(padding, 750, getWidth() - (padding * 2), 20);
     displayAccuratePointsButton.setBounds(padding, 800, getWidth() - (padding * 2), 20);
-    displayTopHalfButton.setBounds(padding, 850, getWidth() - (padding * 2), 20);
-    invertTopHalfButton.setBounds(padding, 900, getWidth() - (padding * 2), 20);
-    displayBottomHalfButton.setBounds(padding, 950, getWidth() - (padding * 2), 20);
-    interpolationTypeSelector.setBounds(padding, 1000, getWidth() - (padding * 2), 20);
+    drawLinesButton.setBounds(padding, 850, getWidth() - (padding * 2), 20);
+    displayTopHalfButton.setBounds(padding, 900, getWidth() - (padding * 2), 20);
+    invertTopHalfButton.setBounds(padding, 950, getWidth() - (padding * 2), 20);
+    displayBottomHalfButton.setBounds(padding, 1000, getWidth() - (padding * 2), 20);
+    interpolationTypeSelector.setBounds(padding, 1050, getWidth() - (padding * 2), 20);
 }
 
 void SettingsComponent::changeListenerCallback(ChangeBroadcaster* source)
@@ -207,6 +217,8 @@ void SettingsComponent::buttonClicked(Button* button)
         displayClock = !displayClock;
     } else if (button == &displayAccuratePointsButton) {
         showAccurateSamplePoints = !showAccurateSamplePoints;
+    } else if (button == &drawLinesButton) {
+        drawLines = !drawLines;
     } else if (button == &displayTopHalfButton) {
         displayTopHalf = !displayTopHalf;
     } else if (button == &invertTopHalfButton) {

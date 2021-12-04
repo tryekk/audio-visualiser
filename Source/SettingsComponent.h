@@ -29,6 +29,7 @@ extern int interpolationFramesColour;
 extern int fftOrder;
 extern bool displayClock;
 extern bool showAccurateSamplePoints;
+extern bool drawLines;
 extern bool displayTopHalf;
 extern bool invertTopHalf;
 extern bool displayBottomHalf;
@@ -76,6 +77,9 @@ private:
     
     ToggleButton displayAccuratePointsButton;
     Label displayAccuratePointsLabel;
+    
+    ToggleButton drawLinesButton;
+    Label drawLinesLabel;
     
     ToggleButton displayTopHalfButton;
     Label displayTopHalfLabel;
