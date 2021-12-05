@@ -63,7 +63,7 @@ private:
     juce::Colour oldColourList [scopeSize];
     
     bool centreVerticalOrigin = true;
-    float verticalOriginModifier = 2.0f;
+    float verticalOriginModifier = 4.0f;
         
     int interpolationType = 0;  // 0 = linear, 1 = exponential
     bool centreOrigin = false;
