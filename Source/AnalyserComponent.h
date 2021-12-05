@@ -61,10 +61,7 @@ private:
     int colourIncrement = 0;
     juce::Colour currentAccurateColourList [scopeSize];
     juce::Colour oldColourList [scopeSize];
-    
-    bool centreVerticalOrigin = true;
-    float verticalOriginModifier = 4.0f;
-        
+            
     int interpolationType = 0;  // 0 = linear, 1 = exponential
     bool centreOrigin = false;
     int n = 1;

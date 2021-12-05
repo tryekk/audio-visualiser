@@ -30,6 +30,8 @@ extern int fftOrder;
 extern bool displayClock;
 extern bool showAccurateSamplePoints;
 extern bool drawLines;
+extern bool centreVerticalOrigin;
+extern float verticalOriginModifier;
 extern bool displayTopHalf;
 extern bool invertTopHalf;
 extern bool displayBottomHalf;
@@ -80,6 +82,12 @@ private:
     
     ToggleButton drawLinesButton;
     Label drawLinesLabel;
+    
+    ToggleButton centreVerticalOriginButton;
+    Label centreVerticalOriginLabel;
+    
+    Slider verticalOriginSlider;
+    Label verticalOriginLabel;
     
     ToggleButton displayTopHalfButton;
     Label displayTopHalfLabel;

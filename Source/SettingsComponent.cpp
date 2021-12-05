@@ -28,6 +28,8 @@ int interpolationFramesColour = 6;
 bool displayClock;
 bool showAccurateSamplePoints;
 bool drawLines = true;
+bool centreVerticalOrigin = false;
+float verticalOriginModifier = 2.0f;
 bool displayTopHalf = true;
 bool invertTopHalf = true;
 bool displayBottomHalf = true;
@@ -117,6 +119,26 @@ SettingsComponent::SettingsComponent()
     drawLinesLabel.setText("Draw Lines", dontSendNotification);
     drawLinesLabel.attachToComponent(&drawLinesButton, false);
     
+    
+    addAndMakeVisible(centreVerticalOriginButton);
+    centreVerticalOriginButton.setToggleState(false, dontSendNotification);
+    centreVerticalOriginButton.addListener(this);
+    
+    addAndMakeVisible(centreVerticalOriginLabel);
+    centreVerticalOriginLabel.setText("Centre vertical origin", dontSendNotification);
+    centreVerticalOriginLabel.attachToComponent(&centreVerticalOriginButton, false);
+    
+    
+    addAndMakeVisible(verticalOriginSlider);
+    verticalOriginSlider.setRange(1.0f, 6.0f, 0.01f);
+    verticalOriginSlider.setValue(2.0f);
+    verticalOriginSlider.addListener(this);
+    
+    addAndMakeVisible(verticalOriginLabel);
+    verticalOriginLabel.setText("Vertical Origin", dontSendNotification);
+    verticalOriginLabel.attachToComponent(&verticalOriginSlider, false);
+    
+    
     addAndMakeVisible(displayTopHalfButton);
     displayTopHalfButton.setToggleState(true, dontSendNotification);
     displayTopHalfButton.addListener(this);
@@ -179,10 +201,14 @@ void SettingsComponent::resized()
     displayClockButton.setBounds(padding, 750, getWidth() - (padding * 2), 20);
     displayAccuratePointsButton.setBounds(padding, 800, getWidth() - (padding * 2), 20);
     drawLinesButton.setBounds(padding, 850, getWidth() - (padding * 2), 20);
-    displayTopHalfButton.setBounds(padding, 900, getWidth() - (padding * 2), 20);
-    invertTopHalfButton.setBounds(padding, 950, getWidth() - (padding * 2), 20);
-    displayBottomHalfButton.setBounds(padding, 1000, getWidth() - (padding * 2), 20);
-    interpolationTypeSelector.setBounds(padding, 1050, getWidth() - (padding * 2), 20);
+    
+    centreVerticalOriginButton.setBounds(padding, 900, getWidth() - (padding * 2), 20);
+    verticalOriginSlider.setBounds(padding, 950, getWidth() - (padding * 2), 20);
+    
+    displayTopHalfButton.setBounds(padding, 1000, getWidth() - (padding * 2), 20);
+    invertTopHalfButton.setBounds(padding, 1050, getWidth() - (padding * 2), 20);
+    displayBottomHalfButton.setBounds(padding, 1100, getWidth() - (padding * 2), 20);
+    interpolationTypeSelector.setBounds(padding, 1150, getWidth() - (padding * 2), 20);
 }
 
 void SettingsComponent::changeListenerCallback(ChangeBroadcaster* source)
@@ -208,6 +234,8 @@ void SettingsComponent::sliderValueChanged(Slider* slider)
         interpolationFrames = interpolationFramesSlider.getValue();
     } else if (slider == &interpolationFramesColourSlider) {
         interpolationFramesColour = interpolationFramesColourSlider.getValue();
+    } else if (slider == &verticalOriginSlider) {
+        verticalOriginModifier = verticalOriginSlider.getValue();
     }
 }
 
@@ -219,6 +247,8 @@ void SettingsComponent::buttonClicked(Button* button)
         showAccurateSamplePoints = !showAccurateSamplePoints;
     } else if (button == &drawLinesButton) {
         drawLines = !drawLines;
+    } else if (button == &centreVerticalOriginButton) {
+        centreVerticalOrigin = !centreVerticalOrigin;
     } else if (button == &displayTopHalfButton) {
         displayTopHalf = !displayTopHalf;
     } else if (button == &invertTopHalfButton) {
