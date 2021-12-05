@@ -36,8 +36,8 @@ public:
     void drawLayer (juce::Graphics& g, int i, float RGBColour[3], float transparency, float heightModifier, float scaleFactor);
     
 private:
-    int width  = getLocalBounds().getWidth();
-    int height = getLocalBounds().getHeight();
+    float width  = getLocalBounds().getWidth();
+    float height = getLocalBounds().getHeight();
     
     enum
     {
@@ -61,6 +61,9 @@ private:
     int colourIncrement = 0;
     juce::Colour currentAccurateColourList [scopeSize];
     juce::Colour oldColourList [scopeSize];
+    
+    bool centreVerticalOrigin = true;
+    float verticalOriginModifier = 2.0f;
         
     int interpolationType = 0;  // 0 = linear, 1 = exponential
     bool centreOrigin = false;
