@@ -30,6 +30,8 @@ bool showAccurateSamplePoints;
 bool drawLines = true;
 bool centreVerticalOrigin = false;
 float verticalOriginModifier = 2.0f;
+bool centreHorizontalOrigin = false;
+float horizontalOriginModifier = 2.0f;
 bool displayTopHalf = true;
 bool invertTopHalf = true;
 bool displayBottomHalf = true;
@@ -139,6 +141,25 @@ SettingsComponent::SettingsComponent()
     verticalOriginLabel.attachToComponent(&verticalOriginSlider, false);
     
     
+    addAndMakeVisible(centreHorizontalOriginButton);
+    centreHorizontalOriginButton.setToggleState(false, dontSendNotification);
+    centreHorizontalOriginButton.addListener(this);
+    
+    addAndMakeVisible(centreHorizontalOriginLabel);
+    centreHorizontalOriginLabel.setText("Centre horizontal origin", dontSendNotification);
+    centreHorizontalOriginLabel.attachToComponent(&centreHorizontalOriginButton, false);
+    
+    
+    addAndMakeVisible(horizontalOriginSlider);
+    horizontalOriginSlider.setRange(0.01f, 6.0f, 0.01f);
+    horizontalOriginSlider.setValue(2.0f);
+    horizontalOriginSlider.addListener(this);
+    
+    addAndMakeVisible(horizontalOriginLabel);
+    horizontalOriginLabel.setText("Horizontal Origin", dontSendNotification);
+    horizontalOriginLabel.attachToComponent(&horizontalOriginSlider, false);
+    
+    
     addAndMakeVisible(displayTopHalfButton);
     displayTopHalfButton.setToggleState(true, dontSendNotification);
     displayTopHalfButton.addListener(this);
@@ -204,11 +225,13 @@ void SettingsComponent::resized()
     
     centreVerticalOriginButton.setBounds(padding, 900, getWidth() - (padding * 2), 20);
     verticalOriginSlider.setBounds(padding, 950, getWidth() - (padding * 2), 20);
+    centreHorizontalOriginButton.setBounds(padding, 1000, getWidth() - (padding * 2), 20);
+    horizontalOriginSlider.setBounds(padding, 1050, getWidth() - (padding * 2), 20);
     
-    displayTopHalfButton.setBounds(padding, 1000, getWidth() - (padding * 2), 20);
-    invertTopHalfButton.setBounds(padding, 1050, getWidth() - (padding * 2), 20);
-    displayBottomHalfButton.setBounds(padding, 1100, getWidth() - (padding * 2), 20);
-    interpolationTypeSelector.setBounds(padding, 1150, getWidth() - (padding * 2), 20);
+    displayTopHalfButton.setBounds(padding, 1100, getWidth() - (padding * 2), 20);
+    invertTopHalfButton.setBounds(padding, 1150, getWidth() - (padding * 2), 20);
+    displayBottomHalfButton.setBounds(padding, 1200, getWidth() - (padding * 2), 20);
+    interpolationTypeSelector.setBounds(padding, 1250, getWidth() - (padding * 2), 20);
 }
 
 void SettingsComponent::changeListenerCallback(ChangeBroadcaster* source)
@@ -236,6 +259,8 @@ void SettingsComponent::sliderValueChanged(Slider* slider)
         interpolationFramesColour = interpolationFramesColourSlider.getValue();
     } else if (slider == &verticalOriginSlider) {
         verticalOriginModifier = verticalOriginSlider.getValue();
+    } else if (slider == &horizontalOriginSlider) {
+        horizontalOriginModifier = horizontalOriginSlider.getValue();
     }
 }
 
@@ -249,6 +274,8 @@ void SettingsComponent::buttonClicked(Button* button)
         drawLines = !drawLines;
     } else if (button == &centreVerticalOriginButton) {
         centreVerticalOrigin = !centreVerticalOrigin;
+    } else if (button == &centreHorizontalOriginButton) {
+        centreHorizontalOrigin = !centreHorizontalOrigin;
     } else if (button == &displayTopHalfButton) {
         displayTopHalf = !displayTopHalf;
     } else if (button == &invertTopHalfButton) {

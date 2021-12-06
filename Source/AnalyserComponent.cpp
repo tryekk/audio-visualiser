@@ -215,7 +215,12 @@ void AnalyserComponent::drawFrame (juce::Graphics& g)
 
 void AnalyserComponent::drawLayer (juce::Graphics& g, int i, float RGBColour[3], float transparency, float localHeightModifier, float scaleFactor)
 {
-    float fractionalWidth = width / scopeSize;
+    float fractionalWidth;
+    if (centreHorizontalOrigin) {
+        fractionalWidth = (width / scopeSize) / horizontalOriginModifier;
+    } else {
+        fractionalWidth = width / scopeSize;
+    }
     
     juce::Colour smoothedColour = juce::Colour::fromFloatRGBA(
                                                               RGBColour[0],

@@ -32,6 +32,8 @@ extern bool showAccurateSamplePoints;
 extern bool drawLines;
 extern bool centreVerticalOrigin;
 extern float verticalOriginModifier;
+extern bool centreHorizontalOrigin;
+extern float horizontalOriginModifier;
 extern bool displayTopHalf;
 extern bool invertTopHalf;
 extern bool displayBottomHalf;
@@ -88,6 +90,12 @@ private:
     
     Slider verticalOriginSlider;
     Label verticalOriginLabel;
+    
+    ToggleButton centreHorizontalOriginButton;
+    Label centreHorizontalOriginLabel;
+    
+    Slider horizontalOriginSlider;
+    Label horizontalOriginLabel;
     
     ToggleButton displayTopHalfButton;
     Label displayTopHalfLabel;
