@@ -40,6 +40,10 @@ SettingsComponent::SettingsComponent()
 {
 //    setSize(360, 720);
     
+    addAndMakeVisible(colourLabel);
+    colourLabel.setText("Choose Colours", dontSendNotification);
+    colourLabel.setJustificationType(juce::Justification::centredTop);
+    
     addAndMakeVisible(colourSelectorGain);
     colourSelectorGain.setCurrentColour(gainColour);
     colourSelectorGain.addChangeListener(this);
@@ -57,13 +61,19 @@ SettingsComponent::SettingsComponent()
     colourSelectorPitchHigh.addChangeListener(this);
     
     
+    
+    addAndMakeVisible(appearanceLabel);
+    appearanceLabel.setText("Appearance & Behaviour", dontSendNotification);
+    appearanceLabel.setJustificationType(juce::Justification::centredTop);
+    
+    
     addAndMakeVisible(lineHeightSlider);
     lineHeightSlider.setRange(0.0f, 2.0f, 0.001f);
     lineHeightSlider.setValue(1.0f);
     lineHeightSlider.addListener(this);
     
     addAndMakeVisible(lineHeightLabel);
-    lineHeightLabel.setText("Line Height", dontSendNotification); // Might need to change in future
+    lineHeightLabel.setText("Line Height", dontSendNotification);
     lineHeightLabel.attachToComponent(&lineHeightSlider, false);
     
     
@@ -97,29 +107,10 @@ SettingsComponent::SettingsComponent()
     interpolationFramesColourLabel.attachToComponent(&interpolationFramesColourSlider, false);
     
     
-    addAndMakeVisible(displayClockButton);
-    displayClockButton.addListener(this);
     
-    addAndMakeVisible(displayClockLabel);
-    displayClockLabel.setText("Display Clock", dontSendNotification);
-    displayClockLabel.attachToComponent(&displayClockButton, false);
-    
-    
-    addAndMakeVisible(displayAccuratePointsButton);
-    displayAccuratePointsButton.addListener(this);
-    
-    addAndMakeVisible(displayAccuratePointsLabel);
-    displayAccuratePointsLabel.setText("Display Accurate Points", dontSendNotification);
-    displayAccuratePointsLabel.attachToComponent(&displayAccuratePointsButton, false);
-    
-    
-    addAndMakeVisible(drawLinesButton);
-    drawLinesButton.setToggleState(true, dontSendNotification);
-    drawLinesButton.addListener(this);
-    
-    addAndMakeVisible(drawLinesLabel);
-    drawLinesLabel.setText("Draw Lines", dontSendNotification);
-    drawLinesLabel.attachToComponent(&drawLinesButton, false);
+    addAndMakeVisible(axisAlignLabel);
+    axisAlignLabel.setText("Axis Alignment", dontSendNotification);
+    axisAlignLabel.setJustificationType(juce::Justification::centredTop);
     
     
     addAndMakeVisible(centreVerticalOriginButton);
@@ -158,6 +149,37 @@ SettingsComponent::SettingsComponent()
     addAndMakeVisible(horizontalOriginLabel);
     horizontalOriginLabel.setText("Horizontal Origin", dontSendNotification);
     horizontalOriginLabel.attachToComponent(&horizontalOriginSlider, false);
+    
+    
+    
+    addAndMakeVisible(displayLabel);
+    displayLabel.setText("Display options", dontSendNotification);
+    displayLabel.setJustificationType(juce::Justification::centredTop);
+    
+    
+    addAndMakeVisible(displayClockButton);
+    displayClockButton.addListener(this);
+    
+    addAndMakeVisible(displayClockLabel);
+    displayClockLabel.setText("Display Clock", dontSendNotification);
+    displayClockLabel.attachToComponent(&displayClockButton, false);
+    
+    
+    addAndMakeVisible(displayAccuratePointsButton);
+    displayAccuratePointsButton.addListener(this);
+    
+    addAndMakeVisible(displayAccuratePointsLabel);
+    displayAccuratePointsLabel.setText("Display Accurate Points", dontSendNotification);
+    displayAccuratePointsLabel.attachToComponent(&displayAccuratePointsButton, false);
+    
+    
+    addAndMakeVisible(drawLinesButton);
+    drawLinesButton.setToggleState(true, dontSendNotification);
+    drawLinesButton.addListener(this);
+    
+    addAndMakeVisible(drawLinesLabel);
+    drawLinesLabel.setText("Draw Lines", dontSendNotification);
+    drawLinesLabel.attachToComponent(&drawLinesButton, false);
     
     
     addAndMakeVisible(displayTopHalfButton);
@@ -202,36 +224,39 @@ SettingsComponent::~SettingsComponent()
 void SettingsComponent::paint (juce::Graphics& g)
 {
 //    g.fillAll (getLookAndFeel().findColour (juce::ResizableWindow::backgroundColourId));
-    g.fillAll(juce::Colour::fromRGBA(60, 60, 60, 230));
+    g.fillAll(juce::Colour::fromRGBA(60, 60, 60, 180));
 }
 
 void SettingsComponent::resized()
 {
     int padding = 30;
     
-    colourSelectorGain.setBounds(padding, 48, (getWidth() - (padding * 2)) / 2, 200);
-    colourSelectorBackground.setBounds(padding + ((getWidth() - (padding * 2)) / 2) + 2, 48, (getWidth() - (padding * 2)) / 2, 200);
-    colourSelectorPitchLow.setBounds(padding, 250, ((getWidth() - (padding * 2)) / 2) - 2, 200);
-    colourSelectorPitchHigh.setBounds(padding + ((getWidth() - (padding * 2)) / 2) + 2, 250, (getWidth() - (padding * 2)) / 2, 200);
+    colourLabel.setBounds(padding, 28, getWidth() - (padding * 2), 20);
+    colourSelectorGain.setBounds(padding, 55, (getWidth() - (padding * 2)) / 2, 200);
+    colourSelectorBackground.setBounds(padding + ((getWidth() - (padding * 2)) / 2), 55, (getWidth() - (padding * 2)) / 2, 200);
+    colourSelectorPitchLow.setBounds(padding, 275, ((getWidth() - (padding * 2)) / 2), 200);
+    colourSelectorPitchHigh.setBounds(padding + ((getWidth() - (padding * 2)) / 2), 275, (getWidth() - (padding * 2)) / 2, 200);
     
-    lineHeightSlider.setBounds(padding, 500, getWidth() - (padding * 2), 20);
-    lineWidthSlider.setBounds(padding, 550, getWidth() - (padding * 2), 20);
-    interpolationFramesSlider.setBounds(padding, 600, getWidth() - (padding * 2), 20);
-    interpolationFramesColourSlider.setBounds(padding, 650, getWidth() - (padding * 2), 20);
+    appearanceLabel.setBounds(padding, 550, getWidth() - (padding * 2), 20);
+    lineHeightSlider.setBounds(padding, 600, getWidth() - (padding * 2), 20);
+    lineWidthSlider.setBounds(padding, 650, getWidth() - (padding * 2), 20);
+    interpolationFramesSlider.setBounds(padding, 700, getWidth() - (padding * 2), 20);
+    interpolationFramesColourSlider.setBounds(padding, 750, getWidth() - (padding * 2), 20);
+    interpolationTypeSelector.setBounds(padding, 800, getWidth() - (padding * 2), 20);
     
-    displayClockButton.setBounds(padding, 750, getWidth() - (padding * 2), 20);
-    displayAccuratePointsButton.setBounds(padding, 800, getWidth() - (padding * 2), 20);
-    drawLinesButton.setBounds(padding, 850, getWidth() - (padding * 2), 20);
-    
+    axisAlignLabel.setBounds(padding, 850, getWidth() - (padding * 2), 20);
     centreVerticalOriginButton.setBounds(padding, 900, getWidth() - (padding * 2), 20);
     verticalOriginSlider.setBounds(padding, 950, getWidth() - (padding * 2), 20);
     centreHorizontalOriginButton.setBounds(padding, 1000, getWidth() - (padding * 2), 20);
     horizontalOriginSlider.setBounds(padding, 1050, getWidth() - (padding * 2), 20);
     
-    displayTopHalfButton.setBounds(padding, 1100, getWidth() - (padding * 2), 20);
-    invertTopHalfButton.setBounds(padding, 1150, getWidth() - (padding * 2), 20);
-    displayBottomHalfButton.setBounds(padding, 1200, getWidth() - (padding * 2), 20);
-    interpolationTypeSelector.setBounds(padding, 1250, getWidth() - (padding * 2), 20);
+    displayLabel.setBounds(padding, 1100, getWidth() - (padding * 2), 20);
+    displayClockButton.setBounds(padding, 1150, getWidth() - (padding * 2), 20);
+    displayAccuratePointsButton.setBounds(padding, 1200, getWidth() - (padding * 2), 20);
+    drawLinesButton.setBounds(padding, 1250, getWidth() - (padding * 2), 20);
+    displayTopHalfButton.setBounds(padding, 1300, getWidth() - (padding * 2), 20);
+    invertTopHalfButton.setBounds(padding, 1350, getWidth() - (padding * 2), 20);
+    displayBottomHalfButton.setBounds(padding, 1400, getWidth() - (padding * 2), 20);
 }
 
 void SettingsComponent::changeListenerCallback(ChangeBroadcaster* source)

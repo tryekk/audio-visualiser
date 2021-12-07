@@ -59,10 +59,14 @@ public:
     void comboBoxChanged();
 
 private:
+    Label colourLabel;
+    
     ColourSelector colourSelectorGain;
     ColourSelector colourSelectorBackground;
     ColourSelector colourSelectorPitchLow;
     ColourSelector colourSelectorPitchHigh;
+    
+    Label appearanceLabel;
         
     Slider lineHeightSlider;
     Label lineHeightLabel;
@@ -76,14 +80,7 @@ private:
     Slider interpolationFramesColourSlider;
     Label interpolationFramesColourLabel;
     
-    ToggleButton displayClockButton;
-    Label displayClockLabel;
-    
-    ToggleButton displayAccuratePointsButton;
-    Label displayAccuratePointsLabel;
-    
-    ToggleButton drawLinesButton;
-    Label drawLinesLabel;
+    Label axisAlignLabel;
     
     ToggleButton centreVerticalOriginButton;
     Label centreVerticalOriginLabel;
@@ -96,6 +93,17 @@ private:
     
     Slider horizontalOriginSlider;
     Label horizontalOriginLabel;
+    
+    Label displayLabel;
+    
+    ToggleButton displayClockButton;
+    Label displayClockLabel;
+    
+    ToggleButton displayAccuratePointsButton;
+    Label displayAccuratePointsLabel;
+    
+    ToggleButton drawLinesButton;
+    Label drawLinesLabel;
     
     ToggleButton displayTopHalfButton;
     Label displayTopHalfLabel;
