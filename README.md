@@ -3,7 +3,10 @@
 
 ### How to build/start/run/compile the project.
 
-I don't know how to do this yet.
+Clone the GitHub project.<br>
+Open the folder named 'AudioVisualiserApp'.<br>
+Run the file 'AudioVisualiser.app'.<br><br>
+*Please make sure that you allow microphone permission or have an alternative audio input device connected to your computer (such as an audio interface with an instrumant as an input).*
 <br><br>
 
 ### Details of any important assumptions you have made during design or development.
