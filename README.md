@@ -30,7 +30,7 @@ https://docs.microsoft.com/en-us/cpp/cpp/?view=msvc-170*
 <br><br>
 I decided to use C++ for this project because of the frameworks available to use for creating graphics and for processing digital audio data.
 <br><br>
-C++ is a very flexible language that allows for deep control over system resources and processor behaviour. Because of this, it can run faster than most languages of similar ability and allows for a fine level of control that enables efficient execution of complex code – enabling real-time displays for dynamic audio data.
+C++ is a very flexible language that allows for deep control over system resources and processor behaviour. Because of this, it can run faster than most languages and allows for a fine level of control that enables efficient execution of complex code. This enables real-time displays for dynamic audio data.
 <br><br>
 
 *JUCE audio processing and graphics framework for C++:
