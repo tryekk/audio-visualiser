@@ -44,5 +44,3 @@ This framework was used in addition to the C++ standard library primarily due to
 Another reason for its use was that it includes a graphics library that enabled me to make a clean and clear GUI within the scope of the project time.
 <br>
 This saved a large amount of time and effort, as creating a GUI with the C++ standard library would have taken much longer due to me having to create my own paint function for rendering frames to the screen.
-<br><br>
-An alternative library would be the graphics.h library for C++, however I thought it would keep things simpler if I used JUCE for both the audio processing and the GUI, as I was already using this framework for audio processing.
