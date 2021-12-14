@@ -1,7 +1,7 @@
 # Customisable Cross-Platform Audio Visualiser
 
 
-### How to build/start/run/compile the project.
+### How to build/start/run/compile the project
 
 Clone the GitHub project.<br>
 Open the folder named 'AudioVisualiserApp'.<br>
@@ -9,17 +9,17 @@ Run the file 'AudioVisualiser.app'.<br><br>
 *Please make sure that you allow microphone permission or have an alternative audio input device connected to your computer (such as an audio interface with an instrumant as an input).*
 <br><br>
 
-### Details of any important assumptions you have made during design or development.
+### Details of any important assumptions I made during design and development
 
 ??
 <br><br>
 
-### A link to requirements or a list of requirements (unless you are using the features for requirements gathering and monitoring provided in your source control application).
+### A link to requirements or a list of requirements (unless you are using the features for requirements gathering and monitoring provided in your source control application)
 
 Make issues!
 <br><br>
 
-### Links to the documentation/websites of the frameworks, languages, libraries you have used and why they have been used.
+### Links to the documentation/websites of the frameworks, languages, libraries I used and why they have been used
 
 *C++ programming language (Microsoft documentation):
 https://docs.microsoft.com/en-us/cpp/cpp/?view=msvc-170*
