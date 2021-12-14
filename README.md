@@ -18,9 +18,15 @@ Make issues!
 
 ### Links to the documentation/websites of the frameworks, languages, libraries you have used and why they have been used.
 
-JUCE audio processing and GUI builder framework for C++:
-https://docs.juce.com/master/index.html
+*C++ programming language (Microsoft documentation):
+https://docs.microsoft.com/en-us/cpp/cpp/?view=msvc-170*
+<br><br>
+I decided to use C++ for this project because
+<br><br>
 
+*JUCE audio processing and graphics framework for C++:
+https://docs.juce.com/master/index.html*
+<br><br>
 This framework was used for handling audio inputs and processing their digital audio data.
 I also used this framework for cresting the GUI and graphical elements of the application, such as the audio visualier component itself and the GUI used to customise/control the visualiser.
 <br><br>
@@ -30,4 +36,4 @@ Another reason for its use was that it includes a graphics library that enabled 
 <br>
 This saved a large amount of time and effort, as creating a GUI with the C++ standard library would have taken much longer due to me having to create my own paint function for rendering frames to the screen.
 <br><br>
-An alternative library would be the graphics.h library for C++, however I thought it would kep things simpler if I used JUCE for both the audio processing and the GUI, as I was already using this framework for audio processing.
+An alternative library would be the graphics.h library for C++, however I thought it would keep things simpler if I used JUCE for both the audio processing and the GUI, as I was already using this framework for audio processing.
