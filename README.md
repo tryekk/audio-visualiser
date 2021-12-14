@@ -9,7 +9,7 @@ Run the file 'AudioVisualiser.app'.<br><br>
 *Please make sure that you allow microphone permission or have an alternative audio input device connected to your computer (such as an audio interface with an instrumant as an input).*
 <br><br>
 
-### Details of any important assumptions I made during design and development
+### Details of important assumptions I made during design and development
 
 ??
 <br><br>
