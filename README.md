@@ -28,7 +28,7 @@ Need to try out in VS on Windows!
 • As a user, I would like to be able to toggle UI elements visibility in order to maintain a clean view of the visualiser when needed<br>
 • As a user, I would like the option to allow the application access to use the computer microphone<br>
 • As a user, I want the software to be responsive and clear to enable creative flow<br>
-• As a user, I want the interface to be intuitive so that I don't need to learn anything to use it<br>
+• As a user, I want the interface to be intuitive so that I don't need to learn anything to use it
 <br><br>
 
 ### Links to the documentation/websites of the frameworks, languages, libraries I used and why they have been used
