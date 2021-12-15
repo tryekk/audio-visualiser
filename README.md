@@ -20,7 +20,15 @@ Need to try out in VS on Windows!
 
 ### A link to requirements or a list of requirements (unless you are using the features for requirements gathering and monitoring provided in your source control application)
 
-Make issues!
+• As a user, I should see a visual representation of my audio input<br>
+• As a user, configure the visual display using the settings menu<br>
+• As a user, I want the GUI to be clear and concise but provide me with a range of customisation options<br>
+• The application should be able to run on multiple operating systems<br>
+• As a user, I would like to be able to resize the window or make it full screen with no borders<br>
+• As a user, I would like to be able to toggle UI elements visibility in order to maintain a clean view of the visualiser when needed<br>
+• As a user, I would like the option to allow the application access to use the computer microphone<br>
+• As a user, I want the software to be responsive and clear to enable creative flow<br>
+• As a user, I want the interface to be intuitive so that I don't need to learn anything to use it<br>
 <br><br>
 
 ### Links to the documentation/websites of the frameworks, languages, libraries I used and why they have been used
