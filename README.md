@@ -33,8 +33,10 @@ Need to try out in VS on Windows!
 
 ### Links to the documentation/websites of the frameworks, languages, libraries I used and why they have been used
 
-*C++ programming language (Microsoft documentation):
-https://docs.microsoft.com/en-us/cpp/cpp/?view=msvc-170*
+*C++ programming language <br>
+(Official Documentation): https://www.cplusplus.com/reference/<br>
+(Microsoft documentation): https://docs.microsoft.com/en-us/cpp/cpp/?view=msvc-170*
+
 <br><br>
 I decided to use C++ for this project because of the frameworks available to use for creating graphics and for processing digital audio data.
 <br><br>
