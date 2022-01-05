@@ -69,7 +69,7 @@ void MainContainer::buttonClicked(Button* button)
 }
 
 bool MainContainer::keyPressed(const KeyPress &k, Component *c) {
-    if(k.getTextCharacter() == 'x') {
+    if (k.getTextCharacter() == 'x') {
         isUIVisible = !isUIVisible;
         if (isUIVisible) {
             openHomeButton.setVisible(true);

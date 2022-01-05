@@ -39,6 +39,8 @@ private:
     float width  = getLocalBounds().getWidth();
     float height = getLocalBounds().getHeight();
     
+    int fpsCounter = 0;
+    
     enum
     {
         fftOrder  = 10,             // No of sample sections on screen

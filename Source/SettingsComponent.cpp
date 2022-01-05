@@ -313,3 +313,12 @@ void SettingsComponent::buttonClicked(Button* button)
 void SettingsComponent::comboBoxChanged() {
     
 }
+
+bool SettingsComponent::keyPressed(const KeyPress &k, Component *c) {
+    if (k.getTextCharacter() == 'y') {
+        std::cout << "key pressed\n";
+        return true;
+    } else {
+        return false;
+    }
+}

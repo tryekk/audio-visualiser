@@ -41,7 +41,8 @@ extern bool displayBottomHalf;
 class SettingsComponent  :  public juce::Component,
                             public Slider::Listener,
                             public Button::Listener,
-                            public juce::ChangeListener
+                            public juce::ChangeListener,
+                            private juce::KeyListener
 {
 public:
     SettingsComponent();
@@ -57,6 +58,8 @@ public:
     void buttonClicked(Button* button) override;
     
     void comboBoxChanged();
+    
+    bool keyPressed(const KeyPress &k, Component *c) override;
 
 private:
     Label colourLabel;

@@ -12,9 +12,9 @@
     <key>CFBundleIdentifier</key>
     <string>com.TomCarter.AudioVisualiser</string>
     <key>CFBundleName</key>
-    <string>AudioVisualiser</string>
+    <string>Audio Visualiser</string>
     <key>CFBundleDisplayName</key>
-    <string>AudioVisualiser</string>
+    <string>Audio Visualiser</string>
     <key>CFBundlePackageType</key>
     <string>APPL</string>
     <key>CFBundleSignature</key>

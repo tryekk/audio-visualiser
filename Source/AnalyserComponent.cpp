@@ -9,9 +9,9 @@
 */
 
 #include <iostream>
+#include <chrono>
 
 #include "AnalyserComponent.h"
-
 #include "SettingsComponent.h"
 
 
@@ -48,6 +48,16 @@ void AnalyserComponent::paint(juce::Graphics& g)
 {    
     g.fillAll(backgroundColour);
     g.setOpacity (1.0f);
+    
+    // Measure FPS
+//    auto duration = std::chrono::system_clock::now().time_since_epoch();
+//    auto millis = std::chrono::duration_cast<std::chrono::milliseconds>(duration).count();
+//    if (millis % 100 == 0) {
+//        std::cout << fpsCounter << "\n";
+//        fpsCounter = 0;
+//    } else {
+//        fpsCounter = fpsCounter + 1;
+//    }
     
     drawFrame (g);
     
@@ -162,6 +172,13 @@ void AnalyserComponent::drawFrame (juce::Graphics& g)
     
     for (int i = 1; i < scopeSize; ++i)
     {
+//        g.setColour (juce::Colour(255.0f, (255.0f / scopeSize) * i, (255.0f / scopeSize) * i));
+//
+//        g.drawLine ({ (float) juce::jmap (i - 1, 0, scopeSize - 1, 0, width),
+//                              juce::jmap (scopeData[i - 1], 0.0f, 1.0f, (float) height, 0.0f),
+//                      (float) juce::jmap (i,     0, scopeSize - 1, 0, width),
+//                              juce::jmap (scopeData[i],     0.0f, 1.0f, (float) height, 0.0f) });
+        
         if (showAccurateSamplePoints) {
             g.setColour(juce::Colours::gold);
             g.drawEllipse(i * (fractionalWidth) - (fractionalWidth / 2) * scaleFactor, height - (oldPositionData[i] * height) - (fractionalWidth / 2) * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor, 5);
@@ -196,13 +213,6 @@ void AnalyserComponent::drawFrame (juce::Graphics& g)
                     1.0f);
             }
         }
-    
-//            g.setColour (juce::Colour(255.0f, (255.0f / scopeSize) * i, (255.0f / scopeSize) * i));
-
-//            g.drawLine ({ (float) juce::jmap (i - 1, 0, scopeSize - 1, 0, width),
-//                                  juce::jmap (scopeData[i - 1], 0.0f, 1.0f, (float) height, 0.0f),
-//                          (float) juce::jmap (i,     0, scopeSize - 1, 0, width),
-//                                  juce::jmap (scopeData[i],     0.0f, 1.0f, (float) height, 0.0f) });
     }
     
     

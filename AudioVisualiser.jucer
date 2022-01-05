@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT name="AudioVisualiser" companyName="Tom Carter" version="1.0.0"
+<JUCERPROJECT name="Audio Visualiser" companyName="Tom Carter" version="1.0.0"
               userNotes="Displays an FFT spectrum analyser." projectType="guiapp"
               useAppConfig="0" addUsingNamespaceToJuceHeader="1" id="d3mnzp"
               jucerFormatVersion="1" displaySplashScreen="1" companyEmail="tom@carter.solutions">
-  <MAINGROUP id="AGOAak" name="AudioVisualiser">
+  <MAINGROUP id="AGOAak" name="Audio Visualiser">
     <GROUP id="{D4BAA470-DEB6-133C-B715-4F3155DAC4CD}" name="Source">
       <FILE id="ZcAtkd" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
       <FILE id="otOYLb" name="MainContainer.h" compile="0" resource="0" file="Source/MainContainer.h"/>
