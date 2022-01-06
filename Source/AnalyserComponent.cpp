@@ -175,12 +175,6 @@ void AnalyserComponent::drawFrame (juce::Graphics& g)
     
     for (int i = 1; i < scopeSize; ++i)
     {
-//        g.setColour (juce::Colour(255.0f, (255.0f / scopeSize) * i, (255.0f / scopeSize) * i));
-//
-//        g.drawLine ({ (float) juce::jmap (i - 1, 0, scopeSize - 1, 0, width),
-//                              juce::jmap (scopeData[i - 1], 0.0f, 1.0f, (float) height, 0.0f),
-//                      (float) juce::jmap (i,     0, scopeSize - 1, 0, width),
-//                              juce::jmap (scopeData[i],     0.0f, 1.0f, (float) height, 0.0f) });
         
         if (showAccurateSamplePoints) {
             g.setColour(juce::Colours::gold);
@@ -197,8 +191,6 @@ void AnalyserComponent::drawFrame (juce::Graphics& g)
             float blue = oldColourList[i].getFloatBlue() + (((currentAccurateColourList[i].getFloatBlue() - oldColourList[i].getFloatBlue()) / interpolationFramesColour) * colourIncrement);
             float RGBColour[3] = {red, green, blue};
             
-//            drawLayer(g, i, RGBColour, 0.2f, heightModifier, scaleFactor * 0.4);
-//            drawLayer(g, i, RGBColour, 0.4f, heightModifier * 0.9f, scaleFactor * 0.55);
             drawLayer(g, i, RGBColour, 0.6f, heightModifier * 0.8f, scaleFactor * 0.7);
             drawLayer(g, i, RGBColour, 0.8f, heightModifier * 0.7f, scaleFactor * 0.85);
             drawLayer(g, i, RGBColour, 1.0f, heightModifier * 0.6f, scaleFactor * 1);
@@ -211,8 +203,6 @@ void AnalyserComponent::drawFrame (juce::Graphics& g)
                    ((HighPitchColourR / scopeSize) * i) + ((LowPitchColourR / scopeSize) * (scopeSize - i)) + ((HighGainColourR - LowGainColourR) * scopeData[i]),
                    ((HighPitchColourG / scopeSize) * i) + ((LowPitchColourG / scopeSize) * (scopeSize - i)) + ((HighGainColourG - LowGainColourG) * scopeData[i]),
                    ((HighPitchColourB / scopeSize) * i) + ((LowPitchColourB / scopeSize) * (scopeSize - i)) + ((HighGainColourB - LowGainColourB) * scopeData[i]),
-//                    HighPitchColourG + ((HighGainColourG - LowGainColourG) * scopeData[i]),
-//                    HighPitchColourB + ((HighGainColourB - LowGainColourB) * scopeData[i]),
                     1.0f);
             }
         }
@@ -324,32 +314,6 @@ void AnalyserComponent::drawLayer (juce::Graphics& g, int i, float RGBColour[3],
                     
                     g.drawLine(i * fractionalWidth, 0, i * fractionalWidth, currentPositionData[i] * (height * localHeightModifier), fractionalWidth * scaleFactor);
                 }
-            }
-        } else if (interpolationType == 2) {
-            
-            modifier = modifier + ((interpolationFrames / n));
-            if (modifier > interpolationFrames) {
-                modifier = 0;
-            }
-            if (i == 7) {
-//                std::cout << currentPositionData[i] << "\n";
-                std::cout << modifier << "\n";
-            }
-            
-            // Bottom Half
-            g.drawEllipse(i * fractionalWidth - (fractionalWidth / 2) * scaleFactor, (height - ((oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / interpolationFrames) * counter)) * (height * localHeightModifier))) - (fractionalWidth / 2) * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor);
-
-            g.drawLine(i * (fractionalWidth), height, i * (fractionalWidth), height - ((oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / interpolationFrames) * modifier)) * (height * localHeightModifier)), fractionalWidth * scaleFactor);
-            
-            // Top half
-            if (invertTopHalf) {
-                g.drawEllipse((width - (i * fractionalWidth)) - (fractionalWidth / 2) * scaleFactor, (((oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / interpolationFrames) * counter)) * (height * localHeightModifier))) - (fractionalWidth / 2) * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor);
-                
-                g.drawLine(width - (i * fractionalWidth), 0, width - (i * fractionalWidth), (oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / interpolationFrames) * counter)) * (height * localHeightModifier), fractionalWidth * scaleFactor);
-            } else {
-                g.drawEllipse((i * fractionalWidth) - (fractionalWidth / 2) * scaleFactor, (((oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / interpolationFrames) * counter)) * (height * localHeightModifier))) - (fractionalWidth / 2) * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor);
-                
-                g.drawLine(i * fractionalWidth, 0, width - (i * fractionalWidth), (oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / interpolationFrames) * counter)) * (height * localHeightModifier), fractionalWidth * scaleFactor);
             }
         }
     }
