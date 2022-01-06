@@ -33,6 +33,7 @@ void AnalyserComponent::prepareToPlay(int, double) {}
 
 void AnalyserComponent::releaseResources() {}
 
+// This function was taken from an example project on https://docs.juce.com/master/tutorial_spectrum_analyser.html
 void AnalyserComponent::getNextAudioBlock(const juce::AudioSourceChannelInfo& bufferToFill)
 {
     if (bufferToFill.buffer->getNumChannels() > 0)
@@ -100,6 +101,7 @@ void AnalyserComponent::timerCallback()
     }
 }
 
+// This function was taken from an example project on https://docs.juce.com/master/tutorial_spectrum_analyser.html
 void AnalyserComponent::pushNextSampleIntoFifo (float sample) noexcept
 {
     // if the fifo contains enough data, set a flag to say
@@ -119,6 +121,7 @@ void AnalyserComponent::pushNextSampleIntoFifo (float sample) noexcept
     fifo[fifoIndex++] = sample;             // [12]
 }
 
+// This function was taken from an example project on https://docs.juce.com/master/tutorial_spectrum_analyser.html
 void AnalyserComponent::drawNextFrameOfSpectrum()
 {
     window.multiplyWithWindowingTable (fftData, fftSize);       // Apply the windowing function to the data
