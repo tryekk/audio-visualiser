@@ -18,7 +18,12 @@ Run the file 'AudioVisualiser.exe'.<br><br>
 
 ### Details of important assumptions I made during design and development
 
-??
+The main selling points of the application are that is is cross-platform, customisable and runs in real-time; all while being easy to use for users of any background.<br><br>
+Some assumptions I made based on this were:<br>
+• Users can be from any background and any have any level of understanding of music theory or computer science.<br>
+• The software must handle audio information in real-time and must be as responsive as possible on a wide range of hardware.<br>
+• The framework used for audio processing and graphics (JUCE) has cross-platform support and any libraries or frameworks used now or in future must support at least the same platforms (macOS, Linux, Windows).
+• UI elements should be clear and unambiguous and a readable size on all display sizes. Labels and controls must be clear and concise, without causing the user confusion.
 <br><br>
 
 ### A link to requirements or a list of requirements (unless you are using the features for requirements gathering and monitoring provided in your source control application)
