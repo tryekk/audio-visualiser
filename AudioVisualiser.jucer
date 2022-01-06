@@ -34,6 +34,8 @@
     <GROUP id="{BCF184D1-77C8-C86F-4E65-DFBC3C956F69}" name="Assets">
       <FILE id="GroKEl" name="home.png" compile="0" resource="1" file="Assets/home.png"/>
       <FILE id="AIoB5t" name="settings.png" compile="0" resource="1" file="Assets/settings.png"/>
+      <FILE id="OjEdEx" name="visualiserspores.png" compile="0" resource="1"
+            file="Assets/visualiserspores.png"/>
     </GROUP>
   </MAINGROUP>
   <MODULES>

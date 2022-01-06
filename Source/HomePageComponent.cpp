@@ -18,8 +18,8 @@ HomePageComponent::HomePageComponent()
 {
     addAndMakeVisible(scene1Button);
     scene1Button.addListener(this);
-    auto scene1Icon = ImageCache::getFromMemory(BinaryData::settings_png, BinaryData::settings_pngSize);
-    scene1Button.setImages(false, true, true, scene1Icon, 1.0f, juce::Colours::grey, scene1Icon, 1.0f, juce::Colours::white, scene1Icon, 1.0f, juce::Colours::white);
+    auto scene1Icon = ImageCache::getFromMemory(BinaryData::visualiserspores_png, BinaryData::visualiserspores_pngSize);
+    scene1Button.setImages(false, true, true, scene1Icon, 1.0f, juce::Colour::fromFloatRGBA(0, 0, 0, 0), scene1Icon, 1.0f, juce::Colour::fromFloatRGBA(50, 50, 50, 0.15f), scene1Icon, 1.0f, juce::Colour::fromFloatRGBA(150, 150, 150, 0.35f));
 }
 
 HomePageComponent::~HomePageComponent()
