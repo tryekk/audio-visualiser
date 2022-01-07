@@ -35,6 +35,7 @@ public:
     
     void drawLayer (juce::Graphics& g, int i, float RGBColour[3], float transparency, float heightModifier, float scaleFactor);
     
+    
 private:
     float width  = getLocalBounds().getWidth();
     float height = getLocalBounds().getHeight();

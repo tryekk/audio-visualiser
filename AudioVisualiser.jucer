@@ -6,6 +6,12 @@
               jucerFormatVersion="1" displaySplashScreen="1" companyEmail="tom@carter.solutions">
   <MAINGROUP id="AGOAak" name="Audio Visualiser">
     <GROUP id="{D4BAA470-DEB6-133C-B715-4F3155DAC4CD}" name="Source">
+      <GROUP id="{404E2761-DA00-2176-AF46-A1418DD5DCF5}" name="Tests">
+        <FILE id="P4Zb4v" name="AnalyserComponentMock.cpp" compile="1" resource="0"
+              file="Source/AnalyserComponentMock.cpp"/>
+        <FILE id="ofkNuM" name="AnalyserComponentMock.h" compile="0" resource="0"
+              file="Source/AnalyserComponentMock.h"/>
+      </GROUP>
       <FILE id="ZcAtkd" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
       <FILE id="otOYLb" name="MainContainer.h" compile="0" resource="0" file="Source/MainContainer.h"/>
       <FILE id="WgSksv" name="MainContainer.cpp" compile="1" resource="0"
