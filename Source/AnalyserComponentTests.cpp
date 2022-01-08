@@ -1,6 +1,6 @@
 //
 //  AnalyserComponentTests.cpp
-//  Audio Visualiser - App
+//  Audio Visualiser Tests - App
 //
 //  Created by Tom Carter on 07/01/2022.
 //  Copyright © 2022 Tom Carter. All rights reserved.

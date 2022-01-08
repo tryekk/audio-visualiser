@@ -4,6 +4,7 @@
     AnalyserComponentMock.h
     Created: 7 Jan 2022 7:28:52pm
     Author:  Tom Carter
+    Part of Audio Visualiser Tests project
 
   ==============================================================================
 */
