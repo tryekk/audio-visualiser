@@ -22,6 +22,34 @@ TEST(AnalyserComponent, counterTest) {
     EXPECT_EQ(3, analyserComponent.getCounter());
 
     analyserComponent.paint();
-    EXPECT_EQ(0, analyserComponent.getCounter());
+    EXPECT_EQ(4, analyserComponent.getCounter());
+    
+    analyserComponent.paint();
+    EXPECT_EQ(1, analyserComponent.getCounter());
+}
+
+TEST(AnalyserComponent, colourCounterTest) {
+    AnalyserComponent analyserComponent;
+    
+    analyserComponent.paint();
+    EXPECT_EQ(1, analyserComponent.getColourCounter());
+    
+    analyserComponent.paint();
+    EXPECT_EQ(2, analyserComponent.getColourCounter());
+
+    analyserComponent.paint();
+    EXPECT_EQ(3, analyserComponent.getColourCounter());
+    
+    analyserComponent.paint();
+    EXPECT_EQ(4, analyserComponent.getColourCounter());
+    
+    analyserComponent.paint();
+    EXPECT_EQ(5, analyserComponent.getColourCounter());
+    
+    analyserComponent.paint();
+    EXPECT_EQ(6, analyserComponent.getColourCounter());
+
+    analyserComponent.paint();
+    EXPECT_EQ(1, analyserComponent.getColourCounter());
     
 }

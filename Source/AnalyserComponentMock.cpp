@@ -24,23 +24,34 @@ AnalyserComponent::~AnalyserComponent()
 
 void AnalyserComponent::paint()
 {
+    drawFrame();  // drawFrame comes first
+    
+    drawNextFrameOfSpectrum();  // this is run in TimerCallback in real JUCE project
+
     counter = counter + 1;
-//    colourIncrement = colourIncrement + 1;
+    colourIncrement = colourIncrement + 1;
 //
 //    n = n * 2;
 //    if (n >= interpolationFrames) {
 //        n = 1;
 //    }
-    
-    drawNextFrameOfSpectrum();
 }
 
-
-// This function was taken from an example project on https://docs.juce.com/master/tutorial_spectrum_analyser.html
 void AnalyserComponent::drawNextFrameOfSpectrum()
 {
     if (counter >= interpolationFrames) {
         // Reset
         counter = 0;
     }
+}
+
+void AnalyserComponent::drawFrame()
+{
+ 
+    if (colourIncrement >= interpolationFramesColour) {
+        // Updatesc olour here
+        // Then reset
+        colourIncrement = 0;
+    }
+
 }

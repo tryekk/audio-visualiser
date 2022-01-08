@@ -64,10 +64,10 @@ void AnalyserComponent::paint(juce::Graphics& g)
     
     counter = counter + 1;
     colourIncrement = colourIncrement + 1;
-    n = n * 2;
-    if (n >= interpolationFrames) {
-        n = 1;
-    }
+//    n = n * 2;
+//    if (n >= interpolationFrames) {
+//        n = 1;
+//    }
     
     if (displayClock) {
         g.setColour(juce::Colours::white);

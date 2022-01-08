@@ -20,18 +20,27 @@ public:
 
 
     void paint();
-
+    
     void drawNextFrameOfSpectrum();
+
+    void drawFrame();
     
     int getCounter()
     {
         return counter;
     };
     
+    int getColourCounter()
+    {
+        return colourIncrement;
+    };
+    
     
 private:
 
     int counter = 0;
+    int colourIncrement = 0;
     int interpolationFrames = 4;
-  
+    int interpolationFramesColour = 6;
+
 };
