@@ -58,7 +58,7 @@ private:
         scopeSize = 5  // Number of points
     };
     
-    // Contains the points to be displayed on screen (in JUCE application)
+    // Contains the points locations to be displayed on screen (in JUCE application)
     float scopeData [scopeSize] = {0.1f, 1.6f, 20.0f, 16.4f, 5.0f};
     
     // Array of size 3 emulates juce::Colour
@@ -73,7 +73,7 @@ private:
         {1.0f, 1.0f, 1.0f},
         {0.5f, 1.0f, 1.0f}
     };
-    float oldColourList [scopeSize] [3];
+    float oldColourList [scopeSize] [3] = {0.1f, 0.1f, 0.1f};
     
     float updatedColour [3] = {0, 0, 0};
 
@@ -81,6 +81,6 @@ private:
     int counter = 0;
     int colourIncrement = 0;
     int interpolationFrames = 4;
-    int interpolationFramesColour = 6;
+    int interpolationFramesColour = 5;
 
 };
