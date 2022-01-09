@@ -26,6 +26,11 @@ public:
 
     void drawFrame();
     
+    int getInterpolationFrames()
+    {
+        return interpolationFrames;
+    }
+    
     int getCounter()
     {
         return counter;
@@ -36,15 +41,15 @@ public:
         return colourIncrement;
     };
     
-    float getCurrentColour0()
+    float getCurrentColourRed()
     {
         return updatedColour[0];
     };
-    float getCurrentColour1()
+    float getCurrentColourGreen()
     {
         return updatedColour[1];
     };
-    float getCurrentColour2()
+    float getCurrentColourBlue()
     {
         return updatedColour[2];
     };

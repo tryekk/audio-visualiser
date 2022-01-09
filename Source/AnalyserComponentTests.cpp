@@ -31,11 +31,11 @@ TEST(AnalyserComponent, counterTest) {
 TEST(AnalyserComponent, counterTestForLoop) {
     AnalyserComponent analyserComponent;
     
-//    for (int i = 0; i < analyserComponent.getCounter()) {
-//        
-//    }
-    analyserComponent.paint();
-    EXPECT_EQ(1, analyserComponent.getCounter());
+    // Same test as above but looped multiple times
+    for (int i = 0; i < (analyserComponent.getInterpolationFrames() * 14) + 1; i++) {
+        analyserComponent.paint();
+    }
+    EXPECT_EQ(1, analyserComponent.getCounter());  // Still ends up at 1 after looping multiple times
 }
 
 TEST(AnalyserComponent, colourCounterTest) {
@@ -68,8 +68,8 @@ TEST(AnalyserComponent, testColourUpdatesAndTransitions) {
     analyserComponent.paint();  // 1
     analyserComponent.paint();  // 2
 
-    EXPECT_EQ(0.2f, analyserComponent.getCurrentColour0());  // Target colour is 0.5f
-    EXPECT_EQ(0.4f, analyserComponent.getCurrentColour1());  // Target colour is 1.0f
-    EXPECT_EQ(0.4f, analyserComponent.getCurrentColour2());  // Target colour is 1.0f
+    EXPECT_EQ(0.2f, analyserComponent.getCurrentColourRed());  // Target colour is 0.5f
+    EXPECT_EQ(0.4f, analyserComponent.getCurrentColourGreen());  // Target colour is 1.0f
+    EXPECT_EQ(0.4f, analyserComponent.getCurrentColourBlue());  // Target colour is 1.0f
     
 }
