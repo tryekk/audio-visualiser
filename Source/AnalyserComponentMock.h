@@ -42,11 +42,11 @@ public:
     };
     float getCurrentColour1()
     {
-        return currentAccurateColourList[4][1];
+        return updatedColour[1];
     };
     float getCurrentColour2()
     {
-        return currentAccurateColourList[4][2];
+        return updatedColour[2];
     };
     
     
@@ -71,7 +71,7 @@ private:
         {1.0f, 1.0f, 1.0f},
         {1.0f, 1.0f, 1.0f},
         {1.0f, 1.0f, 1.0f},
-        {0.5f, 1.0f, 1.0f}
+        {0.5f, 1.0f, 1.0f}  // Colour that the measured colour will end up at after reaching interpolationFrames * loops
     };
     float oldColourList [scopeSize] [3] = {0.1f, 0.1f, 0.1f};
     
