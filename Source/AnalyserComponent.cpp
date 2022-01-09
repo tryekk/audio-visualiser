@@ -173,7 +173,7 @@ void AnalyserComponent::drawFrame (juce::Graphics& g)
     float fractionalWidth = width / scopeSize;
     float scaleFactor = widthModifier;  // Line thickness
     
-    for (int i = 1; i < scopeSize; ++i)
+    for (int i = 0; i < scopeSize; ++i)
     {
         
         if (showAccurateSamplePoints) {
@@ -198,7 +198,7 @@ void AnalyserComponent::drawFrame (juce::Graphics& g)
             // Update colour
             if (colourIncrement >= interpolationFramesColour) {
                 oldColourList[i] = currentAccurateColourList[i];
-                
+                // Generate new colour based on user parameters
                 currentAccurateColourList[i] = juce::Colour::fromFloatRGBA(
                    ((HighPitchColourR / scopeSize) * i) + ((LowPitchColourR / scopeSize) * (scopeSize - i)) + ((HighGainColourR - LowGainColourR) * scopeData[i]),
                    ((HighPitchColourG / scopeSize) * i) + ((LowPitchColourG / scopeSize) * (scopeSize - i)) + ((HighGainColourG - LowGainColourG) * scopeData[i]),

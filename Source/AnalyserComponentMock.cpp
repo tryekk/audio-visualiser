@@ -48,9 +48,25 @@ void AnalyserComponent::drawNextFrameOfSpectrum()
 
 void AnalyserComponent::drawFrame()
 {
+    
+    for (int i = 0; i < scopeSize; i++)
+    {
+        // Update colour
+        oldColourList[i][0] = currentAccurateColourList[i][0];
+        oldColourList[i][1] = currentAccurateColourList[i][1];
+        oldColourList[i][2] = currentAccurateColourList[i][2];
+        
+        // Simulates the update colour procedure in the real application
+        float red = oldColourList[i][0] + (((currentAccurateColourList[i][0] - oldColourList[i][0]) / interpolationFramesColour) * colourIncrement);
+        float green = oldColourList[i][1] + (((currentAccurateColourList[i][1] -  oldColourList[i][1]) / interpolationFramesColour) * colourIncrement);
+        float blue = oldColourList[i][2] + (((currentAccurateColourList[i][2] - oldColourList[i][2]) / interpolationFramesColour) * colourIncrement);
+    
+        updatedColour[0] = red;
+        updatedColour[1] = green;
+        updatedColour[2] = blue;
+    }
  
     if (colourIncrement >= interpolationFramesColour) {
-        // Updatesc olour here
         // Then reset
         colourIncrement = 0;
     }

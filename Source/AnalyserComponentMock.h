@@ -36,9 +36,48 @@ public:
         return colourIncrement;
     };
     
+    float getCurrentColour0()
+    {
+        return updatedColour[0];
+    };
+    float getCurrentColour1()
+    {
+        return currentAccurateColourList[4][1];
+    };
+    float getCurrentColour2()
+    {
+        return currentAccurateColourList[4][2];
+    };
+    
     
 private:
+    // Initialise required values
+    
+    enum
+    {
+        scopeSize = 5  // Number of points
+    };
+    
+    // Contains the points to be displayed on screen (in JUCE application)
+    float scopeData [scopeSize] = {0.1f, 1.6f, 20.0f, 16.4f, 5.0f};
+    
+    // Array of size 3 emulates juce::Colour
+//    float gainColour [3] = {1.0f, 0.1f, 0.1f};
+//    float lowPitchColour [3] = {0.1f, 0.2f, 0.2f};
+//    float highPitchColour [3] = {0.9f, 0.3f, 0.3f};
+    
+    float currentAccurateColourList [scopeSize] [3] = {
+        {0.5f, 1.0f, 1.0f},
+        {1.0f, 1.0f, 1.0f},
+        {1.0f, 1.0f, 1.0f},
+        {1.0f, 1.0f, 1.0f},
+        {0.5f, 1.0f, 1.0f}
+    };
+    float oldColourList [scopeSize] [3];
+    
+    float updatedColour [3] = {0, 0, 0};
 
+    
     int counter = 0;
     int colourIncrement = 0;
     int interpolationFrames = 4;

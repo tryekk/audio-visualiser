@@ -53,3 +53,11 @@ TEST(AnalyserComponent, colourCounterTest) {
     EXPECT_EQ(1, analyserComponent.getColourCounter());
     
 }
+
+TEST(AnalyserComponent, testColourUpdatesAndTransitions) {
+    AnalyserComponent analyserComponent;
+    
+    analyserComponent.paint();
+    EXPECT_EQ(0.5f, analyserComponent.getCurrentColour0());
+    
+}
