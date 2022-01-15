@@ -209,12 +209,12 @@ SettingsComponent::SettingsComponent()
     displayBottomHalfLabel.attachToComponent(&displayBottomHalfButton, false);
     
     
-    addAndMakeVisible(interpolationTypeSelector);
-    interpolationTypeSelector.addItem ("1", 1);
-    interpolationTypeSelector.addItem ("2", 2);
-    interpolationTypeSelector.addItem ("3", 3);
-    interpolationTypeSelector.onChange = [this] { comboBoxChanged(); };
-    interpolationTypeSelector.setSelectedId (1);
+//    addAndMakeVisible(interpolationTypeSelector);
+//    interpolationTypeSelector.addItem ("1", 1);
+//    interpolationTypeSelector.addItem ("2", 2);
+//    interpolationTypeSelector.addItem ("3", 3);
+//    interpolationTypeSelector.onChange = [this] { comboBoxChanged(); };
+//    interpolationTypeSelector.setSelectedId (1);
 }
 
 SettingsComponent::~SettingsComponent()
