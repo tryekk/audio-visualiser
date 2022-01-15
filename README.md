@@ -27,7 +27,7 @@ Some assumptions I made based on this were:<br>
 • UI elements should be clear and unambiguous and a readable size on all display sizes. Labels and controls must be clear and concise, without causing the user confusion.
 <br><br>
 
-### A link to requirements or a list of requirements (unless you are using the features for requirements gathering and monitoring provided in your source control application)
+### List of requirements (also viewable as GitHub issues)
 
 • As a user, I should see a visual representation of my audio input<br>
 • As a user, configure the visual display using the settings menu<br>
