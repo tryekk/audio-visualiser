@@ -1,7 +1,7 @@
 # Customisable Cross-Platform Audio Visualiser
 
 
-### How to build/start/run/compile the project
+### How to use
 
 #### macOS:
 Clone the GitHub project.<br>
