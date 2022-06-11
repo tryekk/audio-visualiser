@@ -10,13 +10,15 @@
 
 #include <iostream>
 #include <chrono>
+#include <string>
 
 #include "AnalyserComponent.h"
 #include "SettingsComponent.h"
 
 
-AnalyserComponent::AnalyserComponent(): forwardFFT (fftOrder),
-window (fftSize, juce::dsp::WindowingFunction<float>::hann)
+AnalyserComponent::AnalyserComponent()
+    : forwardFFT(fftOrder)
+    , window(fftSize, juce::dsp::WindowingFunction<float>::hann)
 {
     setOpaque (true);
     setAudioChannels (2, 0);  // we want a couple of input channels but no outputs
@@ -51,14 +53,21 @@ void AnalyserComponent::paint(juce::Graphics& g)
     g.setOpacity (1.0f);
     
     // Measure FPS
-//    auto duration = std::chrono::system_clock::now().time_since_epoch();
-//    auto millis = std::chrono::duration_cast<std::chrono::milliseconds>(duration).count();
-//    if (millis % 100 == 0) {
-//        std::cout << fpsCounter << "\n";
-//        fpsCounter = 0;
-//    } else {
-//        fpsCounter = fpsCounter + 1;
-//    }
+    static double lastTime = std::chrono::duration<double>(std::chrono::system_clock::now().time_since_epoch()).count();
+    static size_t lastFramesPainted = 0;
+    static size_t totalFramesPainted = 0;
+    static size_t fps = 0;
+    
+    double nowTime = std::chrono::duration<double>(std::chrono::system_clock::now().time_since_epoch()).count();
+    if (nowTime - lastTime >= 1.0)
+    {
+        fps = totalFramesPainted - lastFramesPainted;
+        
+        std::cout << "FPS: " << fps << std::endl;
+        
+        lastTime = nowTime;
+        lastFramesPainted = totalFramesPainted;
+    }
     
     drawFrame (g);
     
@@ -83,6 +92,13 @@ void AnalyserComponent::paint(juce::Graphics& g)
         g.setFont (juce::Font ("Calibri", fontSize, juce::Font::bold));
         g.drawText (currentTime, 120, 100, 500, 200, juce::Justification::topLeft, true);
     }
+    
+    float fontSize = juce::jlimit (36, 72, 50);
+    g.setFont (juce::Font ("Calibri", fontSize, juce::Font::bold));
+    g.drawText (std::to_string(fps), 120, 100, 500, 200, juce::Justification::topRight, true);
+    
+    totalFramesPainted += 1;
+    
 }
 
 void AnalyserComponent::resized()

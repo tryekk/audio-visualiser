@@ -34,7 +34,7 @@ private:
             setFullScreen (true);
            #else
             setResizable (true, false);
-            setResizeLimits (300, 250, 10000, 10000);
+            setResizeLimits (300, 250, 3456, 2234);
             centreWithSize (1280, 720);
            #endif
 
