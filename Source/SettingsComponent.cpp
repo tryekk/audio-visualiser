@@ -26,6 +26,7 @@ float widthModifier;
 int interpolationFrames = 4;
 int interpolationFramesColour = 6;
 bool displayClock;
+bool displayFps;
 bool showAccurateSamplePoints;
 bool drawLines = true;
 bool centreVerticalOrigin = false;
@@ -165,6 +166,14 @@ SettingsComponent::SettingsComponent()
     displayClockLabel.attachToComponent(&displayClockButton, false);
     
     
+    addAndMakeVisible(displayFpsButton);
+    displayFpsButton.addListener(this);
+    
+    addAndMakeVisible(displayClockLabel);
+    displayFpsLabel.setText("Display FPS", dontSendNotification);
+    displayFpsLabel.attachToComponent(&displayFpsButton, false);
+    
+    
     addAndMakeVisible(displayAccuratePointsButton);
     displayAccuratePointsButton.addListener(this);
     
@@ -252,11 +261,12 @@ void SettingsComponent::resized()
     
     displayLabel.setBounds(padding, 1100, getWidth() - (padding * 2), 20);
     displayClockButton.setBounds(padding, 1150, getWidth() - (padding * 2), 20);
-    displayAccuratePointsButton.setBounds(padding, 1200, getWidth() - (padding * 2), 20);
-    drawLinesButton.setBounds(padding, 1250, getWidth() - (padding * 2), 20);
-    displayTopHalfButton.setBounds(padding, 1300, getWidth() - (padding * 2), 20);
-    invertTopHalfButton.setBounds(padding, 1350, getWidth() - (padding * 2), 20);
-    displayBottomHalfButton.setBounds(padding, 1400, getWidth() - (padding * 2), 20);
+    displayFpsButton.setBounds(padding, 1200, getWidth() - (padding * 2), 20);
+    displayAccuratePointsButton.setBounds(padding, 1250, getWidth() - (padding * 2), 20);
+    drawLinesButton.setBounds(padding, 1300, getWidth() - (padding * 2), 20);
+    displayTopHalfButton.setBounds(padding, 1350, getWidth() - (padding * 2), 20);
+    invertTopHalfButton.setBounds(padding, 1400, getWidth() - (padding * 2), 20);
+    displayBottomHalfButton.setBounds(padding, 1450, getWidth() - (padding * 2), 20);
 }
 
 void SettingsComponent::changeListenerCallback(ChangeBroadcaster* source)
@@ -293,6 +303,8 @@ void SettingsComponent::buttonClicked(Button* button)
 {
     if (button == &displayClockButton) {
         displayClock = !displayClock;
+    } else if (button == &displayFpsButton) {
+        displayFps = !displayFps;
     } else if (button == &displayAccuratePointsButton) {
         showAccurateSamplePoints = !showAccurateSamplePoints;
     } else if (button == &drawLinesButton) {

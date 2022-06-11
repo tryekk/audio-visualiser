@@ -28,6 +28,7 @@ extern int interpolationFrames;
 extern int interpolationFramesColour;
 extern int fftOrder;
 extern bool displayClock;
+extern bool displayFps;
 extern bool showAccurateSamplePoints;
 extern bool drawLines;
 extern bool centreVerticalOrigin;
@@ -101,6 +102,9 @@ private:
     
     ToggleButton displayClockButton;
     Label displayClockLabel;
+    
+    ToggleButton displayFpsButton;
+    Label displayFpsLabel;
     
     ToggleButton displayAccuratePointsButton;
     Label displayAccuratePointsLabel;

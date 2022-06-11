@@ -93,9 +93,11 @@ void AnalyserComponent::paint(juce::Graphics& g)
         g.drawText (currentTime, 120, 100, 500, 200, juce::Justification::topLeft, true);
     }
     
-    float fontSize = juce::jlimit (36, 72, 50);
-    g.setFont (juce::Font ("Calibri", fontSize, juce::Font::bold));
-    g.drawText (std::to_string(fps), 120, 100, 500, 200, juce::Justification::topRight, true);
+    if (displayFps) {
+        float fontSize = juce::jlimit (36, 72, 50);
+        g.setFont (juce::Font ("Calibri", fontSize, juce::Font::bold));
+        g.drawText (std::to_string(fps), 120, 100, 500, 200, juce::Justification::topRight, true);
+    }
     
     totalFramesPainted += 1;
     
