@@ -35,6 +35,7 @@ extern bool centreVerticalOrigin;
 extern float verticalOriginModifier;
 extern bool centreHorizontalOrigin;
 extern float horizontalOriginModifier;
+extern bool mirrorVertical;
 extern bool displayTopHalf;
 extern bool invertTopHalf;
 extern bool displayBottomHalf;
@@ -97,6 +98,9 @@ private:
     
     Slider horizontalOriginSlider;
     Label horizontalOriginLabel;
+    
+    ToggleButton mirrorVerticalButton;
+    Label mirrorVerticalLabel;
     
     Label displayLabel;
     

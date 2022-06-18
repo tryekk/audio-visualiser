@@ -33,6 +33,7 @@ bool centreVerticalOrigin = false;
 float verticalOriginModifier = 2.0f;
 bool centreHorizontalOrigin = false;
 float horizontalOriginModifier = 2.0f;
+bool mirrorVertical;
 bool displayTopHalf = true;
 bool invertTopHalf = true;
 bool displayBottomHalf = true;
@@ -152,6 +153,14 @@ SettingsComponent::SettingsComponent()
     horizontalOriginLabel.attachToComponent(&horizontalOriginSlider, false);
     
     
+    addAndMakeVisible(mirrorVerticalButton);
+    mirrorVerticalButton.addListener(this);
+    
+    addAndMakeVisible(mirrorVerticalButton);
+    mirrorVerticalLabel.setText("Mirror Vertical Axis", dontSendNotification);
+    mirrorVerticalLabel.attachToComponent(&mirrorVerticalButton, false);
+    
+    
     
     addAndMakeVisible(displayLabel);
     displayLabel.setText("Display options", dontSendNotification);
@@ -258,15 +267,16 @@ void SettingsComponent::resized()
     verticalOriginSlider.setBounds(padding, 950, getWidth() - (padding * 2), 20);
     centreHorizontalOriginButton.setBounds(padding, 1000, getWidth() - (padding * 2), 20);
     horizontalOriginSlider.setBounds(padding, 1050, getWidth() - (padding * 2), 20);
+    mirrorVerticalButton.setBounds(padding, 1100, getWidth() - (padding * 2), 20);
     
-    displayLabel.setBounds(padding, 1100, getWidth() - (padding * 2), 20);
-    displayClockButton.setBounds(padding, 1150, getWidth() - (padding * 2), 20);
-    displayFpsButton.setBounds(padding, 1200, getWidth() - (padding * 2), 20);
-    displayAccuratePointsButton.setBounds(padding, 1250, getWidth() - (padding * 2), 20);
-    drawLinesButton.setBounds(padding, 1300, getWidth() - (padding * 2), 20);
-    displayTopHalfButton.setBounds(padding, 1350, getWidth() - (padding * 2), 20);
-    invertTopHalfButton.setBounds(padding, 1400, getWidth() - (padding * 2), 20);
-    displayBottomHalfButton.setBounds(padding, 1450, getWidth() - (padding * 2), 20);
+    displayLabel.setBounds(padding, 1150, getWidth() - (padding * 2), 20);
+    displayClockButton.setBounds(padding, 1200, getWidth() - (padding * 2), 20);
+    displayFpsButton.setBounds(padding, 1250, getWidth() - (padding * 2), 20);
+    displayAccuratePointsButton.setBounds(padding, 1300, getWidth() - (padding * 2), 20);
+    drawLinesButton.setBounds(padding, 1350, getWidth() - (padding * 2), 20);
+    displayTopHalfButton.setBounds(padding, 1400, getWidth() - (padding * 2), 20);
+    invertTopHalfButton.setBounds(padding, 1450, getWidth() - (padding * 2), 20);
+    displayBottomHalfButton.setBounds(padding, 1500, getWidth() - (padding * 2), 20);
 }
 
 void SettingsComponent::changeListenerCallback(ChangeBroadcaster* source)

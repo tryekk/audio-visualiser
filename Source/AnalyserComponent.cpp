@@ -62,9 +62,6 @@ void AnalyserComponent::paint(juce::Graphics& g)
     if (nowTime - lastTime >= 1.0)
     {
         fps = totalFramesPainted - lastFramesPainted;
-        
-        std::cout << "FPS: " << fps << std::endl;
-        
         lastTime = nowTime;
         lastFramesPainted = totalFramesPainted;
     }
@@ -78,8 +75,9 @@ void AnalyserComponent::paint(juce::Graphics& g)
 //        n = 1;
 //    }
     
+    g.setColour(juce::Colours::white);
+
     if (displayClock) {
-        g.setColour(juce::Colours::white);
         String currentTimeHours = (String) juce::Time::getCurrentTime().getHours();
         String currentTimeMins = (String) juce::Time::getCurrentTime().getMinutes();
         if (currentTimeMins.length() == 1) {
@@ -209,7 +207,7 @@ void AnalyserComponent::drawFrame (juce::Graphics& g)
             float blue = oldColourList[i].getFloatBlue() + (((currentAccurateColourList[i].getFloatBlue() - oldColourList[i].getFloatBlue()) / interpolationFramesColour) * colourIncrement);
             float RGBColour[3] = {red, green, blue};
             
-            drawLayer(g, i, RGBColour, 0.6f, heightModifier * 0.8f, scaleFactor * 0.7);
+//            drawLayer(g, i, RGBColour, 0.6f, heightModifier * 0.8f, scaleFactor * 0.7);
             drawLayer(g, i, RGBColour, 0.8f, heightModifier * 0.7f, scaleFactor * 0.85);
             drawLayer(g, i, RGBColour, 1.0f, heightModifier * 0.6f, scaleFactor * 1);
                         
@@ -261,6 +259,10 @@ void AnalyserComponent::drawLayer (juce::Graphics& g, int i, float RGBColour[3],
         if (interpolationType == 0) {
             // Bottom Half
             if (displayBottomHalf) {
+                if (mirrorVertical) {
+                    
+                }
+                
                 if (centreVerticalOrigin) {
                     g.drawEllipse(i * fractionalWidth - (fractionalWidth / 2) * scaleFactor, ((height - (height / verticalOriginModifier)) - ((oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / interpolationFrames) * counter)) * ((height - (height / verticalOriginModifier)) * localHeightModifier))) - (fractionalWidth / 2) * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor);
 
