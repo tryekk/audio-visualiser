@@ -259,9 +259,20 @@ void AnalyserComponent::drawLayer (juce::Graphics& g, int i, float RGBColour[3],
         if (interpolationType == 0) {
             // Bottom Half
             if (displayBottomHalf) {
+                
+                // ####
                 if (mirrorVertical) {
-                    
+                    g.drawEllipse(i * fractionalWidth - (fractionalWidth / 2) * scaleFactor, (height - ((oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / interpolationFrames) * counter)) * (height * localHeightModifier))) - (fractionalWidth / 2) * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor);
+
+                    if (drawLines) {
+                        // Bottom half inverted
+                        g.drawLine(width - (i * (fractionalWidth)), height, width - (i * (fractionalWidth)), height - ((oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / interpolationFrames) * counter)) * (height * localHeightModifier)), fractionalWidth * scaleFactor);
+                        
+                        // Bottom half
+                        g.drawLine(i * (fractionalWidth), height, i * (fractionalWidth), height - ((oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / interpolationFrames) * counter)) * (height * localHeightModifier)), fractionalWidth * scaleFactor);
+                    }
                 }
+                // ####
                 
                 if (centreVerticalOrigin) {
                     g.drawEllipse(i * fractionalWidth - (fractionalWidth / 2) * scaleFactor, ((height - (height / verticalOriginModifier)) - ((oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / interpolationFrames) * counter)) * ((height - (height / verticalOriginModifier)) * localHeightModifier))) - (fractionalWidth / 2) * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor);

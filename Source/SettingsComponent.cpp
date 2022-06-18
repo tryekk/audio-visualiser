@@ -313,6 +313,8 @@ void SettingsComponent::buttonClicked(Button* button)
 {
     if (button == &displayClockButton) {
         displayClock = !displayClock;
+    } else if (button == &mirrorVerticalButton) {
+        mirrorVertical = !mirrorVertical;
     } else if (button == &displayFpsButton) {
         displayFps = !displayFps;
     } else if (button == &displayAccuratePointsButton) {
