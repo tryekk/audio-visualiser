@@ -262,9 +262,23 @@ void AnalyserComponent::drawLayer (juce::Graphics& g, int i, float RGBColour[3],
                 
                 // ####
                 if (mirrorVertical) {
+                    // Bottom half inverted
+                    g.drawEllipse(width - (i * fractionalWidth) - (fractionalWidth / 2) * scaleFactor, (height - ((oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / interpolationFrames) * counter)) * (height * localHeightModifier))) - (fractionalWidth / 2) * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor);
+                    
+                    // Bottom half
                     g.drawEllipse(i * fractionalWidth - (fractionalWidth / 2) * scaleFactor, (height - ((oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / interpolationFrames) * counter)) * (height * localHeightModifier))) - (fractionalWidth / 2) * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor, fractionalWidth * scaleFactor);
 
                     if (drawLines) {
+                        
+                        /*
+                        // Top half inverted
+                        g.drawLine(width - (i * fractionalWidth), 0, width - (i * fractionalWidth), (oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / interpolationFrames) * counter)) * (height * localHeightModifier), fractionalWidth * scaleFactor);
+                        
+                        // Top half
+                        g.drawLine(i * fractionalWidth, 0, i * fractionalWidth, (oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / interpolationFrames) * counter)) * (height * localHeightModifier), fractionalWidth * scaleFactor);
+                         */
+                        
+                        
                         // Bottom half inverted
                         g.drawLine(width - (i * (fractionalWidth)), height, width - (i * (fractionalWidth)), height - ((oldPositionData[i] + (((scopeData[i] - oldPositionData[i]) / interpolationFrames) * counter)) * (height * localHeightModifier)), fractionalWidth * scaleFactor);
                         
