@@ -207,7 +207,7 @@ void AnalyserComponent::drawFrame (juce::Graphics& g)
             float blue = oldColourList[i].getFloatBlue() + (((currentAccurateColourList[i].getFloatBlue() - oldColourList[i].getFloatBlue()) / interpolationFramesColour) * colourIncrement);
             float RGBColour[3] = {red, green, blue};
             
-//            drawLayer(g, i, RGBColour, 0.6f, heightModifier * 0.8f, scaleFactor * 0.7);
+            drawLayer(g, i, RGBColour, 0.6f, heightModifier * 0.8f, scaleFactor * 0.7);
             drawLayer(g, i, RGBColour, 0.8f, heightModifier * 0.7f, scaleFactor * 0.85);
             drawLayer(g, i, RGBColour, 1.0f, heightModifier * 0.6f, scaleFactor * 1);
                         
