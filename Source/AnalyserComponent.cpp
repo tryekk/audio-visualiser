@@ -24,6 +24,9 @@ AnalyserComponent::AnalyserComponent()
     setAudioChannels (2, 0);  // we want a couple of input channels but no outputs
     startTimerHz (60);
     setSize (800, 600);
+
+    juce::zeromem(scopeData, sizeof(scopeData));
+    juce::zeromem(oldPositionData, sizeof(oldPositionData));
 }
 
 AnalyserComponent::~AnalyserComponent()
@@ -35,7 +38,7 @@ void AnalyserComponent::prepareToPlay(int, double) {}
 
 void AnalyserComponent::releaseResources() {}
 
-// This function was taken from an example project on https://docs.juce.com/master/tutorial_spectrum_analyser.html
+// This function was taken from an example project on whttps://docs.juce.com/master/tutorial_spectrum_analyser.html
 void AnalyserComponent::getNextAudioBlock(const juce::AudioSourceChannelInfo& bufferToFill)
 {
     if (bufferToFill.buffer->getNumChannels() > 0)
@@ -206,10 +209,6 @@ void AnalyserComponent::drawFrame (juce::Graphics& g)
             float green = oldColourList[i].getFloatGreen() + (((currentAccurateColourList[i].getFloatGreen() -  oldColourList[i].getFloatGreen()) / interpolationFramesColour) * colourIncrement);
             float blue = oldColourList[i].getFloatBlue() + (((currentAccurateColourList[i].getFloatBlue() - oldColourList[i].getFloatBlue()) / interpolationFramesColour) * colourIncrement);
             float RGBColour[3] = {red, green, blue};
-            
-//            drawLayer(g, i, RGBColour, 0.6f, heightModifier * 0.8f, scaleFactor * 0.7);
-            drawLayer(g, i, RGBColour, 0.8f, heightModifier * 0.7f, scaleFactor * 0.85);
-            drawLayer(g, i, RGBColour, 1.0f, heightModifier * 0.6f, scaleFactor * 1);
                         
             // Update colour
             if (colourIncrement >= interpolationFramesColour) {
@@ -221,6 +220,10 @@ void AnalyserComponent::drawFrame (juce::Graphics& g)
                    ((HighPitchColourB / scopeSize) * i) + ((LowPitchColourB / scopeSize) * (scopeSize - i)) + ((HighGainColourB - LowGainColourB) * scopeData[i]),
                     1.0f);
             }
+
+            //            drawLayer(g, i, RGBColour, 0.6f, heightModifier * 0.8f, scaleFactor * 0.7);
+            drawLayer(g, i, RGBColour, 0.8f, heightModifier * 0.7f, scaleFactor * 0.85);
+            drawLayer(g, i, RGBColour, 1.0f, heightModifier * 0.6f, scaleFactor * 1);
         }
     }
     
