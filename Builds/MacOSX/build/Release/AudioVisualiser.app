@@ -1,1 +1,0 @@
-/Users/user/Library/Developer/Xcode/DerivedData/Audio_Visualiser-bxudabomfwnfofauxtdvjpearooh/Build/Intermediates.noindex/ArchiveIntermediates/Audio Visualiser - App/InstallationBuildProductsLocation/Users/user/Applications/AudioVisualiser.app
