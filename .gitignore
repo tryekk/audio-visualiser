@@ -1,3 +1,6 @@
 # JUCE build folders
 Builds/
 JuceLibraryCode/
+
+# MacOS files
+.DS_store
