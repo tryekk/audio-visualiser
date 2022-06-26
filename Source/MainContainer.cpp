@@ -16,7 +16,7 @@
 //==============================================================================
 MainContainer::MainContainer()
 {
-    setSize (1280, 720);
+    setSize(1280, 720);
     
     setWantsKeyboardFocus(true);
     addKeyListener(this);
